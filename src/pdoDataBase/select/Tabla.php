@@ -20,9 +20,9 @@ class Tabla
     {
         if(strlen($tabla) < 1)
         {
-            throw new Exception("La tabla en la base de datos no puede estar vacia", 1);
+            throw new Exception("La tabla no puede estar vacia");
         }
 
-        return ' FROM '.$tabla;
+        return ' '.$tabla;
     }
 }

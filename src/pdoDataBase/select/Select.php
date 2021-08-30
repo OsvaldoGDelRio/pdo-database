@@ -40,6 +40,6 @@ class Select
     public function select(): string
     {
         return 
-        "SELECT ".$this->_campos->campos().$this->_tabla->tabla().$this->_donde->donde().$this->_entre->entre().$this->_orden->orden().$this->_limite->limite();
+        "SELECT ".$this->_campos->campos()." FROM ".$this->_tabla->tabla().$this->_donde->donde().$this->_entre->entre().$this->_orden->orden().$this->_limite->limite();
     }
 }
