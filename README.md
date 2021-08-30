@@ -12,6 +12,11 @@ La clase permite realizar consultas con:
 ```shell
 composer require osvaldogdelrio/pdo-database
 ```
+
+## requiere de Factory para un mejor uso aunque puede utilizarce sin este método
+```shell
+composer require osvaldogdelrio/factory
+```
 ## ejemplos de uso
 ```php
 <?php
