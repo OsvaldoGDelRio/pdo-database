@@ -13,7 +13,7 @@ use src\pdoDatabase\select\{
     Orden
 };
 
-use src\pdoDataBase\consulta\{Consulta, Query, CrearConsulta};
+use src\pdoDataBase\consulta\{Consulta, CrearConsulta};
 
 use src\pdoDataBase\conexion\CrearConexionBaseDeDatos;
 

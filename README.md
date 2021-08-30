@@ -22,6 +22,11 @@ USUARIO = root
 TABLA = prueba
 CONTRASEÑA = ''
 
+La tabla contiene los campos
+id = int (primary key, autoincrement)
+uno = int
+dos = int
+tres = int
 */
 
 declare(strict_types=1);

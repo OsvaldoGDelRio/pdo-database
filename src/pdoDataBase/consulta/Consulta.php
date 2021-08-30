@@ -11,6 +11,7 @@ class Consulta
 {
     private $_conexionBaseDeDatos;
     private $_query;
+    public $_ultimaIdInsertada = null;
 
     public function __construct
     (
@@ -38,7 +39,9 @@ class Consulta
 
         try
         {
-            $consulta->execute();   
+            $consulta->execute();
+            $this->_ultimaIdInsertada = $this->_conexionBaseDeDatos->lastInsertId(); 
+            
         }
         catch(PDOException $e)
         {
