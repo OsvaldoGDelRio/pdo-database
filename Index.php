@@ -18,8 +18,12 @@ use src\pdoDataBase\conexion\{
 
 use src\pdoDatabase\consulta\{Consulta, CrearConsulta, Query};
 
-use src\pdoDatabase\resultados\{ContarResultados,ResultadoEnObjetos};
-
+use src\pdoDatabase\resultados\{
+    ContarResultados,
+    ResultadoEnObjetos,
+    ResultadoEnJson,
+    ResultadoEnArrays
+};
 use src\pdoDataBase\select\{
     Select,
     Campos,
@@ -52,9 +56,11 @@ $prueba = new Consulta(
 );
 echo '<h1>Consulta sencilla y directa</h1>';
 var_dump($prueba->consulta());
+
 echo '<h1>Contando resultads</h1>';
 $contar = new ContarResultados;
 var_dump($contar->contar($prueba->consulta()));
+
 echo '<h1>Obteniendo resultados en stdClass</h1>';
 $resultado = new ResultadoEnObjetos;
 var_dump($resultado->resultado($prueba->consulta()));
@@ -87,7 +93,6 @@ var_dump(
     $prueba->consulta()
 ));
 
-
 /*
 Creando consulta SELECT con factory
 */
@@ -96,12 +101,14 @@ $selectConFactory = new ConsultaConSelect;
 
 $select = $selectConFactory->crear(array(
     'tabla' => 'prueba',
-    'campos' => array('uno'),
-    'donde' => array('id','=',1)
+    //'campos' => array('uno'),
+    //'donde' => array('id','=',1)
 ));
-echo '<h1>Creando consulta con select y Factory</h1>';
-var_dump($select);
 
-/*
-Creando consulta con Factory
-*/
+echo '<h1>Creando consulta con select y Factory y retornando resultados en JSON</h1>';
+$json = new ResultadoEnJson;
+var_dump($json->resultado($select->consulta()));
+
+echo '<h1>Retornando resultados en array</h1>';
+$arrays = new ResultadoEnArrays;
+var_dump($arrays->resultado($select->consulta()));

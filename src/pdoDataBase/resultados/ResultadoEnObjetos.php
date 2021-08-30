@@ -3,8 +3,9 @@ namespace src\pdoDataBase\resultados;
 
 use PDO;
 use PDOStatement;
+use src\interfaces\ResultadoBaseDeDatosInterface;
 
-class ResultadoEnObjetos
+class ResultadoEnObjetos implements ResultadoBaseDeDatosInterface
 {
     public function resultado(PDOStatement $PDOStatement): object
     {

@@ -1,7 +1,11 @@
 <?php
 namespace src\pdoDataBase\conexion;
-
+/*
+En esta clase se colocan los datos para acceder a la BASE DE DATOS
+o se importan desde cualquier archivo con require_once que retorne un array
+*/
 use src\FactoryClassInterface;
+
 use src\pdoDataBase\conexion\{
     ConexionBaseDeDatos,
     HostBaseDeDatos,
