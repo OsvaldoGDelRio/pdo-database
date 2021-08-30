@@ -1,0 +1,20 @@
+{
+    "name": "osvaldogdelrio/pdo-database",
+    "description": "Clase en PHP para trabajar con PDO",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Osvaldo G Del Rio",
+            "email": "osdelrio@hotmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "src\\": "src/"
+        }
+    },
+    "require": {
+        "osvaldogdelrio/factory": "dev-main"
+    }
+}
