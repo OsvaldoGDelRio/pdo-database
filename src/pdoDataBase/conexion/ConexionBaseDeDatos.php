@@ -1,7 +1,9 @@
 <?php
 namespace src\pdoDataBase\conexion;
 
+use src\excepciones\ConexionABaseDeDatosException;
 use PDO;
+use PDOException;
 
 class ConexionBaseDeDatos
 {
@@ -29,12 +31,11 @@ class ConexionBaseDeDatos
         try
 		{
 			$this->_pdo = new PDO('mysql:host='.$this->_hostBaseDeDatos->hostBaseDeDatos().';dbname='.$this->_baseDeDatos->baseDeDatos().';chartset=utf8mb4',$this->_usuarioBaseDeDatos->usuarioBaseDeDatos(),$this->_contraseñaBaseDeDatos->contraseñaBaseDeDatos());
-			
 			$this->_pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		}
-		catch(\PDOException $e)
+		catch(PDOException)
 		{
-			die($e->getMessage());
+			throw new ConexionABaseDeDatosException("Error al conectar con base de datos");
 		}
 
         return $this->_pdo;

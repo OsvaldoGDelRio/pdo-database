@@ -1,7 +1,8 @@
 <?php
 namespace src\pdoDataBase\consulta;
 
-use Exception;
+use src\excepciones\ConsultaException;
+use PDOException;
 use PDOStatement;
 use src\pdoDataBase\conexion\ConexionBaseDeDatos;
 use src\pdoDatabase\consulta\Query;
@@ -35,11 +36,15 @@ class Consulta
             }
         }			
 
-        if($consulta->execute())
+        try
         {
-            return $consulta;				
+            $consulta->execute();   
+        }
+        catch(PDOException $e)
+        {
+            throw new ConsultaException("Error al procesar la consulta");
         }
 
-        throw new Exception("Error procesando consulta en Base de Datos", 1);	
+        return $consulta;		
 	}
 }
