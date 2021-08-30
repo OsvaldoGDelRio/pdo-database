@@ -13,7 +13,7 @@ La clase permite realizar consultas con:
 composer require osvaldogdelrio/pdo-database
 ```
 
-## requiere de Factory para un mejor uso aunque puede utilizarce sin este método
+## requiere de Factory para un mejor uso aunque puede utilizarse sin este método
 ```shell
 composer require osvaldogdelrio/factory
 ```
