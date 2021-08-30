@@ -14,6 +14,14 @@ composer require osvaldogdelrio/pdo-database
 
 /*
 Ejemplos de uso
+
+CONECTANDO A 
+HOST: 127.0.01
+BASE DE DATOS = prueba
+USUARIO = root
+TABLA = prueba
+CONTRASEÑA = ''
+
 */
 
 declare(strict_types=1);
