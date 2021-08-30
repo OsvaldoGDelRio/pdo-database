@@ -4,9 +4,9 @@
 # pdo-database
 Clase en PHP para trabajar con PDO y bases de datos SQL escrita en español.
 La clase permite realizar consultas con:
-- Select/
-- Insert/
-- Update/
+- Select
+- Insert
+- Update
 
 ## composer
 ```shell
