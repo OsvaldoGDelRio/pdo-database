@@ -197,4 +197,3 @@ var_dump($consultaR = $consultaConUpdate->consulta());
 echo '<h1>Viendo cuántas filas afectó (Se requiere cambiar los valore una vez ejecutado para que siga contando, ya que al hacerlo uan vez no modifica de nuevo la columna)</h1>';
 
 var_dump($contar->contar($consultaR));
-

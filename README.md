@@ -2,7 +2,11 @@
 [![Build Status](https://scrutinizer-ci.com/g/OsvaldoGDelRio/pdo-database/badges/build.png?b=main)](https://scrutinizer-ci.com/g/OsvaldoGDelRio/pdo-database/build-status/main)
 [![Code Intelligence Status](https://scrutinizer-ci.com/g/OsvaldoGDelRio/pdo-database/badges/code-intelligence.svg?b=main)](https://scrutinizer-ci.com/code-intelligence)
 # pdo-database
-Clase en PHP para trabajar con PDO y bases de datos SQL
+Clase en PHP para trabajar con PDO y bases de datos SQL escrita en español.
+La clase permite realizar consultas con:
+- Select/
+- Insert/
+- Update/
 
 ## composer
 ```shell
@@ -59,6 +63,17 @@ use src\pdoDataBase\select\{
     Limite,
     Orden,
     ConsultaConSelect
+};
+
+use src\pdoDataBase\insert\{
+    Insert,
+    ValoresAInsertar,
+    ConsultaConInsert
+};
+
+use src\pdoDataBase\update\{
+    Update,
+    ConsultaConUpdate
 };
 
 /*
@@ -137,4 +152,78 @@ var_dump($json->resultado($select->consulta()));
 echo '<h1>Retornando resultados en array</h1>';
 $arrays = new ResultadoEnArrays;
 var_dump($arrays->resultado($select->consulta()));
+
+echo '<h1>Creando la sentencia SQL insert</h1>';
+$insert = new Insert(
+    new Tabla('prueba'),
+    new ValoresAInsertar(
+        array(
+            'uno' => 3,
+            'dos' => 1,
+            'tres'=> 0 
+        )
+    )
+);
+
+var_dump($insert->insert());
+
+echo '<h1>Insertando valores</h1>';
+
+$insertando = new ConsultaConInsert;
+
+$insertando = $insertando->crear(
+    array(
+        'tabla' => 'prueba',
+        'valores' => 
+            array(
+                'uno' => 3,
+                'dos' => 1,
+                'tres'=> 0 
+            )
+    )
+);
+
+var_dump($insertando->consulta());
+echo '<h1>Retornando la última ID insertada</h1>';
+var_dump($insertando->_ultimaIdInsertada);
+
+echo '<h1>Creando sentencia Update</h1>';
+
+$update = new Update(
+    new Tabla('prueba'),
+    new Donde(
+        new MasDonde(array()),
+        array(
+            'id','=',1
+        )
+    ),
+    new ValoresAInsertar(
+        array(
+            'uno' => 9999999,
+            'dos' => 1111111
+        )
+    )
+);
+
+var_dump($update->update());
+
+echo '<h1>Modificando valores con Update</h1>';
+$consultaConUpdate = new ConsultaConUpdate;
+$consultaConUpdate = $consultaConUpdate->crear(
+    array(
+        'tabla' => 'prueba',
+        'valores' => array(
+            'uno' => 1013334,
+            'dos' => 102331
+        ),
+        'donde' => array(
+            'id','=',1
+        )
+    )
+);
+var_dump($consultaR = $consultaConUpdate->consulta());
+
+echo '<h1>Viendo cuántas filas afectó (Se requiere cambiar los valore una vez ejecutado para que siga contando, ya que al hacerlo uan vez no modifica de nuevo la columna)</h1>';
+
+var_dump($contar->contar($consultaR));
 ```
