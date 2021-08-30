@@ -39,7 +39,7 @@ class ConsultaConSelect implements FactoryClassInterface
         $conexion = new CrearConexionBaseDeDatos;
 
         return $consulta->crear(array(
-            $conexion->crear(array()),
+            'conexion' => $conexion->crear(array()),
             'sql' => $select->select(),
             'valores' => $donde->datos()
         ));
