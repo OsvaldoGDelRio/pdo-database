@@ -71,15 +71,13 @@ class ConexionTest extends TestCase
 
     public function testSilaConexionFallaLanzaExcepcion()
     {
+        $this->expectException(ConexionABaseDeDatosException::class);
         $conexion = new ConexionBaseDeDatos(
             new HostBaseDeDatos('127.0.0.1'),
             new BaseDeDatos('test'),
             new UsuarioBaseDeDatos('root'),
             new ContraseñaBaseDeDatos('aaaaaaaaaaaaaa')
         );
-
-        $this->expectException(ConexionABaseDeDatosException::class);
-        $conexion->conectar();
     }
 
 //----------------------------------     OJO------------------------------------------------------
