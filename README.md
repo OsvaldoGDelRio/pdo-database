@@ -42,7 +42,7 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/vendor/autoload.php';
 
-use src\pdoDataBase\conexion\{
+use src\pdodatabase\conexion\{
     BaseDeDatos,
     ConexionBaseDeDatos,
     ContraseñaBaseDeDatos,
@@ -50,15 +50,15 @@ use src\pdoDataBase\conexion\{
     UsuarioBaseDeDatos
 };
 
-use src\pdoDatabase\consulta\{Consulta, CrearConsulta, Query};
+use src\pdodatabase\consulta\{Consulta, CrearConsulta, Query};
 
-use src\pdoDatabase\resultados\{
+use src\pdodatabase\resultados\{
     ContarResultados,
     ResultadoEnObjetos,
     ResultadoEnJson,
     ResultadoEnArrays
 };
-use src\pdoDataBase\select\{
+use src\pdodatabase\select\{
     Select,
     Campos,
     Tabla,
@@ -70,13 +70,13 @@ use src\pdoDataBase\select\{
     ConsultaConSelect
 };
 
-use src\pdoDataBase\insert\{
+use src\pdodatabase\insert\{
     Insert,
     ValoresAInsertar,
     ConsultaConInsert
 };
 
-use src\pdoDataBase\update\{
+use src\pdodatabase\update\{
     Update,
     ConsultaConUpdate
 };

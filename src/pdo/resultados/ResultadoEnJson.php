@@ -1,5 +1,5 @@
 <?php
-namespace src\pdoDataBase\resultados;
+namespace src\pdodatabase\resultados;
 
 use PDO;
 use PDOStatement;

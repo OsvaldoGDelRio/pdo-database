@@ -1,5 +1,6 @@
 <?php
-namespace src\pdoDataBase\select;
+namespace src\pdodatabase\elementos;
+
 use Exception;
 
 class Tabla
@@ -18,7 +19,7 @@ class Tabla
 
     private function setTabla(string $tabla): string
     {
-        if(strlen($tabla) < 1)
+        if(empty($tabla))
         {
             throw new Exception("La tabla no puede estar vacia");
         }

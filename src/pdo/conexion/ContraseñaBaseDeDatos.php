@@ -1,5 +1,5 @@
 <?php
-namespace src\pdoDataBase\conexion;
+namespace src\pdodatabase\conexion;
 
 class ContraseñaBaseDeDatos
 {

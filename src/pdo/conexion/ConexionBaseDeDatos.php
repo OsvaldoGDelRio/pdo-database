@@ -1,5 +1,5 @@
 <?php
-namespace src\pdoDataBase\conexion;
+namespace src\pdodatabase\conexion;
 
 use src\excepciones\ConexionABaseDeDatosException;
 use PDO;
