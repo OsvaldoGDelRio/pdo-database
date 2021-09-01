@@ -1,6 +1,8 @@
 <?php
 namespace src\pdodatabase\conexion;
 
+use Exception;
+
 class UsuarioBaseDeDatos
 {
     private $_usuariobaseDeDatos;
@@ -17,6 +19,11 @@ class UsuarioBaseDeDatos
 
     private function setUsuarioBaseDeDatos(string $nombreUsuarioBaseDeDatos): string
     {
+        if(empty($nombreUsuarioBaseDeDatos))
+        {
+            throw new Exception("El nombre del host de la base de datos no puede estar vacio");
+        }
+
         return $nombreUsuarioBaseDeDatos;
     }
 }

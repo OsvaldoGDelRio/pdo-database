@@ -1,6 +1,8 @@
 <?php
 namespace src\pdodatabase\conexion;
 
+use Exception;
+
 class BaseDeDatos
 {
     private $_baseDeDatos;
@@ -17,6 +19,11 @@ class BaseDeDatos
 
     private function setBaseDeDatos(string $nombreBaseDeDatos): string
     {
+        if(empty($nombreBaseDeDatos))
+        {
+            throw new Exception("El nombre d ela base de datos no puede estar vacio");
+        }
+
         return $nombreBaseDeDatos;
     }
 }
