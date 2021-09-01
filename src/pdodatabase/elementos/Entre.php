@@ -30,22 +30,9 @@ class Entre
             throw new Exception("Faltan elementos en la sentencia BETWEEN");   
         }
 
-        foreach($columnas as $columna)
-        {
-            $this->alfaNumerico($columna);
-        }
-
         $this->_datos = $this->setDatos($columnas);
         
         return ' WHERE '.$columnas[0].' BETWEEN ? AND ?';
-    }
-
-    private function alfaNumerico($string)
-    {
-        if(!ctype_alnum($string))
-        {
-            throw new Exception("Caracter invalido en el campo de la sentencia BETWEEN");
-        }
     }
 
     private function setDatos(array $columnas): array

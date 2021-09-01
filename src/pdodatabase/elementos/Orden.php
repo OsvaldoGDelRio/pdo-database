@@ -24,16 +24,7 @@ class Orden
             throw new Exception("La sentencia ORDEN BY no puede estar vacia"); 
         }
 
-        $this->alfaNumerico($orden);
-
         return ' ORDER BY '.$orden;
     }
 
-    private function alfaNumerico($string)
-    {
-        if(!ctype_alnum($string))
-        {
-            throw new Exception("Caracter invalido en el campo de la sentencia ORDEN BY");
-        }
-    }
 }

@@ -57,18 +57,6 @@ class ElementosTest extends TestCase
         $this->assertIsString($donde->donde());
     }
 
-    public function testLaColumnaSoloPuedeSerAlfaNumerica()
-    {
-        $this->expectException(Exception::class);
-        $donde = new Donde(['%','=',2]);
-    }
-
-    public function testElValorSoloPuedeSerAlfaNumerico()
-    {
-        $this->expectException(Exception::class);
-        $donde = new Donde(['id','=','#']);
-    }
-
     public function testElComparadorSoloPuedeSerLogico()
     {
         $this->expectException(Exception::class);
@@ -99,24 +87,6 @@ class ElementosTest extends TestCase
     {
         $donde = new Entre(['id','1','1']);
         $this->assertIsArray($donde->datos());
-    }
-
-    public function testLaColumnaDeEntreSoloPuedeSerAlfaNumerica()
-    {
-        $this->expectException(Exception::class);
-        $donde = new Entre(['=','1','1']);
-    }
-
-    public function testElPrimeroValorDeEntreSoloPuedeSerAlfaNumerico()
-    {
-        $this->expectException(Exception::class);
-        $donde = new Entre(['id','=','1']);
-    }
-
-    public function testElSegundoValorDeEntreSoloPuedeSerAlfaNumerico()
-    {
-        $this->expectException(Exception::class);
-        $donde = new Entre(['id','1','&']);
     }
 
     //ODonde
@@ -168,12 +138,6 @@ class ElementosTest extends TestCase
     {
         $this->expectException(Exception::class);
         $orden = new Orden('');
-    }
-
-    public function testLaSenetenciaOrdenSoloPuedeSerAlfanumerica()
-    {
-        $this->expectException(Exception::class);
-        $orden = new Orden('$');
     }
 
     public function testLaSentenciaOrdenSoloPiedeRetornarString()

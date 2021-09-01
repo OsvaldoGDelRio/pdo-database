@@ -4,12 +4,12 @@ namespace test;
 
 use Exception;
 use PDO;
-use PDOStatement;
 use src\excepciones\ConexionABaseDeDatosException;
 use \PHPUnit\Framework\TestCase;
 use src\pdodatabase\conexion\BaseDeDatos;
 use src\pdodatabase\conexion\ConexionBaseDeDatos;
 use src\pdodatabase\conexion\ContraseñaBaseDeDatos;
+use src\pdodatabase\conexion\CrearConexionBaseDeDatos;
 use src\pdodatabase\conexion\HostBaseDeDatos;
 use src\pdodatabase\conexion\UsuarioBaseDeDatos;
 
@@ -66,8 +66,8 @@ class ConexionTest extends TestCase
     }
 
     //Conexion
-
-    //Las pruebas requieren que se pueda conectar a la base de datos
+//----------------------------------     OJO------------------------------------------------------
+    //La prueba requiere que se pueda conectar a la base de datos
 
     public function testSilaConexionFallaLanzaExcepcion()
     {
@@ -81,6 +81,9 @@ class ConexionTest extends TestCase
         $this->expectException(ConexionABaseDeDatosException::class);
         $conexion->conectar();
     }
+
+//----------------------------------     OJO------------------------------------------------------
+//La prueba requiere que se pueda conectar a la base de datos
     
     public function testSiLaConexionEsExitosaDevuelvePDO()
     {
@@ -92,5 +95,14 @@ class ConexionTest extends TestCase
         );
 
         $this->assertInstanceOf(PDO::class, $conexion->conectar());
+    }
+
+//----------------------------------     OJO------------------------------------------------------
+    //La prueba requiere que se pueda conectar a la base de datos
+
+    public function testELCreadorDeConexionRetornaLaClaseConexionABaseDeDatos()
+    {
+        $conexion = new CrearConexionBaseDeDatos;
+        $this->assertInstanceOf(ConexionBaseDeDatos::class, $conexion->crear([]));
     }
 }

@@ -41,21 +41,11 @@ class Donde
             throw new Exception("Elementos faltantes o sobrantes en la sentencia WHERE", 1);
         }
         
-        $this->alfaNumerico($columnas[0]);
         $this->operadorValido($columnas[1]);
-        $this->alfaNumerico($columnas[2]);
         
         $this->_datos = $this->setDatos($columnas);
 
         return ' WHERE '.$columnas[0].' '.$columnas[1].' ? ';
-    }
-
-    private function alfaNumerico($string)
-    {
-        if(!ctype_alnum($string))
-        {
-            throw new Exception("Caracter invalido en el campo de la sentencia WHERE");
-        }
     }
 
     private function operadorValido($string)
