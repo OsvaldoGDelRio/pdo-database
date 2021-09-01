@@ -2,8 +2,9 @@
 namespace src\pdodatabase\elementos;
 
 use Exception;
+use src\interfaces\ElementoConParametroInterface;
 
-class Orden
+class Orden implements ElementoConParametroInterface
 {
     private $_orden;
 
@@ -26,5 +27,4 @@ class Orden
 
         return ' ORDER BY '.$orden;
     }
-
 }

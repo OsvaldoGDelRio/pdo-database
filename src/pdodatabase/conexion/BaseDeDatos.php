@@ -21,7 +21,7 @@ class BaseDeDatos
     {
         if(empty($nombreBaseDeDatos))
         {
-            throw new Exception("El nombre d ela base de datos no puede estar vacio");
+            throw new Exception("El nombre de la base de datos no puede estar vacio");
         }
 
         return $nombreBaseDeDatos;

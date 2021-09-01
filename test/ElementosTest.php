@@ -6,12 +6,18 @@ use Exception;
 use \PHPUnit\Framework\TestCase;
 use src\pdodatabase\elementos\Campos;
 use src\pdodatabase\elementos\Donde;
+use src\pdodatabase\elementos\DondeOEntreConOrdenYLimite;
+use src\pdodatabase\elementos\DondeOEntreConParametro;
+use src\pdodatabase\elementos\DondeYDondeConOrdenYLimite;
+use src\pdodatabase\elementos\DondeYDondeConParametro;
 use src\pdodatabase\elementos\Entre;
 use src\pdodatabase\elementos\Limite;
 use src\pdodatabase\elementos\ODonde;
 use src\pdodatabase\elementos\Orden;
 use src\pdodatabase\elementos\Tabla;
 use src\pdodatabase\elementos\YDonde;
+use src\pdodatabase\elementos\OrdenConLimite;
+
 
 class ElementosTest extends TestCase
 {
@@ -166,4 +172,71 @@ class ElementosTest extends TestCase
         $this->assertIsString($orden->parametro());
     }
 
+    //orden y limite
+
+    public function testOrdenYLimiteRetornaString()
+    {
+        $consulta = new OrdenConLimite(new Orden('id'), new Limite('1'));
+        $this->assertIsString($consulta->parametro());
+    }
+
+    //Donde o Entre con parametro
+
+    public function testDondeOEntreConParametroRetornaString()
+    {
+        $consulta = new DondeOEntreConParametro(
+            new Donde(['id','=',1]),
+            new Limite('1')
+        );
+
+        $this->assertIsString($consulta->donde());
+    }
+
+    //donde o entre con orden y limite
+
+    public function testDondeOEntreConOrdenYLimiteRetornaString()
+    {
+        $consulta = new DondeOEntreConOrdenYLimite(
+            new Donde(['id','=',1]),
+            new OrdenConLimite(
+                new Orden('id'),
+                new Limite('1')
+            )
+        );
+
+        $this->assertIsString($consulta->donde());
+    }
+
+    // donde y donde con parametro
+
+    public function testDondeYDondeConParametroRetornaString()
+    {
+        $consulta = new DondeYDondeConParametro(
+            new YDonde(
+            new Donde(['id','=',1]),
+            new Donde(['id','=',1])
+            ),
+            new Limite('1')
+        );
+
+        $this->assertIsString($consulta->donde());
+    }
+
+    //donde o entre con orden y limite
+
+    public function testDondeYDondeConOrdenYLimiteRetornaString()
+    {
+        $consulta = new DondeYDondeConOrdenYLimite(
+            new YDonde(
+                new Donde(['id','=',1]),
+                new Donde(['id','=',1])
+                ),
+            new OrdenConLimite(
+                new Orden('id'),
+                new Limite('1')
+            )
+        );
+
+        $this->assertIsString($consulta->donde());
+    }
 }

@@ -2,8 +2,9 @@
 namespace src\pdodatabase\elementos;
 
 use Exception;
+use src\interfaces\DondeOEntreInterface;
 
-class Donde
+class Donde implements DondeOEntreInterface
 {
     private $_donde;
     private $_datos;

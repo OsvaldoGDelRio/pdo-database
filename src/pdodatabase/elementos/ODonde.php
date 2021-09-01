@@ -1,7 +1,9 @@
 <?php
 namespace src\pdodatabase\elementos;
 
-class ODonde
+use src\interfaces\DondeYDondeInterface;
+
+class ODonde implements DondeYDondeInterface
 {
     private $_donde;
     private $_primerDonde;

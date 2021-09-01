@@ -2,8 +2,9 @@
 namespace src\pdodatabase\elementos;
 
 use Exception;
+use src\interfaces\ElementoConParametroInterface;
 
-class Limite
+class Limite implements ElementoConParametroInterface
 {
     private $_limite;
 
