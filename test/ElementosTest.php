@@ -5,19 +5,13 @@ namespace test;
 use Exception;
 use \PHPUnit\Framework\TestCase;
 use src\pdodatabase\elementos\Campos;
-use src\pdodatabase\elementos\Donde;
-use src\pdodatabase\elementos\DondeOEntreConOrdenYLimite;
-use src\pdodatabase\elementos\DondeOEntreConParametro;
-use src\pdodatabase\elementos\DondeYDondeConOrdenYLimite;
-use src\pdodatabase\elementos\DondeYDondeConParametro;
-use src\pdodatabase\elementos\Entre;
+use src\pdodatabase\elementos\Columna;
 use src\pdodatabase\elementos\Limite;
-use src\pdodatabase\elementos\ODonde;
+use src\pdodatabase\elementos\Operador;
 use src\pdodatabase\elementos\Orden;
 use src\pdodatabase\elementos\Tabla;
-use src\pdodatabase\elementos\YDonde;
 use src\pdodatabase\elementos\OrdenConLimite;
-
+use src\pdodatabase\elementos\Valor;
 
 class ElementosTest extends TestCase
 {
@@ -49,95 +43,54 @@ class ElementosTest extends TestCase
         $this->assertIsString($campos->campos());
     }
 
-    //Donde
+    //Columna
 
-    public function testSiDondeEstaVacioLanzaExcepcion()
+    public function testLaColumnaNoPuedeEstarVacia()
     {
         $this->expectException(Exception::class);
-        $donde = new Donde([]);
+        $campos = new Columna('');
     }
 
-    public function testDondeSoloRetornaTexto()
+    public function testLaColumnaSoloRetornaTexto()
     {
-        $donde = new Donde(['id','=','23']);
-        $this->assertIsString($donde->donde());
+        $campos = new Columna('er');
+        $this->assertIsString($campos->valor());
     }
 
-    public function testElComparadorSoloPuedeSerLogico()
-    {
-        $this->expectException(Exception::class);
-        $donde = new Donde(['id','12','23']);
-    }
+    //Operador
 
-    public function testLosDatosQueDevuelveSiempreSonArray()
-    {
-        $donde = new Donde(['id','=','1']);
-        $this->assertIsArray($donde->datos());
-    }
-
-    //Entre
-
-    public function testSiEntreEstaVacioLanzaExcepcion()
+    public function testElOperadorNoPuedeEstarVacio()
     {
         $this->expectException(Exception::class);
-        $Entre = new Entre([]);
+        $campos = new Operador('');
     }
 
-    public function testEntreSoloRetornaTexto()
+    public function testElOperadorSoloAceptaLosDefinidos()
     {
-        $Entre = new Entre(['id','45','23']);
-        $this->assertIsString($Entre->donde());
+        $this->expectException(Exception::class);
+        $campos = new Operador('()');
     }
 
-    public function testLosDatosQueDevuelveEntreSiempreSonArray()
+    public function testElOperadorSoloRetornaTexto()
     {
-        $donde = new Entre(['id','1','1']);
-        $this->assertIsArray($donde->datos());
+        $campos = new Operador('=');
+        $this->assertIsString($campos->valor());
     }
 
-    //ODonde
+    //Valor
 
-    public function testODondeSoloRetornaTexto()
+    public function testElValorNoPuedeEstarVacio()
     {
-        $ODonde = new ODonde(
-            new Donde(['id','=','1']),
-            new Donde(['id','=','2'])
-        );
-
-        $this->assertIsString($ODonde->donde());
+        $this->expectException(Exception::class);
+        $campos = new Valor('');
     }
 
-    public function testLosDatosQueDevuelveODondeSiempreSonArray()
+    public function testElValorSoloRetornaTexto()
     {
-        $donde = new ODonde(
-            new Donde(['id','=','1']),
-            new Donde(['id','=','2'])
-        );
-        $this->assertIsArray($donde->datos());
+        $campos = new Valor('1');
+        $this->assertIsString($campos->valor());
     }
-
-    //YDonde
-
-
-    public function testYDondeSoloRetornaTexto()
-    {
-        $YDonde = new YDonde(
-            new Donde(['id','=','1']),
-            new Donde(['id','=','2'])
-        );
-
-        $this->assertIsString($YDonde->donde());
-    }
-
-    public function testLosDatosQueDevuelveYDondeSiempreSonArray()
-    {
-        $donde = new YDonde(
-            new Donde(['id','=','1']),
-            new Donde(['id','=','2'])
-        );
-        $this->assertIsArray($donde->datos());
-    }
-
+    
     //Orden
 
     public function testLaSentenciaOrdenNoPuedeEstarVacia()
@@ -178,65 +131,5 @@ class ElementosTest extends TestCase
     {
         $consulta = new OrdenConLimite(new Orden('id'), new Limite('1'));
         $this->assertIsString($consulta->parametro());
-    }
-
-    //Donde o Entre con parametro
-
-    public function testDondeOEntreConParametroRetornaString()
-    {
-        $consulta = new DondeOEntreConParametro(
-            new Donde(['id','=',1]),
-            new Limite('1')
-        );
-
-        $this->assertIsString($consulta->donde());
-    }
-
-    //donde o entre con orden y limite
-
-    public function testDondeOEntreConOrdenYLimiteRetornaString()
-    {
-        $consulta = new DondeOEntreConOrdenYLimite(
-            new Donde(['id','=',1]),
-            new OrdenConLimite(
-                new Orden('id'),
-                new Limite('1')
-            )
-        );
-
-        $this->assertIsString($consulta->donde());
-    }
-
-    // donde y donde con parametro
-
-    public function testDondeYDondeConParametroRetornaString()
-    {
-        $consulta = new DondeYDondeConParametro(
-            new YDonde(
-            new Donde(['id','=',1]),
-            new Donde(['id','=',1])
-            ),
-            new Limite('1')
-        );
-
-        $this->assertIsString($consulta->donde());
-    }
-
-    //donde o entre con orden y limite
-
-    public function testDondeYDondeConOrdenYLimiteRetornaString()
-    {
-        $consulta = new DondeYDondeConOrdenYLimite(
-            new YDonde(
-                new Donde(['id','=',1]),
-                new Donde(['id','=',1])
-                ),
-            new OrdenConLimite(
-                new Orden('id'),
-                new Limite('1')
-            )
-        );
-
-        $this->assertIsString($consulta->donde());
     }
 }
