@@ -5,25 +5,11 @@
 # pdo-database
 Clases en PHP para trabajar con PDO y bases de datos SQL escrita en español.
 
-Estructura de directorios
+## Instalación
 
-- pdo-database
-- ->src
--  -->excepciones
--  -->factory
--  -->interfaces
--  -->pdodatabase
--   --->conexion
--   --->consultas
--   --->ejecutar
--   --->elementos
--   --->resultados
--   --->sentencias
-- ->test 
+Requiere: PSR-4: Autoloader
 
-
-
-### composer
+### vía composer
 ```shell
 composer require osvaldogdelrio/pdo-database
 ```
@@ -31,6 +17,39 @@ composer require osvaldogdelrio/pdo-database
 ```shell
 composer require osvaldogdelrio/factory
 ```
+
+Usarla sin Factory requiere de mucho código que puede llegar a ser abrumador en proyectos que implementan Modelos, Controladores y Vistas, para realizar una conexión de forma tradicional hay que hacer:
+
+```php
+$conexion = new ConexionBaseDeDatos(
+            new HostBaseDeDatos('127.0.0.1'),
+            new BaseDeDatos('test'),
+            new UsuarioBaseDeDatos('root'),
+            new ContraseñaBaseDeDatos('')
+        );
+$conexion = $conexion->conectar();
+
+//$conexion Es el objeto PDO con el que interactuará el resto de la librería
+```
+
+
+### Estructura de directorios
+
+pdo-database
+    ->src
+        -->excepciones              //Contiene todas las Excepciones a lanzar
+        -->factory                  //Contiene las clases para generar las peticiones a SQL sin mucho código 
+        -->interfaces               //Contiene las interfaces de todo el proyecto
+            -->pdodatabase          //Contiene todas las clases para construir y hacer las peticiones
+                --->conexion        //Contiene las clases para crear la conexión
+                --->consultas       //Contiene las clases para realizar las consultas
+                    -->select
+                --->ejecutar        //Contiene las clases para ejecutar las consultas
+                --->elementos       //Contiene las clases para construir las sentencias
+                --->resultados      //Contiene las clases para mostrar resultados
+                --->sentencias      //Contiene las clases para construir las sentencias en texto
+                    -->select
+    ->test                          //Contiene las pruebas realizadas en PHPUnit 
 
 ## ejemplos de uso
 ```php
@@ -81,7 +100,7 @@ $resultadoJson->resultado($select);
 La librería tiene pruebas que se prueden encontrar en pdo-database/test. 
 Contiene pruebas unitarias para la construcción de:
 
-- Clases necesarias para la conexión
+- Clases necesarias para la conexión 
 - Clases de los elementos de creación de la sentencia SQL
 - Clases que muestran resultados en distintos formatos
 
