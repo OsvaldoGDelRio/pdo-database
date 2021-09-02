@@ -51,23 +51,24 @@ $conexion = $conexion->conectar();
 
 ### Estructura de directorios
 
+```
 .
 pdo-database \
 +-- _src \
 |   +-- _excepciones              //Contiene todas las Excepciones a lanzar 
 |   +-- _factory                  //Contiene las clases para generar las peticiones a SQL sin mucho código 
 |   +-- _interfaces               //Contiene las interfaces de todo el proyecto 
-    |   +-- _pdodatabase          //Contiene todas las clases para construir y hacer las peticiones 
-|                --->conexion        //Contiene las clases para crear la conexión 
-|                --->consultas       //Contiene las clases para realizar las consultas 
-|                    -->select 
-|                --->ejecutar        //Contiene las clases para ejecutar las consultas 
-|                --->elementos       //Contiene las clases para construir las sentencias 
-|                --->resultados      //Contiene las clases para mostrar resultados 
-|                --->sentencias      //Contiene las clases para construir las sentencias en texto 
-|                    -->select 
+|   +-- _pdodatabase          //Contiene todas las clases para construir y hacer las peticiones 
+|                conexion        //Contiene las clases para crear la conexión 
+|                consultas       //Contiene las clases para realizar las consultas 
+|                   select 
+|                ejecutar        //Contiene las clases para ejecutar las consultas 
+|                elementos       //Contiene las clases para construir las sentencias 
+|                resultados      //Contiene las clases para mostrar resultados 
+|                sentencias      //Contiene las clases para construir las sentencias en texto 
+|                   select 
 |   +-- _test                          //Contiene las pruebas realizadas en PHPUnit 
-
+```
 ## ejemplos de uso
 ```php
 <?php
