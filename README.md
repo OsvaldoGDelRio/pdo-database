@@ -29,9 +29,25 @@ $conexion = new ConexionBaseDeDatos(
         );
 $conexion = $conexion->conectar();
 
-//$conexion Es el objeto PDO con el que interactuará el resto de la librería
+/*
+    $conexion Es el objeto PDO con el que interactuará el resto de la librería
+*/
 ```
+Para realizarla con Factory y la clase CrearConexionBaseDeDatos
 
+```php
+/*
+    La clase src/pdodatabase/conexion/CrearConexionBaseDeDatos.php 
+    contiene los datos de conexión o se pueden implementar con un require_once 
+    o pasarlos por medio del array
+*/
+$conexion = $factory->crear('CrearConexionBaseDeDatos',[]);
+
+$conexion = $conexion->conectar();
+/*
+    $conexion Es el objeto PDO con el que interactuará el resto de la librería
+*/
+```
 
 ### Estructura de directorios
 
