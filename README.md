@@ -52,20 +52,20 @@ $conexion = $conexion->conectar();
 ### Estructura de directorios
 
 pdo-database \
-    ->src \
-        -->excepciones              //Contiene todas las Excepciones a lanzar \
-        -->factory                  //Contiene las clases para generar las peticiones a SQL sin mucho código \
-        -->interfaces               //Contiene las interfaces de todo el proyecto \
-            -->pdodatabase          //Contiene todas las clases para construir y hacer las peticiones \
-                --->conexion        //Contiene las clases para crear la conexión \
-                --->consultas       //Contiene las clases para realizar las consultas \
-                    -->select \
-                --->ejecutar        //Contiene las clases para ejecutar las consultas \
-                --->elementos       //Contiene las clases para construir las sentencias \
-                --->resultados      //Contiene las clases para mostrar resultados \
-                --->sentencias      //Contiene las clases para construir las sentencias en texto \
-                    -->select \
-    ->test                          //Contiene las pruebas realizadas en PHPUnit \
+....    ->src \
+....        -->excepciones              //Contiene todas las Excepciones a lanzar \
+....        -->factory                  //Contiene las clases para generar las peticiones a SQL sin mucho código \
+....        -->interfaces               //Contiene las interfaces de todo el proyecto \
+....            -->pdodatabase          //Contiene todas las clases para construir y hacer las peticiones \
+....                --->conexion        //Contiene las clases para crear la conexión \
+....                --->consultas       //Contiene las clases para realizar las consultas \
+....                    -->select \
+....                --->ejecutar        //Contiene las clases para ejecutar las consultas \
+....                --->elementos       //Contiene las clases para construir las sentencias \
+....                --->resultados      //Contiene las clases para mostrar resultados \
+....                --->sentencias      //Contiene las clases para construir las sentencias en texto \
+....                    -->select \
+....    ->test                          //Contiene las pruebas realizadas en PHPUnit \
 
 ## ejemplos de uso
 ```php
