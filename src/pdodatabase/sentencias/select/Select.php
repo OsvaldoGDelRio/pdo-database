@@ -2,10 +2,11 @@
 namespace src\pdodatabase\sentencias\select;
 
 use src\interfaces\SelectInterface;
+use src\interfaces\SentenciaSinDatosInterface;
 use src\pdodatabase\elementos\Tabla;
 use src\pdodatabase\elementos\Campos;
 
-class Select implements SelectInterface
+class Select implements SelectInterface, SentenciaSinDatosInterface
 {
     private $_tabla;
     private $_campos;
@@ -18,6 +19,6 @@ class Select implements SelectInterface
 
     public function sql(): string
     {
-        return 'SELECT '.$this->_campos->campos().' FROM '.$this->_tabla->tabla(); 
+        return 'SELECT '.$this->_campos->campos().' FROM '.$this->_tabla->tabla().' '; 
     }
 }

@@ -1,7 +1,7 @@
 <?php
 namespace src\interfaces;
 
-interface ElementoConParametroInterface
+interface OrdenOLimiteInterface
 {
     public function __construct(string $string);
     public function parametro(): string;

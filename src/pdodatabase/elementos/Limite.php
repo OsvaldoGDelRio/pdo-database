@@ -2,9 +2,9 @@
 namespace src\pdodatabase\elementos;
 
 use Exception;
-use src\interfaces\ElementoConParametroInterface;
+use src\interfaces\OrdenOLimiteInterface;
 
-class Limite implements ElementoConParametroInterface
+class Limite implements OrdenOLimiteInterface
 {
     private $_limite;
 

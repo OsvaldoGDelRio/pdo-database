@@ -1,46 +1,41 @@
 <?php
 declare(strict_types=1);
+
 require_once __DIR__ . '/vendor/autoload.php';
 
+use src\Factory;
+use src\pdodatabase\resultados\ContarResultados;
+use src\pdodatabase\resultados\ResultadoEnArrays;
+use src\pdodatabase\resultados\ResultadoEnJson;
+use src\pdodatabase\resultados\ResultadoEnObjetos;
 
-use src\pdodatabase\elementos\Columna;
-use src\pdodatabase\elementos\Operador;
-use src\pdodatabase\elementos\SentenciaDeComparacionColumnaOperadorValor;
-use src\pdodatabase\elementos\SentenciaDeComparacionColumnaValorValor;
-use src\pdodatabase\elementos\SentenciaDeComparacionColumnaValorValorNegacion;
-use src\pdodatabase\elementos\Valor;
-use src\pdodatabase\elementos\Where;
-use src\pdodatabase\elementos\WhereAnd;
-use src\pdodatabase\elementos\WhereBetween;
-use src\pdodatabase\elementos\WhereNotBetween;
+$factory = new Factory;
 
-$and = new WhereAnd(
-    new Where(
-        new SentenciaDeComparacionColumnaOperadorValor(
-            new Columna('id'),
-            new Operador('='),
-            new Valor('1')
-        )
-    ),
-    new SentenciaDeComparacionColumnaOperadorValor(
-        new Columna('id'),
-        new Operador('='),
-        new Valor('3')
-    )
-);
+//Realizando la consulta por medio de Factory
 
+// SELECT * FROM prueba
 
-echo $and->sql();
-echo '<pre>';
-var_dump($and->datos());
+$select = $factory->crear('src\factory\Select',[
+    'tabla' => 'prueba',
+    'campos' => ['*']
+]);
 
-$between = new WhereNotBetween(
-    new SentenciaDeComparacionColumnaValorValorNegacion(
-        new Columna('id'),
-        new Valor('1'),
-        new Valor('3')
-    )
-);
+$select = $select->obtener();
 
-echo $between->sql();
-var_dump($between->datos());
+/*
+Contando los resultados de la consulta
+*/
+
+$numeroDeResultados = new ContarResultados;
+$numeroDeResultados = $numeroDeResultados->contar($select);
+
+/*
+Resultados con la misma consulta
+*/
+
+$resultadoObj = new ResultadoEnObjetos;
+$resultadoObj->resultado($select);
+$resultadoArray = new ResultadoEnArrays;
+$resultadoArray->resultado($select);
+$resultadoJson = new ResultadoEnJson;
+$resultadoJson->resultado($select);

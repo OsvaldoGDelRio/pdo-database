@@ -24,6 +24,6 @@ class Tabla
             throw new Exception("La tabla no puede estar vacia");
         }
 
-        return ' '.$tabla;
+        return $tabla;
     }
 }

@@ -18,6 +18,6 @@ class SelectDistinct implements SelectInterface
 
     public function sql(): string
     {
-        return 'SELECT DISTINCT '.$this->_campos->campos().' FROM '.$this->_tabla->tabla(); 
+        return 'SELECT DISTINCT '.$this->_campos->campos().' FROM '.$this->_tabla->tabla().' '; 
     }
 }
