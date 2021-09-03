@@ -1,6 +1,8 @@
 <?php
 namespace src\pdodatabase\ejecutar;
 
+use Exception;
+use PDOException;
 use PDOStatement;
 use src\pdodatabase\conexion\ConexionBaseDeDatos;
 
@@ -13,18 +15,25 @@ class EjecutarConsultaConDatos
         $this->_conexion = $conexionBaseDeDatos->conectar();
     }
 
-    public function query(): PDOStatement
+    public function query(object $sentencia): PDOStatement
     {
-        $query = $this->_conexion->prepare($SentenciaConDatosInterface->sql());
+        $query = $this->_conexion->prepare($sentencia->sql());
 
         $x=1;
-        foreach ($SentenciaConDatosInterface->datos() as $value)
+        foreach ($sentencia->datos() as $value)
         {
             $query->bindValue($x,$value);
             $x++;	
         }
         
-        $query->execute();
+        try
+        {
+            $query->execute();
+        }
+        catch(PDOException $e)
+        {
+            throw new Exception("Error en la consulta");
+        }
 
         return $query;
     }

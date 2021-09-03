@@ -95,18 +95,18 @@ $select = $factory->crear('src\factory\SelectWhereOr',[
 ```
 SELECT * FROM prueba WHERE id BETWEEN ? AND ?
 ```php
-$select = $factory->crear('src\factory\SelectBetween',[
+$select = $factory->crear('src\factory\SelectWhereBetween',[
     'tabla' => 'prueba',
     'campos' => ['*'],
-    'between' => ['id','1','10']
+    'where' => ['id','1','10']
 ]);
 ```
 SELECT * FROM prueba WHERE id NOT BETWEEN ? AND ?
 ```php
-$select = $factory->crear('src\factory\SelectNotBetween',[
+$select = $factory->crear('src\factory\SelectWhereNotBetween',[
     'tabla' => 'prueba',
     'campos' => ['*'],
-    'notBetween' => ['id','1','10']
+    'where' => ['id','1','10']
 ]);
 ```
 

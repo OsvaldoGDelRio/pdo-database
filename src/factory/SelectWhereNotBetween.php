@@ -9,11 +9,11 @@ use src\pdodatabase\elementos\Campos;
 use src\pdodatabase\elementos\CamposYTabla;
 use src\pdodatabase\elementos\Como;
 use src\pdodatabase\elementos\Tabla;
-use src\pdodatabase\elementos\ValidadorDeParametrosWhereAndOthers;
-use src\pdodatabase\elementos\WhereAnd;
+use src\pdodatabase\elementos\ValidadorDeParametrosWhereBetween;
+use src\pdodatabase\elementos\WhereNotBetween;
 use src\pdodatabase\sentencias\select\SentenciaSelectWhere;
 
-class SelectWhereAnd implements FactoryClassInterface
+class SelectWhereNotBetween implements FactoryClassInterface
 {
     public function crear(array $array): object
     {
@@ -30,8 +30,8 @@ class SelectWhereAnd implements FactoryClassInterface
                     new Tabla($array['tabla'])
                 ),
                 new Como(
-                    new WhereAnd(
-                        new ValidadorDeParametrosWhereAndOthers(
+                    new WhereNotBetween(
+                        new ValidadorDeParametrosWhereBetween(
                             $array['where']
                         )
                     )
