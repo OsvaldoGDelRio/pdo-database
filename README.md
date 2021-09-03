@@ -113,7 +113,7 @@ $select = $factory->crear('src\factory\Select',[
 ]);
 ```
 
-### Operadores lógicos aceptados en la sentencia WHERE, AND Y OR
+### Operadores lógicos aceptados en la sentencia WHERE, AND y OR
 
 Cuando la sentencia se construye se valida que el operador lógico unicamente sea cualquiera de estos:
 ```
@@ -142,7 +142,7 @@ IN
 
 ### Reglas de validación para la construcción de sentencias BETWEEN, NOT BETWEEN
 - Los valores no pueden estar vacios
-- Los valores no pueden iguales, ejemplo (WHERE id BETWEEN 1 AND 1)
+- Los valores no pueden ser iguales, ejemplo (WHERE id BETWEEN 1 AND 1)
 
 SELECT * FROM prueba WHERE id = ?
 ```php
