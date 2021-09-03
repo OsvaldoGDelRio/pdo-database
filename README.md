@@ -97,7 +97,7 @@ array
 ## Listado de sentencias con código usando Factory
 
 ### SELECT
-```php
+
 SELECT * FROM prueba
 ```php
 $select = $factory->crear('src\factory\Select',[
