@@ -175,8 +175,6 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 use src\Factory;
 use src\pdodatabase\resultados\ContarResultados;
-use src\pdodatabase\resultados\ResultadoEnArrays;
-use src\pdodatabase\resultados\ResultadoEnJson;
 use src\pdodatabase\resultados\ResultadoEnObjetos;
 
 $factory = new Factory;
