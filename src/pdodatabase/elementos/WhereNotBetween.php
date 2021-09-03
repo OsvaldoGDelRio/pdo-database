@@ -1,25 +1,25 @@
 <?php
 namespace src\pdodatabase\elementos;
 
-use src\interfaces\SentenciaDeComparacionInterface;
 use src\interfaces\WhereInterface;
+use src\interfaces\ValidadorDeParametrosInterface;
 
 class WhereNotBetween implements WhereInterface
 {
-    private $_sentencia;
-
-    public function __construct(SentenciaDeComparacionInterface $sentenciaDeComparacionInterface)
+    private $_where;
+    
+    public function __construct(ValidadorDeParametrosInterface $ValidadorDeParametrosInterface)
     {
-        $this->_sentencia = $sentenciaDeComparacionInterface;
+        $this->_where = $ValidadorDeParametrosInterface->datos();
     }
 
     public function sql(): string
     {
-        return ' WHERE '. $this->_sentencia->sql();
+        return 'WHERE NOT BETWEEN '.$this->_where[0].' ? AND ?';
     }
 
     public function datos(): array
     {
-        return $this->_sentencia->datos();
+        return [ $this->_where[1], $this->_where[2] ];
     }
 }

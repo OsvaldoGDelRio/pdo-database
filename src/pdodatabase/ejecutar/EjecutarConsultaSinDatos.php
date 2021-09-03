@@ -2,7 +2,6 @@
 namespace src\pdodatabase\ejecutar;
 
 use PDOStatement;
-use src\interfaces\SentenciaSinDatosInterface;
 use src\pdodatabase\conexion\ConexionBaseDeDatos;
 
 class EjecutarConsultaSinDatos
@@ -14,7 +13,7 @@ class EjecutarConsultaSinDatos
         $this->_conexion = $conexionBaseDeDatos->conectar();
     }
 
-    public function query(SentenciaSinDatosInterface $SentenciaSinDatosInterface): PDOStatement
+    public function query(): PDOStatement
     {
         $query = $this->_conexion->prepare($SentenciaSinDatosInterface->sql());
         

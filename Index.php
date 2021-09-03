@@ -15,9 +15,10 @@ $factory = new Factory;
 
 // SELECT * FROM prueba
 
-$select = $factory->crear('src\factory\Select',[
+$select = $factory->crear('src\factory\SelectWhere',[
     'tabla' => 'prueba',
-    'campos' => ['*']
+    'campos' => ['*'],
+    'where' => ['id','=','42']
 ]);
 
 $select = $select->obtener();
@@ -34,8 +35,12 @@ Resultados con la misma consulta
 */
 
 $resultadoObj = new ResultadoEnObjetos;
-$resultadoObj->resultado($select);
+
+
 $resultadoArray = new ResultadoEnArrays;
-$resultadoArray->resultado($select);
+
+
 $resultadoJson = new ResultadoEnJson;
-$resultadoJson->resultado($select);
+
+
+var_dump($resultadoJson->resultado($select));

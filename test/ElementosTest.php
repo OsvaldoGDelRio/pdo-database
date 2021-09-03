@@ -1,21 +1,28 @@
 <?php
 declare(strict_types=1);
+
 namespace test;
 
 use Exception;
 use \PHPUnit\Framework\TestCase;
 use src\pdodatabase\elementos\Campos;
-use src\pdodatabase\elementos\Columna;
-use src\pdodatabase\elementos\Limite;
-use src\pdodatabase\elementos\Operador;
-use src\pdodatabase\elementos\Orden;
+use src\pdodatabase\elementos\CamposYTabla;
+use src\pdodatabase\elementos\Como;
 use src\pdodatabase\elementos\Tabla;
-use src\pdodatabase\elementos\OrdenConLimite;
-use src\pdodatabase\elementos\Valor;
+use src\pdodatabase\elementos\ValidadorDeParametrosWhereBetween;
+use src\pdodatabase\elementos\ValidadorDeParametrosWhere;
+use src\pdodatabase\elementos\ValidadorDeParametrosWhereAndOthers;
+use src\pdodatabase\elementos\Where;
+use src\pdodatabase\elementos\WhereAnd;
+use src\pdodatabase\elementos\WhereBetween;
+use src\pdodatabase\elementos\WhereNotBetween;
+use src\pdodatabase\elementos\WhereOr;
+use src\pdodatabase\sentencias\select\SentenciaSelect;
+use src\pdodatabase\sentencias\select\SentenciaSelectWhere;
 
 class ElementosTest extends TestCase
 {
-    //Tabla
+    //Clase Tabla
 
     public function testSiLaTablaEstaVaciaLanzaExcepcion()
     {
@@ -26,10 +33,10 @@ class ElementosTest extends TestCase
     public function testTablaSoloRetornaTexto()
     {
         $tabla = new Tabla('Hola');
-        $this->assertIsString($tabla->tabla());
+        $this->assertIsString($tabla->sql());
     }
 
-    //Campos
+    //Clase Campos
 
     public function testSiElCampoEstaVacioLanzaExcepcion()
     {
@@ -40,96 +47,221 @@ class ElementosTest extends TestCase
     public function testCamposSoloRetornaTexto()
     {
         $campos = new Campos(['*','78']);
-        $this->assertIsString($campos->campos());
+        $this->assertIsString($campos->sql());
     }
 
-    //Columna
+    //Clase CamposyTabla
 
-    public function testLaColumnaNoPuedeEstarVacia()
+    public function testCamposYTablaDevuelveValorCorrecto()
+    {
+        $tabla = new Tabla('prueba');
+        $campos = new Campos(['a,b,c,d']);
+
+        $camposytabla = new CamposYTabla($campos,$tabla);
+
+        $this->assertSame('a,b,c,d FROM prueba',$camposytabla->sql());
+    }
+
+    //Clase ValidadorDeParametrosWhere
+
+    public function testValidadorDeParametrosWhereElArrayNoPuedeEstarVacio()
     {
         $this->expectException(Exception::class);
-        $campos = new Columna('');
+        new ValidadorDeParametrosWhere([]);
     }
 
-    public function testLaColumnaSoloRetornaTexto()
-    {
-        $campos = new Columna('er');
-        $this->assertIsString($campos->valor());
-    }
-
-    //Operador
-
-    public function testElOperadorNoPuedeEstarVacio()
+    public function testValidadorDeParametrosWhereLaColumnaSoloPuedeSerString()
     {
         $this->expectException(Exception::class);
-        $campos = new Operador('');
+        new ValidadorDeParametrosWhere([1,'1','2']);
     }
 
-    public function testElOperadorSoloAceptaLosDefinidos()
+    public function testValidadorDeParametrosWhereNingunCampoPuedeEstarVacio()
     {
         $this->expectException(Exception::class);
-        $campos = new Operador('()');
+        new ValidadorDeParametrosWhere(['','1','2']);
     }
 
-    public function testElOperadorSoloRetornaTexto()
-    {
-        $campos = new Operador('=');
-        $this->assertIsString($campos->valor());
-    }
+    //Clase ValidadorDeParametrosWhereBetween
 
-    //Valor
-
-    public function testElValorNoPuedeEstarVacio()
+    public function testValidadorDeParametrosWhereBetweenElArrayNoPuedeEstarVacio()
     {
         $this->expectException(Exception::class);
-        $campos = new Valor('');
+        new ValidadorDeParametrosWhereBetween([]);
     }
 
-    public function testElValorSoloRetornaTexto()
-    {
-        $campos = new Valor('1');
-        $this->assertIsString($campos->valor());
-    }
-    
-    //Orden
-
-    public function testLaSentenciaOrdenNoPuedeEstarVacia()
+    public function testValidadorDeParametrosWhereBetweenNoPuedeTenerValoresIguales()
     {
         $this->expectException(Exception::class);
-        $orden = new Orden('');
+        new ValidadorDeParametrosWhereBetween(['id','1','1']);
     }
 
-    public function testLaSentenciaOrdenSoloPiedeRetornarString()
-    {
-        $orden = new Orden('id');
-        $this->assertIsString($orden->parametro());
-    }
-
-    //Limite
-
-    public function testLaSentenciaLimiteNoPuedeEstarVacia()
+    public function testValidadorDeParametrosWhereBetweenLaColumnaSoloPuedeSerString()
     {
         $this->expectException(Exception::class);
-        $orden = new Limite('');
+        new ValidadorDeParametrosWhereBetween([1,'1','2']);
     }
 
-    public function testLaSentenciaLimiteSoloAceptaValoresNumero()
+    public function testValidadorDeParametrosWhereBetweenNingunCampoPuedeEstarVacio()
     {
         $this->expectException(Exception::class);
-        $orden = new Limite('a');
+        new ValidadorDeParametrosWhereBetween(['','1','2']);
     }
 
-    public function testLaSentenciaLimiteSoloPuedeRetornarString()
+    //Clase Where
+
+    public function testWhereArrojaStringValido()
     {
-        $orden = new Limite('1');
-        $this->assertIsString($orden->parametro());
+        $where = new Where(
+            new ValidadorDeParametrosWhere(
+                ['id','=','21']
+            )
+            );
+
+        $this->assertSame('WHERE id = ?', $where->sql());
     }
 
-    //orden y limite
-
-    public function testOrdenYLimiteRetornaString()
+    public function testWhereArrojaArrayEnMetodoDatos()
     {
-        $consulta = new OrdenConLimite(new Orden('id'), new Limite('1'));
-        $this->assertIsString($consulta->parametro());
+        $where = new Where(
+            new ValidadorDeParametrosWhere(
+                ['id','=','21']
+            )
+            );
+
+        $this->assertIsArray($where->datos());
+    }
+
+    //Clase ValidadorDeParametrosWhereAndOthers
+
+    public function testValidadorDeParametrosWhereAndOthersElArrayNoPuedeEstarVacio()
+    {
+        $this->expectException(Exception::class);
+        new ValidadorDeParametrosWhereAndOthers([]);
+    }
+
+    public function testValidadorDeParametrosWhereAndOthersNoPuedeTenerValoresIguales()
+    {
+        $this->expectException(Exception::class);
+        new ValidadorDeParametrosWhereAndOthers(['id','=','1','id','=','1']);
+    }
+
+    public function testValidadorDeParametrosWhereAndOthersLaColumnaSoloPuedeSerString()
+    {
+        $this->expectException(Exception::class);
+        new ValidadorDeParametrosWhereAndOthers([1,'=','2','1','=','2']);
+    }
+
+    public function testValidadorDeParametrosWhereAndOthersNingunCampoPuedeEstarVacio()
+    {
+        $this->expectException(Exception::class);
+        new ValidadorDeParametrosWhereAndOthers(['','1','2','','','']);
+    }
+
+    //Clase Where And
+
+    public function testWhereAndArrojaStringValido()
+    {
+        $where = new WhereAnd(
+            new ValidadorDeParametrosWhereAndOthers(
+                ['id','=','21','uno','=','1']
+            )
+            );
+
+        $this->assertSame('WHERE id = ? AND uno = ?', $where->sql());
+    }
+
+    //Clase Where Or
+
+    public function testWhereOrArrojaStringValido()
+    {
+        $where = new WhereOr(
+            new ValidadorDeParametrosWhereAndOthers(
+                ['id','=','21','uno','=','1']
+            )
+            );
+
+        $this->assertSame('WHERE id = ? OR uno = ?', $where->sql());
+    }
+
+    //Clase Where Between
+
+    public function testWhereBetweenArrojaStringValido()
+    {
+        $where = new WhereBetween(
+            new ValidadorDeParametrosWhereBetween(
+                ['id','1','21']
+            )
+            );
+
+        $this->assertSame('WHERE BETWEEN id ? AND ?', $where->sql());
+    }
+
+    //Clase Where Not Between
+
+    public function testWhereNotBetweenArrojaStringValido()
+    {
+        $where = new WhereNotBetween(
+            new ValidadorDeParametrosWhereBetween(
+                ['id','1','21']
+            )
+            );
+
+        $this->assertSame('WHERE NOT BETWEEN id ? AND ?', $where->sql());
+    }
+
+    //Clase Como 
+
+    public function testComoArrojaStringValido()
+    {
+        $where = new WhereNotBetween(
+            new ValidadorDeParametrosWhereBetween(
+                ['id','1','21']
+            )
+            );
+        
+        $como = new Como(
+            $where
+        );
+
+        $this->assertSame('WHERE NOT BETWEEN id ? AND ?', $como->sql());
+    }
+
+    //Clase Sentencia Select Where
+
+    public function testSentenciaSelectWhereArrojaStringValido()
+    {
+        $where = new WhereNotBetween(
+            new ValidadorDeParametrosWhereBetween(
+                ['id','1','21']
+            )
+            );
+        
+        $como = new Como(
+            $where
+        );
+
+        $sentencia = new SentenciaSelectWhere(
+            new CamposYTabla(
+                new Campos(['*']),
+                new Tabla('prueba')
+            ),$como
+        );
+
+        $this->assertSame('SELECT * FROM prueba WHERE NOT BETWEEN id ? AND ?', $sentencia->sql());
+    }
+
+    //Clase SentenciaSelect
+
+    public function testSentenciaSelectArrojaStringValido()
+    {
+        $sentencia = new SentenciaSelect(
+            new CamposYTabla(
+                new Campos(['*']),
+                new Tabla('prueba')
+                )
+            );
+
+        $this->assertSame('SELECT * FROM prueba', $sentencia->sql());
     }
 }

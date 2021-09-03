@@ -7,12 +7,12 @@ class Tabla
 {
     private $_tabla;
 
-    public function __construct(string $tabla)
+    public function __construct(string $Tabla)
     {
-        $this->_tabla = $this->setTabla($tabla);
+        $this->_tabla = $this->setTabla($Tabla);
     }
 
-    public function tabla(): string
+    public function sql(): string
     {
         return $this->_tabla;
     }
@@ -21,7 +21,7 @@ class Tabla
     {
         if(empty($tabla))
         {
-            throw new Exception("La tabla no puede estar vacia");
+            throw new Exception("Error Processing Request");
         }
 
         return $tabla;

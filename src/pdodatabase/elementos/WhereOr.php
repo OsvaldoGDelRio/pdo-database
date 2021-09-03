@@ -1,31 +1,25 @@
 <?php
 namespace src\pdodatabase\elementos;
 
-use src\interfaces\SentenciaDeComparacionInterface;
-use src\interfaces\WhereAndOthersInterface;
 use src\interfaces\WhereInterface;
+use src\interfaces\ValidadorDeParametrosInterface;
 
-class WhereOr implements WhereAndOthersInterface
+class WhereOr implements WhereInterface
 {
     private $_where;
-    private $_sentencia;
-
-    public function __construct(WhereInterface $whereInterface, SentenciaDeComparacionInterface $SentenciaDeComparacionInterface)
+    
+    public function __construct(ValidadorDeParametrosInterface $ValidadorDeParametrosInterface)
     {
-        $this->_where = $whereInterface;
-        $this->_sentencia = $SentenciaDeComparacionInterface;
+        $this->_where = $ValidadorDeParametrosInterface->datos();
     }
 
     public function sql(): string
     {
-        return $this->_where->sql().' OR '.$this->_sentencia->sql();
+        return 'WHERE '.$this->_where[0].' '.$this->_where[1].' ? OR '.$this->_where[3].' '.$this->_where[4].' ?';
     }
 
     public function datos(): array
     {
-        $array = $this->_where->datos();
-        array_push($array,$this->_sentencia->datos()[0]);
-
-        return $array;        
+        return [ $this->_where[2], $this->_where[5] ];
     }
 }

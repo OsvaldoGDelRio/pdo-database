@@ -2,7 +2,9 @@
 [![Build Status](https://scrutinizer-ci.com/g/OsvaldoGDelRio/pdo-database/badges/build.png?b=main)](https://scrutinizer-ci.com/g/OsvaldoGDelRio/pdo-database/build-status/main)
 [![Code Intelligence Status](https://scrutinizer-ci.com/g/OsvaldoGDelRio/pdo-database/badges/code-intelligence.svg?b=main)](https://scrutinizer-ci.com/code-intelligence)
 
-# pdo-database
+# Construyendo
+
+## pdo-database
 Clases en PHP para trabajar con PDO y bases de datos SQL escrita en español.
 
 ## Instalación
@@ -47,6 +49,102 @@ $conexion = $conexion->conectar();
 /*
     $conexion Es el objeto PDO con el que interactuará el resto de la librería
 */
+```
+
+## Listado de sentencias con código
+
+### SELECT
+```php
+SELECT * FROM prueba
+```php
+$select = $factory->crear('src\factory\Select',[
+    'tabla' => 'prueba',
+    'campos' => ['*']
+]);
+```
+SELECT id,uno,dos FROM prueba
+```php
+$select = $factory->crear('src\factory\Select',[
+    'tabla' => 'prueba',
+    'campos' => ['id','uno','dos']
+]);
+```
+SELECT * FROM prueba WHERE id = ?
+```php
+$select = $factory->crear('src\factory\SelectWhere',[
+    'tabla' => 'prueba',
+    'campos' => ['*'],
+    'where' => ['id','=','1']
+]);
+```
+SELECT * FROM prueba WHERE id = ? AND 'uno' != ?
+```php
+$select = $factory->crear('src\factory\SelectWhereAnd',[
+    'tabla' => 'prueba',
+    'campos' => ['*'],
+    'where' => ['id','=','1','uno','!=','1']
+]);
+```
+SELECT * FROM prueba WHERE id = ? OR 'uno' != ?
+```php
+$select = $factory->crear('src\factory\SelectWhereOr',[
+    'tabla' => 'prueba',
+    'campos' => ['*'],
+    'where' => ['id','=','1','uno','!=','1']
+]);
+```
+SELECT * FROM prueba WHERE id BETWEEN ? AND ?
+```php
+$select = $factory->crear('src\factory\SelectBetween',[
+    'tabla' => 'prueba',
+    'campos' => ['*'],
+    'between' => ['id','1','10']
+]);
+```
+SELECT * FROM prueba WHERE id NOT BETWEEN ? AND ?
+```php
+$select = $factory->crear('src\factory\SelectNotBetween',[
+    'tabla' => 'prueba',
+    'campos' => ['*'],
+    'notBetween' => ['id','1','10']
+]);
+```
+
+### EJECUTAR LA CONSULTA
+
+Al ejecutar cada consulta que contiene valores tipo WHERE id = ? los valores se aplican por medio de "bindValue"
+
+```php
+$select->obtener();
+```
+
+### RESULTADOS
+
+Contar los resultados de un select
+```php
+/*
+ejecutamos la consulta
+$consulta = $select->obtener();
+*/
+
+$resultado = new ContarResultados;
+$resultado->contar($consulta);
+```
+
+Devuelve objetos
+```php
+$resultadoObj = new ResultadoEnObjetos;
+$resultadoObj->resultado($consulta);
+```
+Devuelve arrays
+```php
+$resultadoArray = new ResultadoEnArrays;
+$resultadoArray->resultado($consulta);
+```
+Devuelve string en formato JSON
+```php
+$resultadoJson = new ResultadoEnJson;
+$resultadoJson->resultado($consulta);
 ```
 
 ### Estructura de directorios
@@ -107,10 +205,6 @@ Resultados con la misma consulta
 
 $resultadoObj = new ResultadoEnObjetos;
 $resultadoObj->resultado($select);
-$resultadoArray = new ResultadoEnArrays;
-$resultadoArray->resultado($select);
-$resultadoJson = new ResultadoEnJson;
-$resultadoJson->resultado($select);
 ```
 
 ## PHP Unit

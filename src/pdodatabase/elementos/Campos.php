@@ -7,30 +7,42 @@ class Campos
 {
     private $_campos;
 
-    public function __construct(array $Campos)
+    public function __construct(array $array)
     {
-        $this->_campos = $this->setCampos($Campos);
+        $this->_campos = $this->setCampos($array);
     }
 
-    public function campos(): string
+    public function sql(): string
     {
         return $this->_campos;
     }
 
-    private function setCampos(array $columnas): string
+    private function setCampos(array $array): string
     {
-        if(count($columnas) == 0)
-        {
-            throw new Exception("No existen campos indicados");
-        }
+        $this->camposNoEstaVacio($array);
 
         $campos = '';
-        
-        foreach ($columnas as $campo)
+        foreach($array as $arr)
         {
-            $campos = $campo.','.$campos;
+            $campos = $arr.','.$campos;
         }
 
-        return $campos = trim($campos, ',');
+        return trim($campos, ',');
+    }
+
+    private function camposNoEstaVacio(array $array): void
+    {
+        if(count($array) == 0)
+        {
+            throw new Exception("Error Processing Request");  
+        }
+
+        foreach ($array as $value)
+        {
+            if(empty($value))
+            {
+                throw new Exception("Error Processing Request");
+            }
+        }
     }
 }
