@@ -38,7 +38,6 @@ class ValidadorDeParametrosWhereAndOthers implements ValidadorDeParametrosInterf
         $this->contieneValoresVacios($array);
         $this->columnasSonString($array);
         $this->operadorValido($array);
-        $this->columnasRepetidas($array);
 
         return $array;
     }
@@ -73,14 +72,6 @@ class ValidadorDeParametrosWhereAndOthers implements ValidadorDeParametrosInterf
     private function operadorValido($array): void
     {
         if(!in_array($array[1], $this->_operadoresValidos) || !in_array($array[4], $this->_operadoresValidos))
-        {
-            throw new Exception("Error Processing Request");
-        }
-    }
-
-    private function columnasRepetidas($array): void
-    {
-        if($array[0] == $array[3])
         {
             throw new Exception("Error Processing Request");
         }

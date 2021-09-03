@@ -116,20 +116,33 @@ $select = $factory->crear('src\factory\Select',[
 ### Operadores lógicos aceptados en la sentencia WHERE, AND Y OR
 
 Cuando la sentencia se construye se valida que el operador lógico unicamente sea cualquiera de estos:
+```
+=
+>
+<
+>=
+<=
+<>
+!=
+!<
+!>
+LIKE
+IN
+```
+### Reglas de validación para la construcción de sentencias WHERE
 
-- =
-- >
-- <
-- >=
-- <=
-- <>
-- !=
-- !<
-- !>
-- LIKE
-- IN
+- El nombre de columna solo puede ser string
+- Tiene que ser un operador lógico valido
+- Ningun valor puede estar vacío
 
+### Reglas de validación para la construcción de sentencias WHERE AND, WHERE OR
+- Tiene que ser un operador lógico valido
+- Ningun valor puede estar vacíos
+- Los campos solo pueden ser string
 
+### Reglas de validación para la construcción de sentencias BETWEEN, NOT BETWEEN
+- Los valores no pueden estar vacios
+- Los valores no pueden iguales, ejemplo (WHERE id BETWEEN 1 AND 1)
 
 SELECT * FROM prueba WHERE id = ?
 ```php

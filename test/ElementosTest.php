@@ -140,12 +140,6 @@ class ElementosTest extends TestCase
         new ValidadorDeParametrosWhereAndOthers([]);
     }
 
-    public function testValidadorDeParametrosWhereAndOthersNoPuedeTenerValoresIguales()
-    {
-        $this->expectException(Exception::class);
-        new ValidadorDeParametrosWhereAndOthers(['id','=','1','id','=','1']);
-    }
-
     public function testValidadorDeParametrosWhereAndOthersLaColumnaSoloPuedeSerString()
     {
         $this->expectException(Exception::class);
