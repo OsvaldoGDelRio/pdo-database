@@ -112,6 +112,25 @@ $select = $factory->crear('src\factory\Select',[
     'campos' => ['id','uno','dos']
 ]);
 ```
+
+### Operadores lógicos aceptados en la sentencia WHERE, AND Y OR
+
+Cuando la sentencia se construye se valida que el operador lógico unicamente sea cualquiera de estos:
+
+- =
+- >
+- <
+- >=
+- <=
+- <>
+- !=
+- !<
+- !>
+- LIKE
+- IN
+
+
+
 SELECT * FROM prueba WHERE id = ?
 ```php
 $select = $factory->crear('src\factory\SelectWhere',[
