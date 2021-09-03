@@ -11,11 +11,11 @@ Clases en PHP para trabajar con PDO y bases de datos SQL escrita en español.
 
 Requiere: PSR-4: Autoloader
 
-### vía composer
+### Vía composer
 ```shell
 composer require osvaldogdelrio/pdo-database
 ```
-### requiere de Factory para un mejor uso aunque puede utilizarse sin este método
+### Requiere de Factory para un mejor uso aunque puede utilizarse sin este método
 ```shell
 composer require osvaldogdelrio/factory
 ```
@@ -51,7 +51,50 @@ $conexion = $conexion->conectar();
 */
 ```
 
-## Listado de sentencias con código
+Para ejecutar un sentencia "SELECT * FROM id WHERE Idusuario = ?" y mostrar los resultados en arrays sin Factory se requiere
+
+```php
+$conexion = new ConexionBaseDeDatos(
+                new HostBaseDeDatos('127.0.0.1'),
+                new BaseDeDatos('test'),
+                new UsuarioBaseDeDatos('root'),
+                new ContraseñaBaseDeDatos('')
+        );
+
+$conexion = $conexion->conectar();
+
+$consulta = new ConsultaSelectWhere(
+    new EjecutarConsultaConDatos(
+        $conexion
+    ),
+    new SentenciaSelectWhere(
+        new CamposYTabla(
+            new Campos($array['campos']),
+            new Tabla($array['tabla'])
+        ),
+        new Como(
+            new Where(
+                new ValidadorDeParametrosWhere(
+                    $array['where']
+                )
+            )
+        )
+    )
+);
+
+$resultados = new ResultadoEnArrays;
+
+$resultados = $resultados->resultado($consulta->obtener());
+
+print_r($resultado);
+
+/*
+array
+*/
+
+```
+
+## Listado de sentencias con código usando Factory
 
 ### SELECT
 ```php
