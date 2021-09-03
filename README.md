@@ -69,13 +69,13 @@ $consulta = new ConsultaSelectWhere(
     ),
     new SentenciaSelectWhere(
         new CamposYTabla(
-            new Campos($array['*']),
-            new Tabla($array['id'])
+            new Campos(['*']),
+            new Tabla('id')
         ),
         new Como(
             new Where(
                 new ValidadorDeParametrosWhere(
-                    $array['idusuario','=',1]
+                    ['idusuario','=',1]
                 )
             )
         )
