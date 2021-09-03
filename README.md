@@ -51,7 +51,7 @@ $conexion = $conexion->conectar();
 */
 ```
 
-Para ejecutar un sentencia "SELECT * FROM id WHERE Idusuario = ?" y mostrar los resultados en arrays sin Factory se requiere
+Para ejecutar un sentencia "SELECT * FROM id WHERE Idusuario = 1" y mostrar los resultados en arrays sin Factory se requiere
 
 ```php
 $conexion = new ConexionBaseDeDatos(
@@ -69,13 +69,13 @@ $consulta = new ConsultaSelectWhere(
     ),
     new SentenciaSelectWhere(
         new CamposYTabla(
-            new Campos($array['campos']),
-            new Tabla($array['tabla'])
+            new Campos($array['*']),
+            new Tabla($array['id'])
         ),
         new Como(
             new Where(
                 new ValidadorDeParametrosWhere(
-                    $array['where']
+                    $array['idusuario','=',1]
                 )
             )
         )
