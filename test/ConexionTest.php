@@ -3,13 +3,9 @@ declare(strict_types=1);
 namespace test;
 
 use Exception;
-use PDO;
-use src\excepciones\ConexionABaseDeDatosException;
 use \PHPUnit\Framework\TestCase;
 use src\pdodatabase\conexion\BaseDeDatos;
-use src\pdodatabase\conexion\ConexionBaseDeDatos;
 use src\pdodatabase\conexion\ContraseñaBaseDeDatos;
-use src\pdodatabase\conexion\CrearConexionBaseDeDatos;
 use src\pdodatabase\conexion\HostBaseDeDatos;
 use src\pdodatabase\conexion\UsuarioBaseDeDatos;
 
@@ -63,44 +59,5 @@ class ConexionTest extends TestCase
     {
         $base = new UsuarioBaseDeDatos('23');
         $this->assertIsString($base->usuarioBaseDeDatos());
-    }
-
-    //Conexion
-//----------------------------------     OJO------------------------------------------------------
-    //La prueba requiere que se pueda conectar a la base de datos
-
-    public function testSilaConexionFallaLanzaExcepcion()
-    {
-        $this->expectException(ConexionABaseDeDatosException::class);
-        $conexion = new ConexionBaseDeDatos(
-            new HostBaseDeDatos('127.0.0.1'),
-            new BaseDeDatos('test'),
-            new UsuarioBaseDeDatos('root'),
-            new ContraseñaBaseDeDatos('aaaaaaaaaaaaaa')
-        );
-    }
-
-//----------------------------------     OJO------------------------------------------------------
-//La prueba requiere que se pueda conectar a la base de datos
-    
-    public function testSiLaConexionEsExitosaDevuelvePDO()
-    {
-        $conexion = new ConexionBaseDeDatos(
-            new HostBaseDeDatos('127.0.0.1'),
-            new BaseDeDatos('test'),
-            new UsuarioBaseDeDatos('root'),
-            new ContraseñaBaseDeDatos('')
-        );
-
-        $this->assertInstanceOf(PDO::class, $conexion->conectar());
-    }
-
-//----------------------------------     OJO------------------------------------------------------
-    //La prueba requiere que se pueda conectar a la base de datos
-
-    public function testELCreadorDeConexionRetornaLaClaseConexionABaseDeDatos()
-    {
-        $conexion = new CrearConexionBaseDeDatos;
-        $this->assertInstanceOf(ConexionBaseDeDatos::class, $conexion->crear([]));
     }
 }
