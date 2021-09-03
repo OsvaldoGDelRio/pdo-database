@@ -206,6 +206,12 @@ $resultadoObj->resultado($select);
 ```
 
 ## PHP Unit
+
+Para ejecutar las pruebas y mostrar en texto con --testdox
+```shell
+./vendor/bin/phpunit test --testdox
+```
+
 La librería tiene pruebas que se prueden encontrar en pdo-database/test. 
 Contiene pruebas unitarias para la construcción de:
 
