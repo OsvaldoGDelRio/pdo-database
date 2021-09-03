@@ -303,4 +303,21 @@ estar modificando una y otra vez el código por mover una linea en alguna parte,
 
 Por ejemplo: si se requiere realizar una consulta sencilla como SELECT * FROM 'tabla' ¿para qué cargar clases que manejan componentes con consultas más complejas? o que en la misma clase se pueda realizar select, update, insert, delete, truncate y hasta create? Al final del día realizar un poco más de esfuerzo escribiendo clases que tengan solo una función e inyectarlas en otras para construir una usabilidad más compleja ahorra mucho tiempo y esfuerzo en proyectos que crecen de pequeños a medianos y grandes. 
 
-Los componentes las clases funcionan en su mayoría de forma agnostica a su entorno, es decir, las clases para construir una sentencia SQL funciona sin intercatuar con las clases que generan la conexión, etcétera.   
+Los componentes las clases funcionan en su mayoría de forma agnostica a su entorno, es decir, las clases para construir una sentencia SQL funciona sin intercatuar con las clases que generan la conexión, etcétera.
+
+### Consultas con sentencias directas
+
+Auqnue no es recomendable realizar consultas directas sin utilizar bindValue, o encapsular las consultas para tener la seguridad que la consulta que escribimos es la que se ejecutará, en ambientes de desarrollo es útil, se pueden usar haciendo:
+
+```php
+/*
+Obtenemos al conexión
+*/
+$conexion = $factory->crear('CrearConexionBaseDeDatos',[]);
+$conexion = $conexion->conectar();
+/*
+Al ser el objeto PDO usamos query y pasamos el parametro
+*/
+$query = $conexion->query("SELECT * FROM prueba");
+$query->execute();
+```
