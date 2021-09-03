@@ -7,6 +7,9 @@ use src\pdodatabase\sentencias\select\SentenciaSelectWhere;
 
 class ConsultaSelectWhere
 {
+    private $_ejecutar;
+    private $_sentencia;
+    
     public function __construct(EjecutarConsultaConDatos $ejecutarConsultaSinDatos, SentenciaSelectWhere $SentenciaSelectWhere)
     {
         $this->_ejecutar = $ejecutarConsultaSinDatos;

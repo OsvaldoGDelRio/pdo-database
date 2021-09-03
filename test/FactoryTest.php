@@ -11,7 +11,6 @@ use src\factory\SelectWhereNotBetween;
 use src\factory\SelectWhereOr;
 use src\pdodatabase\consultas\select\ConsultaSelect;
 use src\pdodatabase\consultas\select\ConsultaSelectWhere;
-use src\pdodatabase\consultas\select\ConsultaSelectWhereAnd;
 
 class FactoryTest extends TestCase
 {
