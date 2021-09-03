@@ -120,7 +120,7 @@ $select = $factory->crear('src\factory\SelectWhere',[
     'where' => ['id','=','1']
 ]);
 ```
-SELECT * FROM prueba WHERE id = ? AND 'uno' != ?
+SELECT * FROM prueba WHERE id = ? AND uno != ?
 ```php
 $select = $factory->crear('src\factory\SelectWhereAnd',[
     'tabla' => 'prueba',
@@ -128,7 +128,7 @@ $select = $factory->crear('src\factory\SelectWhereAnd',[
     'where' => ['id','=','1','uno','!=','1']
 ]);
 ```
-SELECT * FROM prueba WHERE id = ? OR 'uno' != ?
+SELECT * FROM prueba WHERE id = ? OR uno != ?
 ```php
 $select = $factory->crear('src\factory\SelectWhereOr',[
     'tabla' => 'prueba',
