@@ -1,9 +1,15 @@
 build:
-  nodes:
-    my-tests-with-coverage:
-      tests:
-        override:
-          - command: ./vendor/bin/phpunit test --coverage-clover=coverage.clover
-            coverage:
-              file: coverage.clover
-              format: php-clover
+    nodes:
+        analysis:
+            project_setup:
+                override:
+                    - 'true'
+            tests:
+                override:
+                    - php ./vendor/bin/phpunit test --configuration phpunit.xml --testsuite scrutinizer
+
+coding_style:
+    php:
+        indentation:
+            general:
+                use_tabs: true
