@@ -22,7 +22,8 @@ class Insert implements FactoryClassInterface
             ),
             new SentenciaInsert(
                 new Tabla($array['tabla']),
-                new ElementoInsert($array['valores'])
+                new ElementoInsert(
+                    $array['valores'])
             )
         );
     }

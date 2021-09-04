@@ -1,6 +1,5 @@
 <?php
 namespace src\interfaces;
-
 interface InsertInterface
 {
     public function __construct(array $datos);

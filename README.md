@@ -197,6 +197,18 @@ $select = $factory->crear('src\factory\Insert',[
 ]);
 ```
 
+### UPDATE
+
+UPDATE prueba SET uno = ?,dos = ? WHERE id = ?
+```php
+$select = $factory->crear('src\factory\Update',[
+    'tabla' => 'prueba',
+    'valores' => ['uno' => 1, 'dos' => 2],
+    'where' => ['id','=',1] 
+]);
+```
+
+
 ### EJECUTAR LA CONSULTA
 
 Al ejecutar cada consulta que contiene valores tipo WHERE id = ? los valores se aplican por medio de "bindValue"

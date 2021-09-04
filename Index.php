@@ -3,6 +3,10 @@ declare(strict_types=1);
 require_once __DIR__ . '/vendor/autoload.php';
 
 use src\Factory;
+use src\pdodatabase\elementos\Update;
+use src\pdodatabase\elementos\ValidadorDeParametrosWhere;
+use src\pdodatabase\elementos\ValidadorDeParametrosWhereBetween;
+use src\pdodatabase\elementos\Where;
 use src\pdodatabase\resultados\ContarResultados;
 use src\pdodatabase\resultados\ResultadoEnArrays;
 use src\pdodatabase\resultados\ResultadoEnJson;
@@ -43,3 +47,9 @@ $resultadoJson = new ResultadoEnJson;
 
 
 var_dump($resultadoJson->resultado($select));
+
+
+$up = new Update(['uno' => 1,'dos' => 2], new Where(new ValidadorDeParametrosWhere(['id','=',1])));
+
+
+print_r($up->datos());

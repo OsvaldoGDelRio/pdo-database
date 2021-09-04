@@ -10,6 +10,7 @@ use src\pdodatabase\elementos\CamposYTabla;
 use src\pdodatabase\elementos\Como;
 use src\pdodatabase\elementos\Insert;
 use src\pdodatabase\elementos\Tabla;
+use src\pdodatabase\elementos\Update;
 use src\pdodatabase\elementos\ValidadorDeParametrosWhereBetween;
 use src\pdodatabase\elementos\ValidadorDeParametrosWhere;
 use src\pdodatabase\elementos\ValidadorDeParametrosWhereAndOthers;
@@ -21,6 +22,7 @@ use src\pdodatabase\elementos\WhereOr;
 use src\pdodatabase\sentencias\insert\SentenciaInsert;
 use src\pdodatabase\sentencias\select\SentenciaSelect;
 use src\pdodatabase\sentencias\select\SentenciaSelectWhere;
+use src\pdodatabase\sentencias\update\SentenciaUpdate;
 
 class ElementosTest extends TestCase
 {
@@ -277,7 +279,7 @@ class ElementosTest extends TestCase
 
     public function testInsertRetornaArraValido()
     {
-        $insert = new Insert(['id' => 1]);
+        $insert = new Insert( ['id' => 1]);
         $this->assertArrayHasKey('id', $insert->datos());
     }
 
@@ -302,4 +304,62 @@ class ElementosTest extends TestCase
         );
         $this->assertArrayHasKey('id', $sentencia->datos());
     }
+
+    //Class Update
+
+    public function testUpdateNoPuedeRecibirArrayVacio()
+    {
+        $this->expectException(Exception::class);
+        $up = new Update([], new Where(new ValidadorDeParametrosWhere(['id','=',1])));
+    }
+
+    public function testUpdateRetornaStringValido()
+    {
+        $up = new Update(['uno' => 1,'dos' => 2], new Where(new ValidadorDeParametrosWhere(['id','=',1])));
+        $this->assertSame('uno = ?,dos = ? WHERE id = ?', $up->sql());
+    }
+
+    public function testUpdateRetornaArrayValido()
+    {
+        $up = new Update(['uno' => 11,'dos' => 2], new Where(new ValidadorDeParametrosWhere(['id','=',1])));
+        
+        $v='';
+        $c='';
+
+        foreach ($up->datos() as $key => $value)
+        {
+            $v =  $v.$value;
+            $c =  $c.$key;  
+        }
+
+        $this->assertSame('1121', $v);
+        $this->assertSame('unodos0', $c);
+    }
+
+    //Class SentenciaUpdate
+
+    public function testSentenciaUpdateRetornaStringValido()
+    {
+        $up = new Update(['uno' => 1,'dos' => 2], new Where(new ValidadorDeParametrosWhere(['id','=',1])));
+        $sentencia = new SentenciaUpdate(new Tabla('prueba'),$up);
+        
+        $this->assertSame('UPDATE prueba SET uno = ?,dos = ? WHERE id = ?', $sentencia->sql());
+    }
+
+    public function testSentenciaUpdateRetornaArrayValido()
+    {
+        $up = new Update(['uno' => 11,'dos' => 2], new Where(new ValidadorDeParametrosWhere(['id','=',1])));
+        $sentencia = new SentenciaUpdate(new Tabla('prueba'),$up);
+        $v='';
+        $c='';
+
+        foreach ($sentencia->datos() as $key => $value)
+        {
+            $v =  $v.$value;
+            $c =  $c.$key;  
+        }
+
+        $this->assertSame('1121', $v);
+        $this->assertSame('unodos0', $c);
+    }    
 }
