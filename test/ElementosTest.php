@@ -8,6 +8,7 @@ use \PHPUnit\Framework\TestCase;
 use src\pdodatabase\elementos\Campos;
 use src\pdodatabase\elementos\CamposYTabla;
 use src\pdodatabase\elementos\Como;
+use src\pdodatabase\elementos\Insert;
 use src\pdodatabase\elementos\Tabla;
 use src\pdodatabase\elementos\ValidadorDeParametrosWhereBetween;
 use src\pdodatabase\elementos\ValidadorDeParametrosWhere;
@@ -17,6 +18,7 @@ use src\pdodatabase\elementos\WhereAnd;
 use src\pdodatabase\elementos\WhereBetween;
 use src\pdodatabase\elementos\WhereNotBetween;
 use src\pdodatabase\elementos\WhereOr;
+use src\pdodatabase\sentencias\insert\SentenciaInsert;
 use src\pdodatabase\sentencias\select\SentenciaSelect;
 use src\pdodatabase\sentencias\select\SentenciaSelectWhere;
 
@@ -257,5 +259,47 @@ class ElementosTest extends TestCase
             );
 
         $this->assertSame('SELECT * FROM prueba', $sentencia->sql());
+    }
+
+    //Class Insert
+
+    public function testInsertNoPuedeEstarVacio()
+    {
+        $this->expectException(Exception::class);
+        $insert = new Insert([]);
+    }
+
+    public function testInsertRetornaStringValido()
+    {
+        $insert = new Insert(['id' => 1]);
+        $this->assertSame('(`id`) VALUES (?)', $insert->sql());
+    }
+
+    public function testInsertRetornaArraValido()
+    {
+        $insert = new Insert(['id' => 1]);
+        $this->assertArrayHasKey('id', $insert->datos());
+    }
+
+    //class SentenciaInsert
+
+    public function testSentenciaInsertRetornaStringValido()
+    {
+        $insert = new Insert(['id' => 1]);
+        $sentencia = new SentenciaInsert(
+            new Tabla('prueba'),
+            $insert
+        );
+        $this->assertSame('INSERT INTO prueba (`id`) VALUES (?)', $sentencia->sql());
+    }
+
+    public function testSentenciaInsertRetornaArraValido()
+    {
+        $insert = new Insert(['id' => 1]);
+        $sentencia = new SentenciaInsert(
+            new Tabla('prueba'),
+            $insert
+        );
+        $this->assertArrayHasKey('id', $sentencia->datos());
     }
 }

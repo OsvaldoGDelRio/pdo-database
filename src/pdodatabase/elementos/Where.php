@@ -6,6 +6,8 @@ use src\interfaces\WhereInterface;
 
 class Where implements WhereInterface
 {
+    private $_where;
+    
     public function __construct(ValidadorDeParametrosInterface $ValidadorDeParametrosInterface)
     {
         $this->_where = $ValidadorDeParametrosInterface->datos();

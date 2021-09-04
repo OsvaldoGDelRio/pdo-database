@@ -3,14 +3,17 @@ declare(strict_types=1);
 namespace test;
 
 use \PHPUnit\Framework\TestCase;
+use src\factory\Insert;
 use src\factory\Select;
 use src\factory\SelectWhere;
 use src\factory\SelectWhereAnd;
 use src\factory\SelectWhereBetween;
 use src\factory\SelectWhereNotBetween;
 use src\factory\SelectWhereOr;
+use src\pdodatabase\consultas\insert\ConsultaInsert;
 use src\pdodatabase\consultas\select\ConsultaSelect;
 use src\pdodatabase\consultas\select\ConsultaSelectWhere;
+use src\pdodatabase\sentencias\insert\SentenciaInsert;
 
 class FactoryTest extends TestCase
 {
@@ -54,5 +57,12 @@ class FactoryTest extends TestCase
     {
         $select = new SelectWhereNotBetween;
         $this->assertInstanceOf(ConsultaSelectWhere::class, $select->crear(['tabla' => 'prueba', 'campos' => ['*'],'where' => ['id','1',2]]));
+    }
+
+    // SelectWhereBetween
+    public function testFactoryInsertDevuelveClaseAdecuada()
+    {
+        $insert = new Insert;
+        $this->assertInstanceOf(ConsultaInsert::class, $insert->crear(['tabla' => 'prueba', 'valores' => ['uno' => 12, 'dos' => 22, 'tres' => 333]]));
     }
 }

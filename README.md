@@ -187,6 +187,16 @@ $select = $factory->crear('src\factory\SelectWhereNotBetween',[
 ]);
 ```
 
+### INSERT
+
+INSERT INTO prueba (`id`) VALUES (?)
+```php
+$select = $factory->crear('src\factory\Insert',[
+    'tabla' => 'prueba',
+    'valores' => ['uno' => 123, 'dos' => 1234, 'tres' => 12345]
+]);
+```
+
 ### EJECUTAR LA CONSULTA
 
 Al ejecutar cada consulta que contiene valores tipo WHERE id = ? los valores se aplican por medio de "bindValue"
@@ -195,7 +205,7 @@ Al ejecutar cada consulta que contiene valores tipo WHERE id = ? los valores se 
 $select->obtener();
 ```
 
-### RESULTADOS
+### RESULTADOS DE SELECT
 
 Contar los resultados de un select
 ```php

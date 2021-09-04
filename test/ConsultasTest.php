@@ -5,6 +5,7 @@ namespace test;
 use PDOStatement;
 use \PHPUnit\Framework\TestCase;
 use src\pdodatabase\conexion\CrearConexionBaseDeDatos;
+use src\pdodatabase\consultas\insert\ConsultaInsert;
 use src\pdodatabase\consultas\select\ConsultaSelect;
 use src\pdodatabase\consultas\select\ConsultaSelectWhere;
 use src\pdodatabase\ejecutar\EjecutarConsultaConDatos;
@@ -12,9 +13,11 @@ use src\pdodatabase\ejecutar\EjecutarConsultaSinDatos;
 use src\pdodatabase\elementos\Campos;
 use src\pdodatabase\elementos\CamposYTabla;
 use src\pdodatabase\elementos\Como;
+use src\pdodatabase\elementos\Insert;
 use src\pdodatabase\elementos\Tabla;
 use src\pdodatabase\elementos\ValidadorDeParametrosWhere;
 use src\pdodatabase\elementos\Where;
+use src\pdodatabase\sentencias\insert\SentenciaInsert;
 use src\pdodatabase\sentencias\select\SentenciaSelect;
 use src\pdodatabase\sentencias\select\SentenciaSelectWhere;
 
@@ -69,6 +72,25 @@ class ConsultasTest extends TestCase
                     )
                 )
             )
+        );
+
+        $this->assertInstanceOf(PDOStatement::class, $consulta->obtener());
+    }
+
+    //class ConsultaInsert
+    public function testConsultasInsertRetornaObjetoValido()
+    {
+        $consulta = new ConsultaInsert(
+            new EjecutarConsultaConDatos(
+                $this->conexion
+            ),
+            new SentenciaInsert(
+                new Tabla('prueba'),
+                new Insert(
+                    ['uno' => 1, 'dos' => 2, 'tres' => 3]
+                )
+            )
+
         );
 
         $this->assertInstanceOf(PDOStatement::class, $consulta->obtener());
