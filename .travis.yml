@@ -6,6 +6,6 @@ language: php
 php:
   - 7.3
   - 8.0
-script: ./vendor/bin/phpunit test --coverage-text --coverage-clover=coverage.clover    
+script: XDEBUG_MODE=coverage ./vendor/bin/phpunit test --coverage-text --coverage-clover=coverage.clover    
 after_script: 
   - php vendor/bin/ocular code-coverage:upload --format=php-clover coverage.clover 
