@@ -8,7 +8,6 @@ build:
     override:
       - composer upgrade --no-interaction --prefer-dist
   nodes:
-    my-node:
       services:
         mysql: 5.7
     analysis:
