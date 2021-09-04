@@ -8,4 +8,4 @@ php:
 script: XDEBUG_MODE=coverage ./vendor/bin/phpunit test --coverage-text --coverage-clover=coverage.clover    
 after_script:
   - wget https://scrutinizer-ci.com/ocular.phar 
-  - php vendor/bin/ocular code-coverage:upload --format=php-clover coverage.clover 
+  - php ocular.phar code-coverage:upload --format=php-clover coverage.clover 
