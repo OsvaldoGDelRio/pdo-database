@@ -1,0 +1,604 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1630659603">
+  <project timestamp="1630659603">
+    <file name="C:\xampp\htdocs\pdo-database\src\excepciones\ConexionABaseDeDatosException.php">
+      <class name="src\excepciones\ConexionABaseDeDatosException" namespace="global">
+        <metrics complexity="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+      </class>
+      <line num="9" type="stmt" count="0"/>
+      <metrics loc="8" ncloc="8" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+    </file>
+    <file name="C:\xampp\htdocs\pdo-database\src\factory\Select.php">
+      <class name="src\factory\Select" namespace="global">
+        <metrics complexity="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="9" coveredstatements="0" elements="10" coveredelements="0"/>
+      </class>
+      <line num="15" type="method" name="crear" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="17" type="stmt" count="0"/>
+      <line num="18" type="stmt" count="0"/>
+      <line num="20" type="stmt" count="0"/>
+      <line num="21" type="stmt" count="0"/>
+      <line num="22" type="stmt" count="0"/>
+      <line num="24" type="stmt" count="0"/>
+      <line num="25" type="stmt" count="0"/>
+      <line num="26" type="stmt" count="0"/>
+      <line num="27" type="stmt" count="0"/>
+      <line num="32" type="stmt" count="0"/>
+      <metrics loc="31" ncloc="31" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="9" coveredstatements="0" elements="10" coveredelements="0"/>
+    </file>
+    <file name="C:\xampp\htdocs\pdo-database\src\factory\SelectWhere.php">
+      <class name="src\factory\SelectWhere" namespace="global">
+        <metrics complexity="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="13" coveredstatements="0" elements="14" coveredelements="0"/>
+      </class>
+      <line num="18" type="method" name="crear" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="20" type="stmt" count="0"/>
+      <line num="21" type="stmt" count="0"/>
+      <line num="23" type="stmt" count="0"/>
+      <line num="24" type="stmt" count="0"/>
+      <line num="25" type="stmt" count="0"/>
+      <line num="27" type="stmt" count="0"/>
+      <line num="28" type="stmt" count="0"/>
+      <line num="29" type="stmt" count="0"/>
+      <line num="30" type="stmt" count="0"/>
+      <line num="32" type="stmt" count="0"/>
+      <line num="33" type="stmt" count="0"/>
+      <line num="34" type="stmt" count="0"/>
+      <line num="35" type="stmt" count="0"/>
+      <line num="42" type="stmt" count="0"/>
+      <metrics loc="41" ncloc="41" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="13" coveredstatements="0" elements="14" coveredelements="0"/>
+    </file>
+    <file name="C:\xampp\htdocs\pdo-database\src\factory\SelectWhereAnd.php">
+      <class name="src\factory\SelectWhereAnd" namespace="global">
+        <metrics complexity="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="13" coveredstatements="0" elements="14" coveredelements="0"/>
+      </class>
+      <line num="18" type="method" name="crear" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="20" type="stmt" count="0"/>
+      <line num="21" type="stmt" count="0"/>
+      <line num="23" type="stmt" count="0"/>
+      <line num="24" type="stmt" count="0"/>
+      <line num="25" type="stmt" count="0"/>
+      <line num="27" type="stmt" count="0"/>
+      <line num="28" type="stmt" count="0"/>
+      <line num="29" type="stmt" count="0"/>
+      <line num="30" type="stmt" count="0"/>
+      <line num="32" type="stmt" count="0"/>
+      <line num="33" type="stmt" count="0"/>
+      <line num="34" type="stmt" count="0"/>
+      <line num="35" type="stmt" count="0"/>
+      <line num="42" type="stmt" count="0"/>
+      <metrics loc="41" ncloc="41" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="13" coveredstatements="0" elements="14" coveredelements="0"/>
+    </file>
+    <file name="C:\xampp\htdocs\pdo-database\src\factory\SelectWhereBetween.php">
+      <class name="src\factory\SelectWhereBetween" namespace="global">
+        <metrics complexity="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="13" coveredstatements="0" elements="14" coveredelements="0"/>
+      </class>
+      <line num="18" type="method" name="crear" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="20" type="stmt" count="0"/>
+      <line num="21" type="stmt" count="0"/>
+      <line num="23" type="stmt" count="0"/>
+      <line num="24" type="stmt" count="0"/>
+      <line num="25" type="stmt" count="0"/>
+      <line num="27" type="stmt" count="0"/>
+      <line num="28" type="stmt" count="0"/>
+      <line num="29" type="stmt" count="0"/>
+      <line num="30" type="stmt" count="0"/>
+      <line num="32" type="stmt" count="0"/>
+      <line num="33" type="stmt" count="0"/>
+      <line num="34" type="stmt" count="0"/>
+      <line num="35" type="stmt" count="0"/>
+      <line num="42" type="stmt" count="0"/>
+      <metrics loc="41" ncloc="41" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="13" coveredstatements="0" elements="14" coveredelements="0"/>
+    </file>
+    <file name="C:\xampp\htdocs\pdo-database\src\factory\SelectWhereNotBetween.php">
+      <class name="src\factory\SelectWhereNotBetween" namespace="global">
+        <metrics complexity="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="13" coveredstatements="0" elements="14" coveredelements="0"/>
+      </class>
+      <line num="18" type="method" name="crear" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="20" type="stmt" count="0"/>
+      <line num="21" type="stmt" count="0"/>
+      <line num="23" type="stmt" count="0"/>
+      <line num="24" type="stmt" count="0"/>
+      <line num="25" type="stmt" count="0"/>
+      <line num="27" type="stmt" count="0"/>
+      <line num="28" type="stmt" count="0"/>
+      <line num="29" type="stmt" count="0"/>
+      <line num="30" type="stmt" count="0"/>
+      <line num="32" type="stmt" count="0"/>
+      <line num="33" type="stmt" count="0"/>
+      <line num="34" type="stmt" count="0"/>
+      <line num="35" type="stmt" count="0"/>
+      <line num="42" type="stmt" count="0"/>
+      <metrics loc="41" ncloc="41" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="13" coveredstatements="0" elements="14" coveredelements="0"/>
+    </file>
+    <file name="C:\xampp\htdocs\pdo-database\src\factory\SelectWhereOr.php">
+      <class name="src\factory\SelectWhereOr" namespace="global">
+        <metrics complexity="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="13" coveredstatements="0" elements="14" coveredelements="0"/>
+      </class>
+      <line num="18" type="method" name="crear" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="20" type="stmt" count="0"/>
+      <line num="21" type="stmt" count="0"/>
+      <line num="23" type="stmt" count="0"/>
+      <line num="24" type="stmt" count="0"/>
+      <line num="25" type="stmt" count="0"/>
+      <line num="27" type="stmt" count="0"/>
+      <line num="28" type="stmt" count="0"/>
+      <line num="29" type="stmt" count="0"/>
+      <line num="30" type="stmt" count="0"/>
+      <line num="32" type="stmt" count="0"/>
+      <line num="33" type="stmt" count="0"/>
+      <line num="34" type="stmt" count="0"/>
+      <line num="35" type="stmt" count="0"/>
+      <line num="42" type="stmt" count="0"/>
+      <metrics loc="41" ncloc="41" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="13" coveredstatements="0" elements="14" coveredelements="0"/>
+    </file>
+    <file name="C:\xampp\htdocs\pdo-database\src\interfaces\ResultadoBaseDeDatosInterface.php">
+      <line num="9" type="stmt" count="0"/>
+      <metrics loc="8" ncloc="8" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+    </file>
+    <file name="C:\xampp\htdocs\pdo-database\src\interfaces\ValidadorDeParametrosInterface.php">
+      <line num="8" type="stmt" count="1"/>
+      <metrics loc="7" ncloc="7" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+    </file>
+    <file name="C:\xampp\htdocs\pdo-database\src\interfaces\WhereInterface.php">
+      <line num="11" type="stmt" count="1"/>
+      <metrics loc="10" ncloc="10" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+    </file>
+    <file name="C:\xampp\htdocs\pdo-database\src\pdodatabase\conexion\BaseDeDatos.php">
+      <class name="src\pdodatabase\conexion\BaseDeDatos" namespace="global">
+        <metrics complexity="4" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="6" coveredstatements="6" elements="9" coveredelements="9"/>
+      </class>
+      <line num="10" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="12" type="stmt" count="2"/>
+      <line num="13" type="stmt" count="1"/>
+      <line num="15" type="method" name="baseDeDatos" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="17" type="stmt" count="1"/>
+      <line num="20" type="method" name="setBaseDeDatos" visibility="private" complexity="2" crap="2" count="2"/>
+      <line num="22" type="stmt" count="2"/>
+      <line num="24" type="stmt" count="1"/>
+      <line num="27" type="stmt" count="1"/>
+      <line num="29" type="stmt" count="1"/>
+      <metrics loc="28" ncloc="28" classes="1" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="6" coveredstatements="6" elements="9" coveredelements="9"/>
+    </file>
+    <file name="C:\xampp\htdocs\pdo-database\src\pdodatabase\conexion\ConexionBaseDeDatos.php">
+      <class name="src\pdodatabase\conexion\ConexionBaseDeDatos" namespace="global">
+        <metrics complexity="3" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="6" coveredstatements="0" elements="8" coveredelements="0"/>
+      </class>
+      <line num="12" type="method" name="__construct" visibility="public" complexity="2" crap="6" count="0"/>
+      <line num="22" type="stmt" count="0"/>
+      <line num="23" type="stmt" count="0"/>
+      <line num="25" type="stmt" count="0"/>
+      <line num="27" type="stmt" count="0"/>
+      <line num="29" type="stmt" count="0"/>
+      <line num="31" type="method" name="conectar" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="33" type="stmt" count="0"/>
+      <line num="35" type="stmt" count="0"/>
+      <metrics loc="34" ncloc="34" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="6" coveredstatements="0" elements="8" coveredelements="0"/>
+    </file>
+    <file name="C:\xampp\htdocs\pdo-database\src\pdodatabase\conexion\ContraseñaBaseDeDatos.php">
+      <class name="src\pdodatabase\conexion\ContraseñaBaseDeDatos" namespace="global">
+        <metrics complexity="3" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="4" elements="7" coveredelements="7"/>
+      </class>
+      <line num="8" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="10" type="stmt" count="1"/>
+      <line num="11" type="stmt" count="1"/>
+      <line num="13" type="method" name="contraseñaBaseDeDatos" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="15" type="stmt" count="1"/>
+      <line num="18" type="method" name="setContraseñaBaseDeDatos" visibility="private" complexity="1" crap="1" count="1"/>
+      <line num="20" type="stmt" count="1"/>
+      <line num="22" type="stmt" count="1"/>
+      <metrics loc="21" ncloc="21" classes="1" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="4" elements="7" coveredelements="7"/>
+    </file>
+    <file name="C:\xampp\htdocs\pdo-database\src\pdodatabase\conexion\CrearConexionBaseDeDatos.php">
+      <class name="src\pdodatabase\conexion\CrearConexionBaseDeDatos" namespace="global">
+        <metrics complexity="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="5" coveredstatements="0" elements="6" coveredelements="0"/>
+      </class>
+      <line num="19" type="method" name="crear" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="21" type="stmt" count="0"/>
+      <line num="22" type="stmt" count="0"/>
+      <line num="23" type="stmt" count="0"/>
+      <line num="24" type="stmt" count="0"/>
+      <line num="25" type="stmt" count="0"/>
+      <line num="28" type="stmt" count="0"/>
+      <metrics loc="27" ncloc="23" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="5" coveredstatements="0" elements="6" coveredelements="0"/>
+    </file>
+    <file name="C:\xampp\htdocs\pdo-database\src\pdodatabase\conexion\HostBaseDeDatos.php">
+      <class name="src\pdodatabase\conexion\HostBaseDeDatos" namespace="global">
+        <metrics complexity="4" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="6" coveredstatements="6" elements="9" coveredelements="9"/>
+      </class>
+      <line num="10" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="12" type="stmt" count="2"/>
+      <line num="13" type="stmt" count="1"/>
+      <line num="15" type="method" name="hostbaseDeDatos" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="17" type="stmt" count="1"/>
+      <line num="20" type="method" name="setHostBaseDeDatos" visibility="private" complexity="2" crap="2" count="2"/>
+      <line num="22" type="stmt" count="2"/>
+      <line num="24" type="stmt" count="1"/>
+      <line num="27" type="stmt" count="1"/>
+      <line num="29" type="stmt" count="1"/>
+      <metrics loc="28" ncloc="28" classes="1" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="6" coveredstatements="6" elements="9" coveredelements="9"/>
+    </file>
+    <file name="C:\xampp\htdocs\pdo-database\src\pdodatabase\conexion\UsuarioBaseDeDatos.php">
+      <class name="src\pdodatabase\conexion\UsuarioBaseDeDatos" namespace="global">
+        <metrics complexity="4" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="6" coveredstatements="6" elements="9" coveredelements="9"/>
+      </class>
+      <line num="10" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="12" type="stmt" count="2"/>
+      <line num="13" type="stmt" count="1"/>
+      <line num="15" type="method" name="usuariobaseDeDatos" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="17" type="stmt" count="1"/>
+      <line num="20" type="method" name="setUsuarioBaseDeDatos" visibility="private" complexity="2" crap="2" count="2"/>
+      <line num="22" type="stmt" count="2"/>
+      <line num="24" type="stmt" count="1"/>
+      <line num="27" type="stmt" count="1"/>
+      <line num="29" type="stmt" count="1"/>
+      <metrics loc="28" ncloc="28" classes="1" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="6" coveredstatements="6" elements="9" coveredelements="9"/>
+    </file>
+    <file name="C:\xampp\htdocs\pdo-database\src\pdodatabase\consultas\select\ConsultaSelect.php">
+      <class name="src\pdodatabase\consultas\select\ConsultaSelect" namespace="global">
+        <metrics complexity="2" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="0" elements="6" coveredelements="0"/>
+      </class>
+      <line num="13" type="method" name="__construct" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="15" type="stmt" count="0"/>
+      <line num="16" type="stmt" count="0"/>
+      <line num="17" type="stmt" count="0"/>
+      <line num="19" type="method" name="obtener" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="21" type="stmt" count="0"/>
+      <line num="23" type="stmt" count="0"/>
+      <metrics loc="22" ncloc="22" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="0" elements="6" coveredelements="0"/>
+    </file>
+    <file name="C:\xampp\htdocs\pdo-database\src\pdodatabase\consultas\select\ConsultaSelectWhere.php">
+      <class name="src\pdodatabase\consultas\select\ConsultaSelectWhere" namespace="global">
+        <metrics complexity="2" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="0" elements="6" coveredelements="0"/>
+      </class>
+      <line num="13" type="method" name="__construct" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="15" type="stmt" count="0"/>
+      <line num="16" type="stmt" count="0"/>
+      <line num="17" type="stmt" count="0"/>
+      <line num="19" type="method" name="obtener" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="21" type="stmt" count="0"/>
+      <line num="23" type="stmt" count="0"/>
+      <metrics loc="22" ncloc="22" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="0" elements="6" coveredelements="0"/>
+    </file>
+    <file name="C:\xampp\htdocs\pdo-database\src\pdodatabase\ejecutar\EjecutarConsultaConDatos.php">
+      <class name="src\pdodatabase\ejecutar\EjecutarConsultaConDatos" namespace="global">
+        <metrics complexity="4" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="11" coveredstatements="0" elements="13" coveredelements="0"/>
+      </class>
+      <line num="13" type="method" name="__construct" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="15" type="stmt" count="0"/>
+      <line num="16" type="stmt" count="0"/>
+      <line num="18" type="method" name="query" visibility="public" complexity="3" crap="12" count="0"/>
+      <line num="20" type="stmt" count="0"/>
+      <line num="22" type="stmt" count="0"/>
+      <line num="23" type="stmt" count="0"/>
+      <line num="25" type="stmt" count="0"/>
+      <line num="26" type="stmt" count="0"/>
+      <line num="31" type="stmt" count="0"/>
+      <line num="33" type="stmt" count="0"/>
+      <line num="35" type="stmt" count="0"/>
+      <line num="38" type="stmt" count="0"/>
+      <line num="40" type="stmt" count="0"/>
+      <metrics loc="39" ncloc="39" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="11" coveredstatements="0" elements="13" coveredelements="0"/>
+    </file>
+    <file name="C:\xampp\htdocs\pdo-database\src\pdodatabase\ejecutar\EjecutarConsultaSinDatos.php">
+      <class name="src\pdodatabase\ejecutar\EjecutarConsultaSinDatos" namespace="global">
+        <metrics complexity="3" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="0" elements="9" coveredelements="0"/>
+      </class>
+      <line num="13" type="method" name="__construct" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="15" type="stmt" count="0"/>
+      <line num="16" type="stmt" count="0"/>
+      <line num="18" type="method" name="query" visibility="public" complexity="2" crap="6" count="0"/>
+      <line num="20" type="stmt" count="0"/>
+      <line num="24" type="stmt" count="0"/>
+      <line num="26" type="stmt" count="0"/>
+      <line num="28" type="stmt" count="0"/>
+      <line num="32" type="stmt" count="0"/>
+      <line num="34" type="stmt" count="0"/>
+      <metrics loc="33" ncloc="33" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="0" elements="9" coveredelements="0"/>
+    </file>
+    <file name="C:\xampp\htdocs\pdo-database\src\pdodatabase\elementos\Campos.php">
+      <class name="src\pdodatabase\elementos\Campos" namespace="global">
+        <metrics complexity="8" methods="4" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="14" coveredstatements="13" elements="18" coveredelements="16"/>
+      </class>
+      <line num="10" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="5"/>
+      <line num="12" type="stmt" count="5"/>
+      <line num="13" type="stmt" count="4"/>
+      <line num="15" type="method" name="sql" visibility="public" complexity="1" crap="1" count="4"/>
+      <line num="17" type="stmt" count="4"/>
+      <line num="20" type="method" name="setCampos" visibility="private" complexity="2" crap="2" count="5"/>
+      <line num="22" type="stmt" count="5"/>
+      <line num="24" type="stmt" count="4"/>
+      <line num="25" type="stmt" count="4"/>
+      <line num="27" type="stmt" count="4"/>
+      <line num="30" type="stmt" count="4"/>
+      <line num="33" type="method" name="camposNoEstaVacio" visibility="private" complexity="4" crap="4.07" count="5"/>
+      <line num="35" type="stmt" count="5"/>
+      <line num="37" type="stmt" count="1"/>
+      <line num="40" type="stmt" count="4"/>
+      <line num="42" type="stmt" count="4"/>
+      <line num="44" type="stmt" count="0"/>
+      <line num="47" type="stmt" count="4"/>
+      <line num="48" type="stmt" count="1"/>
+      <metrics loc="47" ncloc="47" classes="1" methods="4" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="14" coveredstatements="13" elements="18" coveredelements="16"/>
+    </file>
+    <file name="C:\xampp\htdocs\pdo-database\src\pdodatabase\elementos\CamposYTabla.php">
+      <class name="src\pdodatabase\elementos\CamposYTabla" namespace="global">
+        <metrics complexity="2" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="4" elements="6" coveredelements="6"/>
+      </class>
+      <line num="12" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="3"/>
+      <line num="14" type="stmt" count="3"/>
+      <line num="15" type="stmt" count="3"/>
+      <line num="16" type="stmt" count="3"/>
+      <line num="18" type="method" name="sql" visibility="public" complexity="1" crap="1" count="3"/>
+      <line num="20" type="stmt" count="3"/>
+      <metrics loc="22" ncloc="22" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="4" elements="6" coveredelements="6"/>
+    </file>
+    <file name="C:\xampp\htdocs\pdo-database\src\pdodatabase\elementos\Como.php">
+      <class name="src\pdodatabase\elementos\Como" namespace="global">
+        <metrics complexity="3" methods="3" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="3" elements="7" coveredelements="5"/>
+      </class>
+      <line num="10" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="12" type="stmt" count="2"/>
+      <line num="13" type="stmt" count="2"/>
+      <line num="15" type="method" name="sql" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="17" type="stmt" count="2"/>
+      <line num="20" type="method" name="datos" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="22" type="stmt" count="0"/>
+      <line num="24" type="stmt" count="1"/>
+      <metrics loc="23" ncloc="23" classes="1" methods="3" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="3" elements="7" coveredelements="5"/>
+    </file>
+    <file name="C:\xampp\htdocs\pdo-database\src\pdodatabase\elementos\Tabla.php">
+      <class name="src\pdodatabase\elementos\Tabla" namespace="global">
+        <metrics complexity="4" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="6" coveredstatements="6" elements="9" coveredelements="9"/>
+      </class>
+      <line num="10" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="5"/>
+      <line num="12" type="stmt" count="5"/>
+      <line num="13" type="stmt" count="4"/>
+      <line num="15" type="method" name="sql" visibility="public" complexity="1" crap="1" count="4"/>
+      <line num="17" type="stmt" count="4"/>
+      <line num="20" type="method" name="setTabla" visibility="private" complexity="2" crap="2" count="5"/>
+      <line num="22" type="stmt" count="5"/>
+      <line num="24" type="stmt" count="1"/>
+      <line num="27" type="stmt" count="4"/>
+      <line num="29" type="stmt" count="1"/>
+      <metrics loc="28" ncloc="28" classes="1" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="6" coveredstatements="6" elements="9" coveredelements="9"/>
+    </file>
+    <file name="C:\xampp\htdocs\pdo-database\src\pdodatabase\elementos\ValidadorDeParametrosWhere.php">
+      <class name="src\pdodatabase\elementos\ValidadorDeParametrosWhere" namespace="global">
+        <metrics complexity="12" methods="7" coveredmethods="6" conditionals="0" coveredconditionals="0" statements="21" coveredstatements="20" elements="28" coveredelements="26"/>
+      </class>
+      <line num="25" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="5"/>
+      <line num="27" type="stmt" count="5"/>
+      <line num="28" type="stmt" count="2"/>
+      <line num="30" type="method" name="datos" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="32" type="stmt" count="2"/>
+      <line num="35" type="method" name="setDatos" visibility="public" complexity="1" crap="1" count="5"/>
+      <line num="37" type="stmt" count="5"/>
+      <line num="38" type="stmt" count="4"/>
+      <line num="39" type="stmt" count="3"/>
+      <line num="40" type="stmt" count="2"/>
+      <line num="42" type="stmt" count="2"/>
+      <line num="45" type="method" name="contieneValoresVacios" visibility="private" complexity="3" crap="3" count="4"/>
+      <line num="47" type="stmt" count="4"/>
+      <line num="49" type="stmt" count="4"/>
+      <line num="51" type="stmt" count="1"/>
+      <line num="54" type="stmt" count="3"/>
+      <line num="56" type="method" name="numeroDeElementosValido" visibility="private" complexity="2" crap="2" count="5"/>
+      <line num="58" type="stmt" count="5"/>
+      <line num="60" type="stmt" count="1"/>
+      <line num="62" type="stmt" count="4"/>
+      <line num="64" type="method" name="operadorValido" visibility="private" complexity="2" crap="2.15" count="2"/>
+      <line num="66" type="stmt" count="2"/>
+      <line num="68" type="stmt" count="0"/>
+      <line num="70" type="stmt" count="2"/>
+      <line num="72" type="method" name="columnaEsString" visibility="private" complexity="2" crap="2" count="3"/>
+      <line num="74" type="stmt" count="3"/>
+      <line num="76" type="stmt" count="1"/>
+      <line num="78" type="stmt" count="2"/>
+      <line num="79" type="stmt" count="1"/>
+      <metrics loc="78" ncloc="78" classes="1" methods="7" coveredmethods="6" conditionals="0" coveredconditionals="0" statements="21" coveredstatements="20" elements="28" coveredelements="26"/>
+    </file>
+    <file name="C:\xampp\htdocs\pdo-database\src\pdodatabase\elementos\ValidadorDeParametrosWhereAndOthers.php">
+      <class name="src\pdodatabase\elementos\ValidadorDeParametrosWhereAndOthers" namespace="global">
+        <metrics complexity="14" methods="7" coveredmethods="6" conditionals="0" coveredconditionals="0" statements="21" coveredstatements="20" elements="28" coveredelements="26"/>
+      </class>
+      <line num="25" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="5"/>
+      <line num="27" type="stmt" count="5"/>
+      <line num="28" type="stmt" count="2"/>
+      <line num="30" type="method" name="datos" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="32" type="stmt" count="2"/>
+      <line num="35" type="method" name="setDatos" visibility="private" complexity="1" crap="1" count="5"/>
+      <line num="37" type="stmt" count="5"/>
+      <line num="38" type="stmt" count="4"/>
+      <line num="39" type="stmt" count="3"/>
+      <line num="40" type="stmt" count="2"/>
+      <line num="42" type="stmt" count="2"/>
+      <line num="45" type="method" name="contieneValoresVacios" visibility="private" complexity="3" crap="3" count="4"/>
+      <line num="47" type="stmt" count="4"/>
+      <line num="49" type="stmt" count="4"/>
+      <line num="51" type="stmt" count="1"/>
+      <line num="54" type="stmt" count="3"/>
+      <line num="56" type="method" name="columnasSonString" visibility="private" complexity="3" crap="3" count="3"/>
+      <line num="58" type="stmt" count="3"/>
+      <line num="60" type="stmt" count="1"/>
+      <line num="62" type="stmt" count="2"/>
+      <line num="64" type="method" name="numeroDeElementosValido" visibility="private" complexity="2" crap="2" count="5"/>
+      <line num="66" type="stmt" count="5"/>
+      <line num="68" type="stmt" count="1"/>
+      <line num="70" type="stmt" count="4"/>
+      <line num="72" type="method" name="operadorValido" visibility="private" complexity="3" crap="3.33" count="2"/>
+      <line num="74" type="stmt" count="2"/>
+      <line num="76" type="stmt" count="0"/>
+      <line num="78" type="stmt" count="2"/>
+      <line num="80" type="stmt" count="1"/>
+      <metrics loc="79" ncloc="79" classes="1" methods="7" coveredmethods="6" conditionals="0" coveredconditionals="0" statements="21" coveredstatements="20" elements="28" coveredelements="26"/>
+    </file>
+    <file name="C:\xampp\htdocs\pdo-database\src\pdodatabase\elementos\ValidadorDeParametrosWhereBetween.php">
+      <class name="src\pdodatabase\elementos\ValidadorDeParametrosWhereBetween" namespace="global">
+        <metrics complexity="12" methods="7" coveredmethods="7" conditionals="0" coveredconditionals="0" statements="21" coveredstatements="21" elements="28" coveredelements="28"/>
+      </class>
+      <line num="11" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="8"/>
+      <line num="13" type="stmt" count="8"/>
+      <line num="14" type="stmt" count="4"/>
+      <line num="16" type="method" name="datos" visibility="public" complexity="1" crap="1" count="4"/>
+      <line num="18" type="stmt" count="4"/>
+      <line num="21" type="method" name="setDatos" visibility="private" complexity="1" crap="1" count="8"/>
+      <line num="23" type="stmt" count="8"/>
+      <line num="24" type="stmt" count="7"/>
+      <line num="25" type="stmt" count="6"/>
+      <line num="26" type="stmt" count="5"/>
+      <line num="28" type="stmt" count="4"/>
+      <line num="31" type="method" name="contieneValoresVacios" visibility="private" complexity="3" crap="3" count="5"/>
+      <line num="33" type="stmt" count="5"/>
+      <line num="35" type="stmt" count="5"/>
+      <line num="37" type="stmt" count="1"/>
+      <line num="40" type="stmt" count="4"/>
+      <line num="42" type="method" name="valoresNoSonIguales" visibility="private" complexity="2" crap="2" count="6"/>
+      <line num="44" type="stmt" count="6"/>
+      <line num="46" type="stmt" count="1"/>
+      <line num="48" type="stmt" count="5"/>
+      <line num="50" type="method" name="numeroDeElementosValido" visibility="private" complexity="2" crap="2" count="8"/>
+      <line num="52" type="stmt" count="8"/>
+      <line num="54" type="stmt" count="1"/>
+      <line num="56" type="stmt" count="7"/>
+      <line num="58" type="method" name="columnaEsString" visibility="private" complexity="2" crap="2" count="7"/>
+      <line num="60" type="stmt" count="7"/>
+      <line num="62" type="stmt" count="1"/>
+      <line num="64" type="stmt" count="6"/>
+      <line num="65" type="stmt" count="1"/>
+      <metrics loc="64" ncloc="64" classes="1" methods="7" coveredmethods="7" conditionals="0" coveredconditionals="0" statements="21" coveredstatements="21" elements="28" coveredelements="28"/>
+    </file>
+    <file name="C:\xampp\htdocs\pdo-database\src\pdodatabase\elementos\Where.php">
+      <class name="src\pdodatabase\elementos\Where" namespace="global">
+        <metrics complexity="3" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="4" elements="7" coveredelements="7"/>
+      </class>
+      <line num="9" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="11" type="stmt" count="2"/>
+      <line num="12" type="stmt" count="2"/>
+      <line num="14" type="method" name="sql" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="16" type="stmt" count="1"/>
+      <line num="18" type="method" name="datos" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="20" type="stmt" count="1"/>
+      <line num="22" type="stmt" count="1"/>
+      <metrics loc="21" ncloc="21" classes="1" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="4" elements="7" coveredelements="7"/>
+    </file>
+    <file name="C:\xampp\htdocs\pdo-database\src\pdodatabase\elementos\WhereAnd.php">
+      <class name="src\pdodatabase\elementos\WhereAnd" namespace="global">
+        <metrics complexity="3" methods="3" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="3" elements="7" coveredelements="5"/>
+      </class>
+      <line num="11" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="13" type="stmt" count="1"/>
+      <line num="14" type="stmt" count="1"/>
+      <line num="16" type="method" name="sql" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="18" type="stmt" count="1"/>
+      <line num="21" type="method" name="datos" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="23" type="stmt" count="0"/>
+      <line num="25" type="stmt" count="1"/>
+      <metrics loc="24" ncloc="24" classes="1" methods="3" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="3" elements="7" coveredelements="5"/>
+    </file>
+    <file name="C:\xampp\htdocs\pdo-database\src\pdodatabase\elementos\WhereBetween.php">
+      <class name="src\pdodatabase\elementos\WhereBetween" namespace="global">
+        <metrics complexity="3" methods="3" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="3" elements="7" coveredelements="5"/>
+      </class>
+      <line num="11" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="13" type="stmt" count="1"/>
+      <line num="14" type="stmt" count="1"/>
+      <line num="16" type="method" name="sql" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="18" type="stmt" count="1"/>
+      <line num="21" type="method" name="datos" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="23" type="stmt" count="0"/>
+      <line num="25" type="stmt" count="1"/>
+      <metrics loc="24" ncloc="24" classes="1" methods="3" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="3" elements="7" coveredelements="5"/>
+    </file>
+    <file name="C:\xampp\htdocs\pdo-database\src\pdodatabase\elementos\WhereNotBetween.php">
+      <class name="src\pdodatabase\elementos\WhereNotBetween" namespace="global">
+        <metrics complexity="3" methods="3" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="3" elements="7" coveredelements="5"/>
+      </class>
+      <line num="11" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="3"/>
+      <line num="13" type="stmt" count="3"/>
+      <line num="14" type="stmt" count="3"/>
+      <line num="16" type="method" name="sql" visibility="public" complexity="1" crap="1" count="3"/>
+      <line num="18" type="stmt" count="3"/>
+      <line num="21" type="method" name="datos" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="23" type="stmt" count="0"/>
+      <line num="25" type="stmt" count="1"/>
+      <metrics loc="24" ncloc="24" classes="1" methods="3" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="3" elements="7" coveredelements="5"/>
+    </file>
+    <file name="C:\xampp\htdocs\pdo-database\src\pdodatabase\elementos\WhereOr.php">
+      <class name="src\pdodatabase\elementos\WhereOr" namespace="global">
+        <metrics complexity="3" methods="3" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="3" elements="7" coveredelements="5"/>
+      </class>
+      <line num="11" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="13" type="stmt" count="1"/>
+      <line num="14" type="stmt" count="1"/>
+      <line num="16" type="method" name="sql" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="18" type="stmt" count="1"/>
+      <line num="21" type="method" name="datos" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="23" type="stmt" count="0"/>
+      <line num="25" type="stmt" count="1"/>
+      <metrics loc="24" ncloc="24" classes="1" methods="3" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="3" elements="7" coveredelements="5"/>
+    </file>
+    <file name="C:\xampp\htdocs\pdo-database\src\pdodatabase\resultados\ContarResultados.php">
+      <class name="src\pdodatabase\resultados\ContarResultados" namespace="global">
+        <metrics complexity="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="0" elements="2" coveredelements="0"/>
+      </class>
+      <line num="8" type="method" name="contar" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="10" type="stmt" count="0"/>
+      <line num="12" type="stmt" count="0"/>
+      <metrics loc="11" ncloc="11" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="0" elements="2" coveredelements="0"/>
+    </file>
+    <file name="C:\xampp\htdocs\pdo-database\src\pdodatabase\resultados\ResultadoEnArrays.php">
+      <class name="src\pdodatabase\resultados\ResultadoEnArrays" namespace="global">
+        <metrics complexity="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="0" elements="2" coveredelements="0"/>
+      </class>
+      <line num="10" type="method" name="resultado" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="12" type="stmt" count="0"/>
+      <line num="14" type="stmt" count="0"/>
+      <metrics loc="13" ncloc="13" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="0" elements="2" coveredelements="0"/>
+    </file>
+    <file name="C:\xampp\htdocs\pdo-database\src\pdodatabase\resultados\ResultadoEnJson.php">
+      <class name="src\pdodatabase\resultados\ResultadoEnJson" namespace="global">
+        <metrics complexity="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="0" elements="2" coveredelements="0"/>
+      </class>
+      <line num="10" type="method" name="resultado" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="12" type="stmt" count="0"/>
+      <line num="14" type="stmt" count="0"/>
+      <metrics loc="13" ncloc="13" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="0" elements="2" coveredelements="0"/>
+    </file>
+    <file name="C:\xampp\htdocs\pdo-database\src\pdodatabase\resultados\ResultadoEnObjetos.php">
+      <class name="src\pdodatabase\resultados\ResultadoEnObjetos" namespace="global">
+        <metrics complexity="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="0" elements="2" coveredelements="0"/>
+      </class>
+      <line num="10" type="method" name="resultado" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="12" type="stmt" count="0"/>
+      <line num="14" type="stmt" count="0"/>
+      <metrics loc="13" ncloc="13" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="0" elements="2" coveredelements="0"/>
+    </file>
+    <file name="C:\xampp\htdocs\pdo-database\src\pdodatabase\sentencias\select\SentenciaSelect.php">
+      <class name="src\pdodatabase\sentencias\select\SentenciaSelect" namespace="global">
+        <metrics complexity="2" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="3" elements="5" coveredelements="5"/>
+      </class>
+      <line num="10" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="12" type="stmt" count="1"/>
+      <line num="13" type="stmt" count="1"/>
+      <line num="15" type="method" name="sql" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="17" type="stmt" count="1"/>
+      <line num="19" type="stmt" count="1"/>
+      <metrics loc="18" ncloc="18" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="3" elements="5" coveredelements="5"/>
+    </file>
+    <file name="C:\xampp\htdocs\pdo-database\src\pdodatabase\sentencias\select\SentenciaSelectWhere.php">
+      <class name="src\pdodatabase\sentencias\select\SentenciaSelectWhere" namespace="global">
+        <metrics complexity="3" methods="3" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="5" coveredstatements="4" elements="8" coveredelements="6"/>
+      </class>
+      <line num="11" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="13" type="stmt" count="1"/>
+      <line num="14" type="stmt" count="1"/>
+      <line num="15" type="stmt" count="1"/>
+      <line num="17" type="method" name="sql" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="19" type="stmt" count="1"/>
+      <line num="22" type="method" name="datos" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="24" type="stmt" count="0"/>
+      <line num="26" type="stmt" count="1"/>
+      <metrics loc="25" ncloc="25" classes="1" methods="3" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="5" coveredstatements="4" elements="8" coveredelements="6"/>
+    </file>
+    <metrics files="38" loc="1102" ncloc="1098" classes="34" methods="86" coveredmethods="56" conditionals="0" coveredconditionals="0" statements="256" coveredstatements="132" elements="342" coveredelements="188"/>
+  </project>
+</coverage>
