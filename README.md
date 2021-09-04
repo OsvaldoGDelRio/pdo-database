@@ -1,7 +1,8 @@
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/OsvaldoGDelRio/pdo-database/badges/quality-score.png?b=main)](https://scrutinizer-ci.com/g/OsvaldoGDelRio/pdo-database/?branch=main)
 [![Build Status](https://scrutinizer-ci.com/g/OsvaldoGDelRio/pdo-database/badges/build.png?b=main)](https://scrutinizer-ci.com/g/OsvaldoGDelRio/pdo-database/build-status/main)
 [![Code Intelligence Status](https://scrutinizer-ci.com/g/OsvaldoGDelRio/pdo-database/badges/code-intelligence.svg?b=main)](https://scrutinizer-ci.com/code-intelligence)
-[![Build Status](https://app.travis-ci.com/OsvaldoGDelRio/pdo-database.svg?branch=main)](https://app.travis-ci.com/OsvaldoGDelRio/pdo-database)
+[![Code Coverage](https://scrutinizer-ci.com/g/OsvaldoGDelRio/pdo-database/badges/coverage.png?b=main)](https://scrutinizer-ci.com/g/OsvaldoGDelRio/pdo-database/?branch=main)
+[![Build Status](https://app.travis-ci.com/OsvaldoGDelRio/pdo-database.svg?branch=main)]Travis (https://app.travis-ci.com/OsvaldoGDelRio/pdo-database)
 
 # Construyendo
 
