@@ -11,7 +11,7 @@ use src\pdodatabase\conexion\{
     HostBaseDeDatos,
     BaseDeDatos,
     UsuarioBaseDeDatos,
-    ContraseñaBaseDeDatos
+    ContrasenaBaseDeDatos
 };
 
 class CrearConexionBaseDeDatos implements FactoryClassInterface
@@ -22,7 +22,7 @@ class CrearConexionBaseDeDatos implements FactoryClassInterface
             new HostBaseDeDatos('127.0.0.1'),
             new BaseDeDatos('test'),
             new UsuarioBaseDeDatos('root'),
-            new ContraseñaBaseDeDatos('')
+            new ContrasenaBaseDeDatos('')
         );
     }
 }

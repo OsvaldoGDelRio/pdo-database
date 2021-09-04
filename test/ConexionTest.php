@@ -5,7 +5,7 @@ namespace test;
 use Exception;
 use \PHPUnit\Framework\TestCase;
 use src\pdodatabase\conexion\BaseDeDatos;
-use src\pdodatabase\conexion\ContraseñaBaseDeDatos;
+use src\pdodatabase\conexion\ContrasenaBaseDeDatos;
 use src\pdodatabase\conexion\HostBaseDeDatos;
 use src\pdodatabase\conexion\UsuarioBaseDeDatos;
 
@@ -25,12 +25,12 @@ class ConexionTest extends TestCase
         $this->assertIsString($base->baseDeDatos());
     }
 
-    //Contraseña
+    //Contrasena
 
-    public function testContraseñaSoloDevuelveString()
+    public function testContrasenaSoloDevuelveString()
     {
-        $base = new ContraseñaBaseDeDatos('23');
-        $this->assertIsString($base->contraseñaBaseDeDatos());
+        $base = new ContrasenaBaseDeDatos('23');
+        $this->assertIsString($base->contrasenaBaseDeDatos());
     }
 
     //Host

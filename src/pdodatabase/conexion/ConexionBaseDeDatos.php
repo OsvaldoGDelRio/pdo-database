@@ -14,12 +14,12 @@ class ConexionBaseDeDatos
         HostBaseDeDatos $HostBaseDeDatos,
         BaseDeDatos $BaseDeDatos,
         UsuarioBaseDeDatos $UsuarioBaseDeDatos,
-        ContraseñaBaseDeDatos $ContraseñaBaseDeDatos
+        ContrasenaBaseDeDatos $ContrasenaBaseDeDatos
     )
     {
         try
 		{
-			$this->_pdo = new PDO('mysql:host='.$HostBaseDeDatos->hostBaseDeDatos().';dbname='.$BaseDeDatos->baseDeDatos().';chartset=utf8mb4',$UsuarioBaseDeDatos->usuarioBaseDeDatos(),$ContraseñaBaseDeDatos->contraseñaBaseDeDatos());
+			$this->_pdo = new PDO('mysql:host='.$HostBaseDeDatos->hostBaseDeDatos().';dbname='.$BaseDeDatos->baseDeDatos().';chartset=utf8mb4',$UsuarioBaseDeDatos->usuarioBaseDeDatos(),$ContrasenaBaseDeDatos->contrasenaBaseDeDatos());
 			$this->_pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		}
 		catch(PDOException)
