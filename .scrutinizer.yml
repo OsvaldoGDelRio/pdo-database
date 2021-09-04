@@ -8,8 +8,6 @@ build:
     override:
       - composer upgrade --no-interaction --prefer-dist
   nodes:
-      services:
-        mysql: 5.7
     analysis:
       project_setup:
         override: true
@@ -19,4 +17,4 @@ build:
 
 tools:
   external_code_coverage:
-    timeout: 600 
+    timeout: 600 # default is 300 seconds
