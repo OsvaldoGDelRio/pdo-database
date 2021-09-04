@@ -67,19 +67,19 @@ class ElementosTest extends TestCase
     public function testValidadorDeParametrosWhereElArrayNoPuedeEstarVacio()
     {
         $this->expectException(Exception::class);
-        new ValidadorDeParametrosWhere([]);
+        $class = new ValidadorDeParametrosWhere([]);
     }
 
     public function testValidadorDeParametrosWhereLaColumnaSoloPuedeSerString()
     {
         $this->expectException(Exception::class);
-        new ValidadorDeParametrosWhere([1,'1','2']);
+        $class = new ValidadorDeParametrosWhere([1,'1','2']);
     }
 
     public function testValidadorDeParametrosWhereNingunCampoPuedeEstarVacio()
     {
         $this->expectException(Exception::class);
-        new ValidadorDeParametrosWhere(['','1','2']);
+        $class = new ValidadorDeParametrosWhere(['','1','2']);
     }
 
     //Clase ValidadorDeParametrosWhereBetween
@@ -87,25 +87,25 @@ class ElementosTest extends TestCase
     public function testValidadorDeParametrosWhereBetweenElArrayNoPuedeEstarVacio()
     {
         $this->expectException(Exception::class);
-        new ValidadorDeParametrosWhereBetween([]);
+        $class = new ValidadorDeParametrosWhereBetween([]);
     }
 
     public function testValidadorDeParametrosWhereBetweenNoPuedeTenerValoresIguales()
     {
         $this->expectException(Exception::class);
-        new ValidadorDeParametrosWhereBetween(['id','1','1']);
+        $class = new ValidadorDeParametrosWhereBetween(['id','1','1']);
     }
 
     public function testValidadorDeParametrosWhereBetweenLaColumnaSoloPuedeSerString()
     {
         $this->expectException(Exception::class);
-        new ValidadorDeParametrosWhereBetween([1,'1','2']);
+        $class = new ValidadorDeParametrosWhereBetween([1,'1','2']);
     }
 
     public function testValidadorDeParametrosWhereBetweenNingunCampoPuedeEstarVacio()
     {
         $this->expectException(Exception::class);
-        new ValidadorDeParametrosWhereBetween(['','1','2']);
+        $class = new ValidadorDeParametrosWhereBetween(['','1','2']);
     }
 
     //Clase Where
@@ -137,19 +137,19 @@ class ElementosTest extends TestCase
     public function testValidadorDeParametrosWhereAndOthersElArrayNoPuedeEstarVacio()
     {
         $this->expectException(Exception::class);
-        new ValidadorDeParametrosWhereAndOthers([]);
+        $class = new ValidadorDeParametrosWhereAndOthers([]);
     }
 
     public function testValidadorDeParametrosWhereAndOthersLaColumnaSoloPuedeSerString()
     {
         $this->expectException(Exception::class);
-        new ValidadorDeParametrosWhereAndOthers([1,'=','2','1','=','2']);
+        $class = new ValidadorDeParametrosWhereAndOthers([1,'=','2','1','=','2']);
     }
 
     public function testValidadorDeParametrosWhereAndOthersNingunCampoPuedeEstarVacio()
     {
         $this->expectException(Exception::class);
-        new ValidadorDeParametrosWhereAndOthers(['','1','2','','','']);
+        $class = new ValidadorDeParametrosWhereAndOthers(['','1','2','','','']);
     }
 
     //Clase Where And
