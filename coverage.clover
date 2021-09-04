@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1630659764">
-  <project timestamp="1630659764">
+<coverage generated="1630720103">
+  <project timestamp="1630720103">
     <file name="C:\xampp\htdocs\pdo-database\src\excepciones\ConexionABaseDeDatosException.php">
       <class name="src\excepciones\ConexionABaseDeDatosException" namespace="global">
         <metrics complexity="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>

@@ -7,9 +7,13 @@ build:
             tests:
                 override:
                     - php ./vendor/bin/phpunit test --configuration phpunit.xml --testsuite scrutinizer
-
+                    - php-scrutinizer-run
+                    - command: ./vendor/bin/phpunit test --coverage-text --coverage-clover=coverage.clover
+                      coverage:
+                        file: coverage.clover
+                        format: clover
+checks:
+    php: true
 coding_style:
-    php:
-        indentation:
-            general:
-                use_tabs: true
+    php: {  }
+filter: {  }
