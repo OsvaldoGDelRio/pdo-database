@@ -189,7 +189,7 @@ $select = $factory->crear('src\factory\SelectWhereNotBetween',[
 
 ### INSERT
 
-INSERT INTO prueba (`id`) VALUES (?)
+INSERT INTO prueba (uno,dos,tres) VALUES (?,?,?)
 ```php
 $select = $factory->crear('src\factory\Insert',[
     'tabla' => 'prueba',
