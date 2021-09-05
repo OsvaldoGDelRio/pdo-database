@@ -3,6 +3,7 @@ declare(strict_types=1);
 namespace test;
 
 use \PHPUnit\Framework\TestCase;
+use src\factory\Delete;
 use src\factory\Insert;
 use src\factory\Select;
 use src\factory\SelectWhere;
@@ -11,6 +12,7 @@ use src\factory\SelectWhereBetween;
 use src\factory\SelectWhereNotBetween;
 use src\factory\SelectWhereOr;
 use src\factory\Update;
+use src\pdodatabase\consultas\delete\ConsultaDelete;
 use src\pdodatabase\consultas\insert\ConsultaInsert;
 use src\pdodatabase\consultas\select\ConsultaSelect;
 use src\pdodatabase\consultas\select\ConsultaSelectWhere;
@@ -54,24 +56,32 @@ class FactoryTest extends TestCase
         $this->assertInstanceOf(ConsultaSelectWhere::class, $select->crear(['tabla' => 'prueba', 'campos' => ['*'],'where' => ['id','1',2]]));
     }
 
-    // SelectWhereBetween
+    // SelectWhereNotBetween
     public function testFactorySelectWhereNotBetweenDevuelveClaseAdecuada()
     {
         $select = new SelectWhereNotBetween;
         $this->assertInstanceOf(ConsultaSelectWhere::class, $select->crear(['tabla' => 'prueba', 'campos' => ['*'],'where' => ['id','1',2]]));
     }
 
-    // SelectWhereBetween
+    // Insert
     public function testFactoryInsertDevuelveClaseAdecuada()
     {
         $insert = new Insert;
         $this->assertInstanceOf(ConsultaInsert::class, $insert->crear(['tabla' => 'prueba', 'valores' => ['uno' => 12, 'dos' => 22, 'tres' => 333]]));
     }
 
-    // SelectWhereBetween
+    // Update
     public function testFactoryUpdateDevuelveClaseAdecuada()
     {
         $insert = new Update;
         $this->assertInstanceOf(ConsultaUpdate::class, $insert->crear(['tabla' => 'prueba', 'valores' => ['uno' => 12, 'dos' => 22, 'tres' => 333], 'where' => ['id','!=',1]]));
+    }
+
+    //Delete
+
+    public function testFactoryDeleteDevuelveClaseAdecuada()
+    {
+        $delete = new Delete;
+        $this->assertInstanceOf(ConsultaDelete::class, $delete->crear( ['tabla' => 'prueba', 'where' => ['id','=',1] ] ));
     }
 }

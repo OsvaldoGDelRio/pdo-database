@@ -207,11 +207,19 @@ $select = $factory->crear('src\factory\Update',[
     'where' => ['id','=',1] 
 ]);
 ```
+### DELETE 
 
+No acepta la sentencia son el valor WHERE, WHERE AND, WHERE OR, WHERE BETWEEN o WHERE NOT BETWEEN, para borrar todo el contenido de una tabla usar TRUNCATE
+```php
+$select = $factory->crear('src\factory\Delete',[
+    'tabla' => 'prueba',
+    'where' => ['id','=',1] 
+]);
+```
 
 ### EJECUTAR LA CONSULTA
 
-Al ejecutar cada consulta que contiene valores tipo WHERE id = ? los valores se aplican por medio de "bindValue"
+Al ejecutar cada consulta SELECT, UPDATE, INSERT, DELETE
 
 ```php
 $select->obtener();

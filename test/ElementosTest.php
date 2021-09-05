@@ -8,6 +8,7 @@ use \PHPUnit\Framework\TestCase;
 use src\pdodatabase\elementos\Campos;
 use src\pdodatabase\elementos\CamposYTabla;
 use src\pdodatabase\elementos\Como;
+use src\pdodatabase\elementos\Delete;
 use src\pdodatabase\elementos\Insert;
 use src\pdodatabase\elementos\Tabla;
 use src\pdodatabase\elementos\Update;
@@ -19,6 +20,7 @@ use src\pdodatabase\elementos\WhereAnd;
 use src\pdodatabase\elementos\WhereBetween;
 use src\pdodatabase\elementos\WhereNotBetween;
 use src\pdodatabase\elementos\WhereOr;
+use src\pdodatabase\sentencias\delete\SentenciaDelete;
 use src\pdodatabase\sentencias\insert\SentenciaInsert;
 use src\pdodatabase\sentencias\select\SentenciaSelect;
 use src\pdodatabase\sentencias\select\SentenciaSelectWhere;
@@ -435,5 +437,73 @@ class ElementosTest extends TestCase
 
         $this->assertSame('1121', $v);
         $this->assertSame('unodos0', $c);
-    }    
+    }
+    
+    //Clase Delete
+
+    public function testDeleteArrojaStringValido()
+    {
+        $del = new Delete(
+            new Tabla('prueba'),
+            new Where(
+                new ValidadorDeParametrosWhere(
+                    ['id','=',1]
+                )
+            )
+        );
+
+        $this->assertSame('prueba WHERE id = ?', $del->sql());
+    }
+
+    public function testDeleteArrojaArrayValido()
+    {
+        $del = new Delete(
+            new Tabla('prueba'),
+            new Where(
+                new ValidadorDeParametrosWhere(
+                    ['id','=',1]
+                )
+            )
+        );
+
+        $this->assertIsArray($del->datos());
+    }
+
+    //Class SentenciaDelete
+
+    public function testSentenciaDeleteArrojaStringValido()
+    {
+        $del = new Delete(
+            new Tabla('prueba'),
+            new Where(
+                new ValidadorDeParametrosWhere(
+                    ['id','=',1]
+                )
+            )
+        );
+
+        $sentencia = new SentenciaDelete(
+            $del
+        );
+
+        $this->assertSame('DELETE FROM prueba WHERE id = ?', $sentencia->sql());
+    }
+
+    public function testSentenciaDeleteArrojaArrayValido()
+    {
+        $del = new Delete(
+            new Tabla('prueba'),
+            new Where(
+                new ValidadorDeParametrosWhere(
+                    ['id','=',1]
+                )
+            )
+        );
+
+        $sentencia = new SentenciaDelete(
+            $del
+        );
+
+        $this->assertIsArray($sentencia->datos());
+    }
 }
