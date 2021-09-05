@@ -171,7 +171,7 @@ class ElementosTest extends TestCase
     public function testValidadorDeParametrosWhereAndOthersOperadorValido()
     {
         $this->expectException(Exception::class);
-        $class = new ValidadorDeParametrosWhereAndOthers(['id','1','2']);
+        $class = new ValidadorDeParametrosWhereAndOthers(['1','1','2','1','1','1']);
     }
 
     //Clase Where And
