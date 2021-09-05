@@ -4,10 +4,15 @@
 [![Code Coverage](https://scrutinizer-ci.com/g/OsvaldoGDelRio/pdo-database/badges/coverage.png?b=main)](https://scrutinizer-ci.com/g/OsvaldoGDelRio/pdo-database/?branch=main)
 [![Travis Build Status](https://app.travis-ci.com/OsvaldoGDelRio/pdo-database.svg?branch=main)](https://app.travis-ci.com/OsvaldoGDelRio/pdo-database)
 
-# Construyendo
-
 ## pdo-database
 Clases en PHP para trabajar con PDO y bases de datos SQL escrita en español.
+
+Hasta el momento contiene funcionalidad básica:
+
+[SELECT] (https://github.com/OsvaldoGDelRio/pdo-database#select)
+[INSERT] (https://github.com/OsvaldoGDelRio/pdo-database#insert)
+[UPDATE] (https://github.com/OsvaldoGDelRio/pdo-database#update)
+[DELETE] (https://github.com/OsvaldoGDelRio/pdo-database#delete)
 
 ## Instalación
 
