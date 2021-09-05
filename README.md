@@ -9,10 +9,10 @@ Clases en PHP para trabajar con PDO y bases de datos SQL escrita en español.
 
 Hasta el momento contiene funcionalidad básica:
 
-[SELECT] (https://github.com/OsvaldoGDelRio/pdo-database#select)
-[INSERT] (https://github.com/OsvaldoGDelRio/pdo-database#insert)
-[UPDATE] (https://github.com/OsvaldoGDelRio/pdo-database#update)
-[DELETE] (https://github.com/OsvaldoGDelRio/pdo-database#delete)
+[[SELECT](https://github.com/OsvaldoGDelRio/pdo-database#select)]
+[[INSERT](https://github.com/OsvaldoGDelRio/pdo-database#insert)]
+[[UPDATE](https://github.com/OsvaldoGDelRio/pdo-database#update)]
+[[DELETE](https://github.com/OsvaldoGDelRio/pdo-database#delete)]
 
 ## Instalación
 
