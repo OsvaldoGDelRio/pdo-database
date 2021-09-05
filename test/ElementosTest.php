@@ -48,6 +48,12 @@ class ElementosTest extends TestCase
         $campos = new Campos([]);
     }
 
+    public function testSiAlgunoDeLosCamposEstaVacioLanzaExcepcion()
+    {
+        $this->expectException(Exception::class);
+        $campos = new Campos(['id','']);
+    }
+
     public function testCamposSoloRetornaTexto()
     {
         $campos = new Campos(['*','78']);
@@ -84,6 +90,12 @@ class ElementosTest extends TestCase
     {
         $this->expectException(Exception::class);
         $class = new ValidadorDeParametrosWhere(['','1','2']);
+    }
+
+    public function testValidadorDeParametrosWhereOperadorValido()
+    {
+        $this->expectException(Exception::class);
+        $class = new ValidadorDeParametrosWhere(['id','1','2']);
     }
 
     //Clase ValidadorDeParametrosWhereBetween
@@ -156,6 +168,12 @@ class ElementosTest extends TestCase
         $class = new ValidadorDeParametrosWhereAndOthers(['','1','2','','','']);
     }
 
+    public function testValidadorDeParametrosWhereAndOthersOperadorValido()
+    {
+        $this->expectException(Exception::class);
+        $class = new ValidadorDeParametrosWhereAndOthers(['id','1','2']);
+    }
+
     //Clase Where And
 
     public function testWhereAndArrojaStringValido()
@@ -167,6 +185,17 @@ class ElementosTest extends TestCase
             );
 
         $this->assertSame('WHERE id = ? AND uno = ?', $where->sql());
+    }
+
+    public function testWhereAndArrojaUnArray()
+    {
+        $where = new WhereAnd(
+            new ValidadorDeParametrosWhereAndOthers(
+                ['id','=','21','uno','=','1']
+            )
+            );
+
+        $this->assertIsArray($where->datos());
     }
 
     //Clase Where Or
@@ -182,6 +211,17 @@ class ElementosTest extends TestCase
         $this->assertSame('WHERE id = ? OR uno = ?', $where->sql());
     }
 
+    public function testWhereOrArrojaUnArray()
+    {
+        $where = new WhereOr(
+            new ValidadorDeParametrosWhereAndOthers(
+                ['id','=','21','uno','=','1']
+            )
+            );
+            
+        $this->assertIsArray($where->datos());
+    }
+
     //Clase Where Between
 
     public function testWhereBetweenArrojaStringValido()
@@ -195,6 +235,17 @@ class ElementosTest extends TestCase
         $this->assertSame('WHERE BETWEEN id ? AND ?', $where->sql());
     }
 
+    public function testWhereBetweenAndArrojaUnArray()
+    {
+        $where = new WhereBetween(
+            new ValidadorDeParametrosWhereBetween(
+                ['id','1','21']
+            )
+            );
+            
+        $this->assertIsArray($where->datos());
+    }
+
     //Clase Where Not Between
 
     public function testWhereNotBetweenArrojaStringValido()
@@ -206,6 +257,17 @@ class ElementosTest extends TestCase
             );
 
         $this->assertSame('WHERE NOT BETWEEN id ? AND ?', $where->sql());
+    }
+
+    public function testWhereNotBetweenAndArrojaUnArray()
+    {
+        $where = new WhereNotBetween(
+            new ValidadorDeParametrosWhereBetween(
+                ['id','1','21']
+            )
+            );
+            
+        $this->assertIsArray($where->datos());
     }
 
     //Clase Como 
@@ -271,6 +333,12 @@ class ElementosTest extends TestCase
         $insert = new Insert([]);
     }
 
+    public function testInsertNingunoDeLosCamposPuedeEstarVacio()
+    {
+        $this->expectException(Exception::class);
+        $insert = new Insert(['id' => 1, '' => 2]);
+    }
+
     public function testInsertRetornaStringValido()
     {
         $insert = new Insert(['id' => 1]);
@@ -311,6 +379,12 @@ class ElementosTest extends TestCase
     {
         $this->expectException(Exception::class);
         $up = new Update([], new Where(new ValidadorDeParametrosWhere(['id','=',1])));
+    }
+
+    public function testUpdateNingunoDeLosCamposPuedeEstarVacio()
+    {
+        $this->expectException(Exception::class);
+        $up = new Update(['id' => 1, '' => 2], new Where(new ValidadorDeParametrosWhere(['id','=',1])));
     }
 
     public function testUpdateRetornaStringValido()

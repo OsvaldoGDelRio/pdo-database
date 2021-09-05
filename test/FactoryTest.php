@@ -10,9 +10,11 @@ use src\factory\SelectWhereAnd;
 use src\factory\SelectWhereBetween;
 use src\factory\SelectWhereNotBetween;
 use src\factory\SelectWhereOr;
+use src\factory\Update;
 use src\pdodatabase\consultas\insert\ConsultaInsert;
 use src\pdodatabase\consultas\select\ConsultaSelect;
 use src\pdodatabase\consultas\select\ConsultaSelectWhere;
+use src\pdodatabase\consultas\update\ConsultaUpdate;
 use src\pdodatabase\sentencias\insert\SentenciaInsert;
 
 class FactoryTest extends TestCase
@@ -64,5 +66,12 @@ class FactoryTest extends TestCase
     {
         $insert = new Insert;
         $this->assertInstanceOf(ConsultaInsert::class, $insert->crear(['tabla' => 'prueba', 'valores' => ['uno' => 12, 'dos' => 22, 'tres' => 333]]));
+    }
+
+    // SelectWhereBetween
+    public function testFactoryUpdateDevuelveClaseAdecuada()
+    {
+        $insert = new Update;
+        $this->assertInstanceOf(ConsultaUpdate::class, $insert->crear(['tabla' => 'prueba', 'valores' => ['uno' => 12, 'dos' => 22, 'tres' => 333], 'where' => ['id','!=',1]]));
     }
 }

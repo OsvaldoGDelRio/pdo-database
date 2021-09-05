@@ -3,8 +3,11 @@ declare(strict_types=1);
 namespace test;
 
 use Exception;
+use PDO;
 use \PHPUnit\Framework\TestCase;
+use src\excepciones\ConexionABaseDeDatosException;
 use src\pdodatabase\conexion\BaseDeDatos;
+use src\pdodatabase\conexion\ConexionBaseDeDatos;
 use src\pdodatabase\conexion\ContrasenaBaseDeDatos;
 use src\pdodatabase\conexion\HostBaseDeDatos;
 use src\pdodatabase\conexion\UsuarioBaseDeDatos;
@@ -59,5 +62,28 @@ class ConexionTest extends TestCase
     {
         $base = new UsuarioBaseDeDatos('23');
         $this->assertIsString($base->usuarioBaseDeDatos());
+    }
+
+    public function testConexionDevuelveObjetoPDO()
+    {
+        $con = new ConexionBaseDeDatos(
+            new HostBaseDeDatos('127.0.0.1'),
+            new BaseDeDatos('test'),
+            new UsuarioBaseDeDatos('root'),
+            new ContrasenaBaseDeDatos('')
+        );
+
+        $this->assertInstanceOf(PDO::class, $con->conectar());
+    }
+
+    public function testConexionDevuelveExceptionSiFallaAlConectar()
+    {
+        $this->expectException(ConexionABaseDeDatosException::class);
+        $con = new ConexionBaseDeDatos(
+            new HostBaseDeDatos('127.0.0.1'),
+            new BaseDeDatos('test'),
+            new UsuarioBaseDeDatos('root'),
+            new ContrasenaBaseDeDatos('CONTRASEÑAERRONEA')
+        );
     }
 }
