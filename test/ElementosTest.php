@@ -10,7 +10,11 @@ use src\pdodatabase\elementos\CamposYTabla;
 use src\pdodatabase\elementos\Como;
 use src\pdodatabase\elementos\Delete;
 use src\pdodatabase\elementos\Insert;
+use src\pdodatabase\elementos\Join;
+use src\pdodatabase\elementos\Joins;
+use src\pdodatabase\elementos\NombreColumnaJoin;
 use src\pdodatabase\elementos\Tabla;
+use src\pdodatabase\elementos\TipoDeJoin;
 use src\pdodatabase\elementos\Update;
 use src\pdodatabase\elementos\ValidadorDeParametrosWhereBetween;
 use src\pdodatabase\elementos\ValidadorDeParametrosWhere;
@@ -505,5 +509,95 @@ class ElementosTest extends TestCase
         );
 
         $this->assertIsArray($sentencia->datos());
+    }
+
+    //Join
+
+    public function testJoinDevuelveStringCorrectoSql()
+    {
+        $join  = new Join(
+            new TipoDeJoin('inner'),
+            new Tabla('tabla1'),
+            new Tabla('tabla2'),
+            new Campos(['*']),
+            new NombreColumnaJoin(['id'])
+        );
+
+        $this->assertSame('INNER JOIN tabla2 ON tabla1.id = tabla2.id', $join->sql());
+    }
+
+    public function testJoinDevuelveStringCorrectoCampos()
+    {
+        $join  = new Join(
+            new TipoDeJoin('inner'),
+            new Tabla('tabla1'),
+            new Tabla('tabla2'),
+            new Campos(['id','nombre AS name']),
+            new NombreColumnaJoin(['id'])
+        );
+
+        $this->assertSame('tabla2.nombre AS name,tabla2.id', $join->campos());
+    }
+
+    // NombreColumnaJoin
+
+    public function testNombreColumnaJoinNoPuedeTenerArrayVacio()
+    {
+        $this->expectException(Exception::class);
+        $nom = new NombreColumnaJoin([]);
+    }
+
+    public function testNombreColumnaJoinNoPuedeTenerStringVacio()
+    {
+        $this->expectException(Exception::class);
+        $nom = new NombreColumnaJoin(['1','']);
+    }
+
+    public function testNombreColumnaJoinNoPuedeTenerMasDe2Valores()
+    {
+        $this->expectException(Exception::class);
+        $nom = new NombreColumnaJoin(['1','2','3']);
+    }
+
+    //TipoDeJoin
+    
+    public function testTipoDeJoinNoPuedeEstarVacio()
+    {
+        $this->expectException(Exception::class);
+        $nom = new TipoDeJoin('');
+    }
+
+    public function testTipoDeJoinTieneQueSerValido()
+    {
+        $this->expectException(Exception::class);
+        $nom = new TipoDeJoin('lol');
+    }
+
+    public function testTipoDEJoinDevuelveStringCorrectoSql()
+    {
+        $nom = new TipoDeJoin('inner');
+
+        $this->assertSame('INNER JOIN', $nom->sql());
+    }
+
+    //Joins
+
+    public function testJoinsDevuelveElStringCorrecto()
+    {
+        $joins = new Joins(
+            new Tabla('TABLA1'),
+            new Campos(['*']),
+            [
+                new Join(
+                    new TipoDeJoin('inner'),
+                    new Tabla('TABLA1'), 
+                    new Tabla('tabla2'), 
+                    new Campos(['id', 'dos AS DOS']), 
+                    new NombreColumnaJoin(['id1','id2']) 
+                )
+            ]
+        );
+
+        $this->assertSame("SELECT TABLA1.*,tabla2.dos AS DOS,tabla2.id FROM TABLA1 INNER JOIN tabla2 ON TABLA1.id1 = tabla2.id2 ",$joins->sql());
     }
 }

@@ -16,6 +16,8 @@ Hasta el momento contiene funcionalidad básica:
 
 ## Instalación
 
+Escrita en PHP 8.0
+
 Requiere: PSR-4: Autoloader
 
 ### Vía composer
@@ -270,12 +272,18 @@ pdo-database
 |   +-- pdodatabase             //Contiene todas las clases para construir y hacer las peticiones 
 |       |   +-- conexion        //Contiene las clases para crear la conexión 
 |       |   +-- consultas       //Contiene las clases para realizar las consultas 
-|           |   +-- select 
+|           |   +-- select
+            |   +-- update
+            |   +-- insert
+            |   +-- delete
 |       |   +-- ejecutar        //Contiene las clases para ejecutar las consultas 
 |       |   +-- elementos       //Contiene las clases para construir las sentencias 
 |       |   +-- resultados      //Contiene las clases para mostrar resultados 
 |       |   +-- sentencias      //Contiene las clases para construir las sentencias en texto 
-|           |   +-- select 
+|           |   +-- select
+            |   +-- update
+            |   +-- insert
+            |   +-- delete
 +-- test                        //Contiene las pruebas realizadas en PHPUnit 
 ```
 ## ejemplos de uso
@@ -319,6 +327,11 @@ $resultadoObj->resultado($select);
 
 ## PHP Unit
 
+Para ejecutar las pruebas
+```shell
+./vendor/bin/phpunit test
+```
+
 Para ejecutar las pruebas y mostrar en texto con --testdox
 ```shell
 ./vendor/bin/phpunit test --testdox
@@ -332,6 +345,7 @@ Contiene pruebas unitarias para la construcción de:
 - Clases que muestran resultados en distintos formatos
 
 ## Idea
+
 La idea principal es lograr encapsular los valores de una sentencia SQL y dejar de usar sentencias IF, SETTERS Y GETTERS que pueden producir comportamientos extraños. Usar Programación Orientada a Objetos, considerando un objeto una sentencia SQL como SELECT * FROM, que debe de permanecer inmutable hasta la destrucción del mismo.
 
 ### ¿Por qué tantos objetos y clases pequeños?
@@ -344,7 +358,7 @@ Los componentes las clases funcionan en su mayoría de forma agnostica a su ento
 
 ### Consultas con sentencias directas
 
-Auqnue no es recomendable realizar consultas directas sin utilizar bindValue, o encapsular las consultas para tener la seguridad que la consulta que escribimos es la que se ejecutará, en ambientes de desarrollo es útil, se pueden usar haciendo:
+Auqnue no es recomendable realizar consultas directas sin utilizar bindValue, o encapsular las consultas para tener la seguridad que la consulta que escribimos es la que se ejecutará y prevenir [[!SQL Injection](https://www.w3schools.com/sql/sql_injection.asp)], en ambientes de desarrollo es útil, se pueden usar haciendo:
 
 ```php
 /*

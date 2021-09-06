@@ -1,7 +1,6 @@
 <?php
 namespace src\pdodatabase\elementos;
 
-use Exception;
 use src\interfaces\WhereInterface;
 use src\pdodatabase\elementos\Tabla;
 
