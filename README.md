@@ -9,10 +9,10 @@ Clases en PHP para trabajar con PDO y bases de datos SQL escrita en español.
 
 Hasta el momento contiene funcionalidad básica:
 
-[[SELECT](https://github.com/OsvaldoGDelRio/pdo-database#select)]
-[[INSERT](https://github.com/OsvaldoGDelRio/pdo-database#insert)]
-[[UPDATE](https://github.com/OsvaldoGDelRio/pdo-database#update)]
-[[DELETE](https://github.com/OsvaldoGDelRio/pdo-database#delete)]
+[SELECT(https://github.com/OsvaldoGDelRio/pdo-database#select)]
+[INSERT(https://github.com/OsvaldoGDelRio/pdo-database#insert)]
+[UPDATE(https://github.com/OsvaldoGDelRio/pdo-database#update)]
+[DELETE(https://github.com/OsvaldoGDelRio/pdo-database#delete)]
 
 ## Instalación
 
@@ -102,6 +102,18 @@ array
 */
 
 ```
+
+Tabla en SQL para crear pruebas en test.sql
+
+```
+CREATE TABLE `prueba` (
+  `id` int(11) NOT NULL,
+  `uno` int(11) NOT NULL,
+  `dos` int(11) NOT NULL,
+  `tres` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+```
+
 
 ## Listado de sentencias con código usando Factory
 
@@ -216,7 +228,7 @@ $select = $factory->crear('src\factory\Update',[
 ```
 ### DELETE 
 
-No acepta la sentencia son el valor WHERE, WHERE AND, WHERE OR, WHERE BETWEEN o WHERE NOT BETWEEN, para borrar todo el contenido de una tabla usar TRUNCATE
+No acepta la sentencia sin el valor WHERE, WHERE AND, WHERE OR, WHERE BETWEEN o WHERE NOT BETWEEN, para borrar todo el contenido de una tabla usar TRUNCATE
 ```php
 $select = $factory->crear('src\factory\Delete',[
     'tabla' => 'prueba',
