@@ -173,16 +173,16 @@
       <line num="35" type="stmt" count="0"/>
       <metrics loc="34" ncloc="34" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="6" coveredstatements="0" elements="8" coveredelements="0"/>
     </file>
-    <file name="C:\xampp\htdocs\pdo-database\src\pdodatabase\conexion\ContraseñaBaseDeDatos.php">
-      <class name="src\pdodatabase\conexion\ContraseñaBaseDeDatos" namespace="global">
+    <file name="C:\xampp\htdocs\pdo-database\src\pdodatabase\conexion\ContrasenaBaseDeDatos.php">
+      <class name="src\pdodatabase\conexion\ContrasenaBaseDeDatos" namespace="global">
         <metrics complexity="3" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="4" elements="7" coveredelements="7"/>
       </class>
       <line num="8" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="1"/>
       <line num="10" type="stmt" count="1"/>
       <line num="11" type="stmt" count="1"/>
-      <line num="13" type="method" name="contraseñaBaseDeDatos" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="13" type="method" name="contrasenaBaseDeDatos" visibility="public" complexity="1" crap="1" count="1"/>
       <line num="15" type="stmt" count="1"/>
-      <line num="18" type="method" name="setContraseñaBaseDeDatos" visibility="private" complexity="1" crap="1" count="1"/>
+      <line num="18" type="method" name="setContrasenaBaseDeDatos" visibility="private" complexity="1" crap="1" count="1"/>
       <line num="20" type="stmt" count="1"/>
       <line num="22" type="stmt" count="1"/>
       <metrics loc="21" ncloc="21" classes="1" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="4" elements="7" coveredelements="7"/>

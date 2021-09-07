@@ -36,7 +36,7 @@ $conexion = new ConexionBaseDeDatos(
             new HostBaseDeDatos('127.0.0.1'),
             new BaseDeDatos('test'),
             new UsuarioBaseDeDatos('root'),
-            new ContraseñaBaseDeDatos('')
+            new ContrasenaBaseDeDatos('')
         );
 $conexion = $conexion->conectar();
 
@@ -67,7 +67,7 @@ $conexion = new ConexionBaseDeDatos(
                 new HostBaseDeDatos('127.0.0.1'),
                 new BaseDeDatos('test'),
                 new UsuarioBaseDeDatos('root'),
-                new ContraseñaBaseDeDatos('')
+                new ContrasenaBaseDeDatos('')
         );
 
 $conexion = $conexion->conectar();
