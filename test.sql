@@ -27,6 +27,9 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `prueba`
 --
 
+CREATE DATABASE IF NOT EXISTS `test` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `test`;
+
 CREATE TABLE `prueba` (
   `id` int(11) NOT NULL,
   `uno` int(11) NOT NULL,
