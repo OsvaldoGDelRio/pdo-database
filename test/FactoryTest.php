@@ -101,6 +101,30 @@ class FactoryTest extends TestCase
                     'tabla' => 'prueba2',
                     'campos' => ['uno AS columnauno'],
                     'key' => ['uno']
+                ],
+                [
+                    'tipo' => 'inner',
+                    'tabla' => 'prueba3',
+                    'campos' => ['dos AS columnados'],
+                    'key' => ['dos'],
+                    'join' =>
+                    [
+                        [
+                            'tipo' => 'inner',
+                            'tabla' => 'prueba4',
+                            'campos' => ['cuatro AS columnacuatro'],
+                            'key' => ['cuatro'],
+                            'join' => 
+                            [
+                                [
+                                    'tipo' => 'inner',
+                                    'tabla' => 'prueba5',
+                                    'campos' => ['cinco AS columnacinco'],
+                                    'key' => ['cinco']
+                                ]
+                            ]
+                        ]
+                    ]
                 ]
             ]
         ];

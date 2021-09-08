@@ -61,7 +61,7 @@ class Join implements FactoryClassInterface
         );
     }
 
-    private function multilplesJoin(array $value, string $tablaPadre)
+    private function multilplesJoin(array $value, string $tablaPadre): void
     {
         if(isset($value['join']))
         {
