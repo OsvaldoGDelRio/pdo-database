@@ -236,6 +236,132 @@ $select = $factory->crear('src\factory\Delete',[
 ]);
 ```
 
+### JOIN
+
+Acepta INNER, RIGHT, LEFT, FULL
+
+SELECT prueba.*,prueba2.* FROM prueba INNER JOIN prueba2 ON prueba.id = prueba2.id
+```php
+$join = $factory->crear('src\factory\Join', [
+    'tabla' => 'prueba', //La tabla principal
+    'campos' => ['*'], // Los campos de la tabla principal
+    'join' => 
+    [
+        [
+            'tipo' => 'inner', //Tipo de Join: inner, left, right, full
+            'tabla' => 'prueba2', // Tabla que se va a unir
+            'campos' => ['uno AS columnauno'], //Los campos de la tabla que se va a unir
+            'key' => ['uno'] // El nombre de columna con el cual se va a enlazar
+        ]
+    ]
+])
+```
+Las consultas con JOIN pueden llegara  ser bastante complejas, esta librería puede armar una enorme cantidad de JOINs de forma relativamente sencilla, el esquema es simple, los elementos básicos del JOIN se colocan en un array, y este puede tener multiples JOIN a tablas internas, por ejemplo, en el siguiente ARRAY se arma una consulta que dice:
+
+SELECT prueba.*,prueba5.cinco AS columnacinco,prueba4.cuatro AS columnacuatro,prueba3.dos AS columnados,prueba2.uno AS columnauno 
+FROM prueba 
+INNER JOIN prueba2 ON prueba.uno = prueba2.uno 
+INNER JOIN prueba3 ON prueba.dos = prueba3.dos 
+INNER JOIN prueba4 ON prueba3.cuatro = prueba4.cuatro 
+INNER JOIN prueba5 ON prueba4.cinco = prueba5.cinco
+
+
+En definitiva no hay forma "sencilla" de armar una sentencia tan larga como puede ser un JOIN y que no confunda un poco, sin embargo, es muy útil poderlos hacer con arrays de forma practicamente ilimitada. 
+
+```php
+$datos = [
+    'tabla' => 'prueba',
+    'campos' => ['*'],
+    'join' =>
+    [
+        [
+            'tipo' => 'inner',
+            'tabla' => 'prueba2',
+            'campos' => ['uno AS columnauno'],
+            'key' => ['uno']
+        ],
+        [
+            'tipo' => 'inner',
+            'tabla' => 'prueba3',
+            'campos' => ['dos AS columnados'],
+            'key' => ['dos'],
+            'join' =>
+            [
+                [
+                    'tipo' => 'inner',
+                    'tabla' => 'prueba4',
+                    'campos' => ['cuatro AS columnacuatro'],
+                    'key' => ['cuatro'],
+                    'join' => 
+                    [
+                        [
+                            'tipo' => 'inner',
+                            'tabla' => 'prueba5',
+                            'campos' => ['cinco AS columnacinco'],
+                            'key' => ['cinco']
+                        ]
+                    ]
+                ]
+            ]
+        ]
+    ]
+];
+
+$select = $factory->crear('src\factory\Join', $datos);
+```
+Esta consulta la podemos dividir en distintos arrays:
+
+```php
+$tabla5 = 
+    [
+        'tipo' => 'inner',
+        'tabla' => 'prueba5',
+        'campos' => ['cinco AS columnacinco'],
+        'key' => ['cinco']
+    ];
+
+$tabla4 = 
+    [
+        'tipo' => 'inner',
+        'tabla' => 'prueba4',
+        'campos' => ['cuatro AS columnacuatro'],
+        'key' => ['cuatro'],
+        'join' => $tabla5
+    ];
+
+$tabla3 = 
+    [
+        'tipo' => 'inner',
+        'tabla' => 'prueba3',
+        'campos' => ['dos AS columnados'],
+        'key' => ['dos'],
+        'join' => $tabla4
+    ];
+    
+$tabla2 = 
+    [
+        'tipo' => 'inner',
+        'tabla' => 'prueba2',
+        'campos' => ['uno AS columnauno'],
+        'key' => ['uno']
+    ];
+
+$datos = 
+    [
+        'tabla' => 'prueba',
+        'campos' => ['*'],
+        'join' => $tabla2, $tabla3
+    ];
+```
+
+Si los nombres de columna de las dos tablas no son iguales, el valor a escribir en el array es:
+
+['nombre_de_columna_tabla_padre','nombre_de_columna_tabla_hijo']
+
+Si son iguales en ambas tablas solo un valor:
+
+['nombre de columna']
+
 ### EJECUTAR LA CONSULTA
 
 Al ejecutar cada consulta SELECT, UPDATE, INSERT, DELETE
@@ -370,7 +496,7 @@ Los componentes las clases funcionan en su mayoría de forma agnostica a su ento
 
 ### Consultas con sentencias directas
 
-Auqnue no es recomendable realizar consultas directas sin utilizar bindValue, o encapsular las consultas para tener la seguridad que la consulta que escribimos es la que se ejecutará y prevenir [[!SQL Injection](https://www.w3schools.com/sql/sql_injection.asp)], en ambientes de desarrollo es útil, se pueden usar haciendo:
+Auqnue no es recomendable realizar consultas directas sin utilizar bindValue, o encapsular las consultas para tener la seguridad que la consulta que escribimos es la que se ejecutará y prevenir [SQL Injection](https://www.w3schools.com/sql/sql_injection.asp), en ambientes de desarrollo es útil, se pueden usar haciendo:
 
 ```php
 /*

@@ -12,12 +12,13 @@ use src\factory\SelectWhereBetween;
 use src\factory\SelectWhereNotBetween;
 use src\factory\SelectWhereOr;
 use src\factory\Update;
+use src\factory\Join;
 use src\pdodatabase\consultas\delete\ConsultaDelete;
 use src\pdodatabase\consultas\insert\ConsultaInsert;
+use src\pdodatabase\consultas\select\ConsultaJoin;
 use src\pdodatabase\consultas\select\ConsultaSelect;
 use src\pdodatabase\consultas\select\ConsultaSelectWhere;
 use src\pdodatabase\consultas\update\ConsultaUpdate;
-use src\pdodatabase\sentencias\insert\SentenciaInsert;
 
 class FactoryTest extends TestCase
 {
@@ -83,5 +84,27 @@ class FactoryTest extends TestCase
     {
         $delete = new Delete;
         $this->assertInstanceOf(ConsultaDelete::class, $delete->crear( ['tabla' => 'prueba', 'where' => ['id','=',1] ] ));
+    }
+
+    //Join
+
+    public function testFactoryJoinDevuelveClaseAdecuada()
+    {
+        $join = new Join;
+        $datos = [
+            'tabla' => 'prueba',
+            'campos' => ['*'],
+            'join' =>
+            [
+                [
+                    'tipo' => 'inner',
+                    'tabla' => 'prueba2',
+                    'campos' => ['uno AS columnauno'],
+                    'key' => ['uno']
+                ]
+            ]
+        ];
+        
+        $this->assertInstanceOf(ConsultaJoin::class,$join->crear($datos));
     }
 }

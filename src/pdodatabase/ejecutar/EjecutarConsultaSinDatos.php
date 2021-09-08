@@ -28,7 +28,6 @@ class EjecutarConsultaSinDatos
             throw new Exception("Error en la consulta");
         }
         
-
         return $query;
     }
 }

@@ -27,7 +27,7 @@ class Joins
             $sql = $join->sql().' '.$sql;
         }
 
-        return 'SELECT '.$this->_campos.','.$this->campos(). ' FROM '. $this->_tabla->sql().' '.$sql;
+        return $this->_campos.','.$this->campos(). ' FROM '. $this->_tabla->sql().' '.$sql;
     }
 
     private function campos(): string

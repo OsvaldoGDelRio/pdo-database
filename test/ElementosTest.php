@@ -26,6 +26,7 @@ use src\pdodatabase\elementos\WhereNotBetween;
 use src\pdodatabase\elementos\WhereOr;
 use src\pdodatabase\sentencias\delete\SentenciaDelete;
 use src\pdodatabase\sentencias\insert\SentenciaInsert;
+use src\pdodatabase\sentencias\select\SentenciaJoin;
 use src\pdodatabase\sentencias\select\SentenciaSelect;
 use src\pdodatabase\sentencias\select\SentenciaSelectWhere;
 use src\pdodatabase\sentencias\update\SentenciaUpdate;
@@ -597,6 +598,29 @@ class ElementosTest extends TestCase
                 )
             ]
         );
+
+        $this->assertSame("TABLA1.*,tabla2.dos AS DOS,tabla2.id FROM TABLA1 INNER JOIN tabla2 ON TABLA1.id1 = tabla2.id2 ",$joins->sql());
+    }
+
+    //SentenciaJoin
+
+    public function testSentenciaJoinsDevuelveElStringCorrecto()
+    {
+        $joins = new Joins(
+            new Tabla('TABLA1'),
+            new Campos(['*']),
+            [
+                new Join(
+                    new TipoDeJoin('inner'),
+                    new Tabla('TABLA1'), 
+                    new Tabla('tabla2'), 
+                    new Campos(['id', 'dos AS DOS']), 
+                    new NombreColumnaJoin(['id1','id2']) 
+                )
+            ]
+        );
+
+        $joins = new SentenciaJoin($joins);
 
         $this->assertSame("SELECT TABLA1.*,tabla2.dos AS DOS,tabla2.id FROM TABLA1 INNER JOIN tabla2 ON TABLA1.id1 = tabla2.id2 ",$joins->sql());
     }
