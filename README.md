@@ -13,6 +13,7 @@ Hasta el momento contiene funcionalidad básica:
 [INSERT](https://github.com/OsvaldoGDelRio/pdo-database#insert)
 [UPDATE](https://github.com/OsvaldoGDelRio/pdo-database#update)
 [DELETE](https://github.com/OsvaldoGDelRio/pdo-database#delete)
+[JOIN](https://github.com/OsvaldoGDelRio/pdo-database#join)
 
 ## Instalación
 
@@ -103,16 +104,12 @@ array
 
 ```
 
-Tabla en SQL para crear pruebas en test.sql
+Las tablas necesarias para las pruebas de la librería están disponibles en test.sql usando:
 
-```
-CREATE TABLE `prueba` (
-  `id` int(11) NOT NULL,
-  `uno` int(11) NOT NULL,
-  `dos` int(11) NOT NULL,
-  `tres` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-```
+- base de datos: test
+- usuario: root
+- password: 
+- host: 127.0.0.1
 
 
 ## Listado de sentencias con código usando Factory
@@ -240,7 +237,12 @@ $select = $factory->crear('src\factory\Delete',[
 
 Acepta INNER, RIGHT, LEFT, FULL
 
-SELECT prueba.*,prueba2.* FROM prueba INNER JOIN prueba2 ON prueba.id = prueba2.id
+```sql
+SELECT prueba.*,prueba2.uno AS columnauno
+FROM prueba 
+INNER JOIN prueba2 ON prueba.uno = prueba2.uno
+```
+
 ```php
 $join = $factory->crear('src\factory\Join', [
     'tabla' => 'prueba', //La tabla principal
@@ -257,14 +259,14 @@ $join = $factory->crear('src\factory\Join', [
 ])
 ```
 Las consultas con JOIN pueden llegara  ser bastante complejas, esta librería puede armar una enorme cantidad de JOINs de forma relativamente sencilla, el esquema es simple, los elementos básicos del JOIN se colocan en un array, y este puede tener multiples JOIN a tablas internas, por ejemplo, en el siguiente ARRAY se arma una consulta que dice:
-
+```sql
 SELECT prueba.*,prueba5.cinco AS columnacinco,prueba4.cuatro AS columnacuatro,prueba3.dos AS columnados,prueba2.uno AS columnauno 
 FROM prueba 
 INNER JOIN prueba2 ON prueba.uno = prueba2.uno 
 INNER JOIN prueba3 ON prueba.dos = prueba3.dos 
 INNER JOIN prueba4 ON prueba3.cuatro = prueba4.cuatro 
 INNER JOIN prueba5 ON prueba4.cinco = prueba5.cinco
-
+```
 
 En definitiva no hay forma "sencilla" de armar una sentencia tan larga como puede ser un JOIN y que no confunda un poco, sin embargo, es muy útil poderlos hacer con arrays de forma practicamente ilimitada. 
 
@@ -352,15 +354,31 @@ $datos =
         'campos' => ['*'],
         'join' => $tabla2, $tabla3
     ];
-```
 
-Si los nombres de columna de las dos tablas no son iguales, el valor a escribir en el array es:
+/*El campo que le indica a la clase que debe de crear otro JOIN que tiene como tabla una diferente a la principal es:
+
+'join' => [
+    // lo que esté dentro de este array se considera un JOIN a la tabla indicada en el mismo array del que sale. 
+    [
+        'tipo' => '' tipo del join a ejecutar
+        'tabla'=> '', Nombre d ela tabla
+        'campos' => [], Valores ilimitados separados por comas (,) o un simple '*' para seleccionar todo 
+        'key' => [] Máximo 2 valores permitidos
+    ],
+    [
+        Más datos indicando otro JOIN
+    ]
+];
+
+Si los nombres de columna en donde se realiza el enlace de las dos tablas no son iguales, el valor a escribir en el array es:
 
 ['nombre_de_columna_tabla_padre','nombre_de_columna_tabla_hijo']
 
 Si son iguales en ambas tablas solo un valor:
 
 ['nombre de columna']
+*/
+```
 
 ### EJECUTAR LA CONSULTA
 
@@ -422,7 +440,8 @@ pdo-database
             |   +-- update
             |   +-- insert
             |   +-- delete
-+-- test                        //Contiene las pruebas realizadas en PHPUnit 
++-- test                        //Contiene las pruebas realizadas en PHPUnit
++-- test.sql                    //Archivo SQL que contiene la creación de las tablas necesarias para las pruebas 
 ```
 ## ejemplos de uso
 ```php
@@ -478,9 +497,12 @@ Para ejecutar las pruebas y mostrar en texto con --testdox
 La librería tiene pruebas que se prueden encontrar en pdo-database/test. 
 Contiene pruebas unitarias para la construcción de:
 
-- Clases necesarias para la conexión 
-- Clases de los elementos de creación de la sentencia SQL
-- Clases que muestran resultados en distintos formatos
+- Clases necesarias para la conexión - ConexionTest.php
+- Clases para ejecutar las consultas - ConsultasTest.php
+- Clases que ejecutan las consultas directamente con query - EjecutarConsultaTest.php
+- Clases de los elementos de creación de la sentencia SQL - ElementosTest.php
+- Clases Factory que reducen la escritura de código - FactoryTest.php
+- Clases que muestran resultados en distintos formatos - ResultadosTest.php
 
 ## Idea
 
