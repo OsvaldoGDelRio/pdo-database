@@ -12,7 +12,9 @@ use src\pdodatabase\elementos\Delete;
 use src\pdodatabase\elementos\Insert;
 use src\pdodatabase\elementos\Join;
 use src\pdodatabase\elementos\Joins;
+use src\pdodatabase\elementos\Limite;
 use src\pdodatabase\elementos\NombreColumnaJoin;
+use src\pdodatabase\elementos\Orden;
 use src\pdodatabase\elementos\Tabla;
 use src\pdodatabase\elementos\TipoDeJoin;
 use src\pdodatabase\elementos\Update;
@@ -27,6 +29,7 @@ use src\pdodatabase\elementos\WhereOr;
 use src\pdodatabase\sentencias\delete\SentenciaDelete;
 use src\pdodatabase\sentencias\insert\SentenciaInsert;
 use src\pdodatabase\sentencias\select\SentenciaJoin;
+use src\pdodatabase\sentencias\select\SentenciaJoinWhere;
 use src\pdodatabase\sentencias\select\SentenciaSelect;
 use src\pdodatabase\sentencias\select\SentenciaSelectWhere;
 use src\pdodatabase\sentencias\update\SentenciaUpdate;
@@ -599,7 +602,7 @@ class ElementosTest extends TestCase
             ]
         );
 
-        $this->assertSame("TABLA1.*,tabla2.dos AS DOS,tabla2.id FROM TABLA1 INNER JOIN tabla2 ON TABLA1.id1 = tabla2.id2 ",$joins->sql());
+        $this->assertSame("TABLA1.*,tabla2.dos AS DOS,tabla2.id FROM TABLA1 INNER JOIN tabla2 ON TABLA1.id1 = tabla2.id2",$joins->sql());
     }
 
     //SentenciaJoin
@@ -622,6 +625,94 @@ class ElementosTest extends TestCase
 
         $joins = new SentenciaJoin($joins);
 
-        $this->assertSame("SELECT TABLA1.*,tabla2.dos AS DOS,tabla2.id FROM TABLA1 INNER JOIN tabla2 ON TABLA1.id1 = tabla2.id2 ",$joins->sql());
+        $this->assertSame("SELECT TABLA1.*,tabla2.dos AS DOS,tabla2.id FROM TABLA1 INNER JOIN tabla2 ON TABLA1.id1 = tabla2.id2",$joins->sql());
+    }
+
+    // SentenciaJoinWhere
+
+    public function testSentenciaJoinWhereDevuelveElStringCorrecto()
+    {
+        $joins = new Joins(
+            new Tabla('TABLA1'),
+            new Campos(['*']),
+            [
+                new Join(
+                    new TipoDeJoin('inner'),
+                    new Tabla('TABLA1'), 
+                    new Tabla('tabla2'), 
+                    new Campos(['id', 'dos AS DOS']), 
+                    new NombreColumnaJoin(['id1','id2']) 
+                )
+            ]
+        );
+
+        $where = new Where(
+            new ValidadorDeParametrosWhere(['id','=',1])
+        );
+
+        $joins = new SentenciaJoinWhere($joins, $where);
+
+        $this->assertSame("SELECT TABLA1.*,tabla2.dos AS DOS,tabla2.id FROM TABLA1 INNER JOIN tabla2 ON TABLA1.id1 = tabla2.id2 WHERE id = ?",$joins->sql());
+    }
+
+    public function testSentenciaJoinWhereDevuelveArray()
+    {
+        $joins = new Joins(
+            new Tabla('TABLA1'),
+            new Campos(['*']),
+            [
+                new Join(
+                    new TipoDeJoin('inner'),
+                    new Tabla('TABLA1'), 
+                    new Tabla('tabla2'), 
+                    new Campos(['id', 'dos AS DOS']), 
+                    new NombreColumnaJoin(['id1','id2']) 
+                )
+            ]
+        );
+
+        $where = new Where(
+            new ValidadorDeParametrosWhere(['id','=',1])
+        );
+
+        $joins = new SentenciaJoinWhere($joins, $where);
+
+        $this->assertIsArray($joins->datos());
+    }
+
+    //Orden
+
+    public function testOrdenNoPuedeEstarVacio()
+    {
+        $this->expectException(Exception::class);
+        $orden = new Orden('');
+    }
+
+    public function testOrdenRegresaElStringAdecuado()
+    {
+        $orden = new Orden('id ASC');
+        $this->assertSame('ORDER BY id ASC', $orden->sql());
+    }
+
+    
+
+    //Limite
+
+    public function testLimiteNoPuedeEstarVacio()
+    {
+        $this->expectException(Exception::class);
+        $orden = new Limite('');
+    }
+
+    public function testLimiteDebeDeSerNumero()
+    {
+        $this->expectException(Exception::class);
+        $orden = new Limite('as');
+    }
+
+    public function testLimiteRegresaElStringAdecuado()
+    {
+        $orden = new Limite('2');
+        $this->assertSame('LIMIT 2', $orden->sql());
     }
 }

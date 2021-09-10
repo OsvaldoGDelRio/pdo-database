@@ -17,6 +17,11 @@ use src\factory\SelectWhereNotBetween;
 use src\factory\SelectWhereOr;
 use src\factory\Update;
 use src\factory\Join;
+use src\factory\JoinWhere;
+use src\factory\JoinWhereAnd;
+use src\factory\JoinWhereBetween;
+use src\factory\JoinWhereNotBetween;
+use src\factory\JoinWhereOr;
 use src\factory\UpdateWhereAnd;
 use src\factory\UpdateWhereBetween;
 use src\factory\UpdateWhereNotBetween;
@@ -24,6 +29,7 @@ use src\factory\UpdateWhereOr;
 use src\pdodatabase\consultas\delete\ConsultaDelete;
 use src\pdodatabase\consultas\insert\ConsultaInsert;
 use src\pdodatabase\consultas\select\ConsultaJoin;
+use src\pdodatabase\consultas\select\ConsultaJoinWhere;
 use src\pdodatabase\consultas\select\ConsultaSelect;
 use src\pdodatabase\consultas\select\ConsultaSelectWhere;
 use src\pdodatabase\consultas\update\ConsultaUpdate;
@@ -190,5 +196,240 @@ class FactoryTest extends TestCase
         ];
         
         $this->assertInstanceOf(ConsultaJoin::class,$join->crear($datos));
+    }
+
+    //JoinWhere
+
+    public function testFactoryJoinWhereDevuelveClaseAdecuada()
+    {
+        $join = new JoinWhere;
+        $datos = [
+            'tabla' => 'prueba',
+            'campos' => ['*'],
+            'where' => ['prueba.id','=',1],
+            'join' =>
+            [
+                [
+                    'tipo' => 'inner',
+                    'tabla' => 'prueba2',
+                    'campos' => ['uno AS columnauno'],
+                    'key' => ['uno']
+                ],
+                [
+                    'tipo' => 'inner',
+                    'tabla' => 'prueba3',
+                    'campos' => ['dos AS columnados'],
+                    'key' => ['dos'],
+                    'join' =>
+                    [
+                        [
+                            'tipo' => 'inner',
+                            'tabla' => 'prueba4',
+                            'campos' => ['cuatro AS columnacuatro'],
+                            'key' => ['cuatro'],
+                            'join' => 
+                            [
+                                [
+                                    'tipo' => 'inner',
+                                    'tabla' => 'prueba5',
+                                    'campos' => ['cinco AS columnacinco'],
+                                    'key' => ['cinco']
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ];
+        
+        $this->assertInstanceOf(ConsultaJoinWhere::class,$join->crear($datos));
+    }
+
+    //JoinWhereAnd
+
+    public function testFactoryJoinWhereAndDevuelveClaseAdecuada()
+    {
+        $join = new JoinWhereAnd;
+        $datos = [
+            'tabla' => 'prueba',
+            'campos' => ['*'],
+            'where' => ['prueba.id','=',1,'prueba.uno','=',2],
+            'join' =>
+            [
+                [
+                    'tipo' => 'inner',
+                    'tabla' => 'prueba2',
+                    'campos' => ['uno AS columnauno'],
+                    'key' => ['uno']
+                ],
+                [
+                    'tipo' => 'inner',
+                    'tabla' => 'prueba3',
+                    'campos' => ['dos AS columnados'],
+                    'key' => ['dos'],
+                    'join' =>
+                    [
+                        [
+                            'tipo' => 'inner',
+                            'tabla' => 'prueba4',
+                            'campos' => ['cuatro AS columnacuatro'],
+                            'key' => ['cuatro'],
+                            'join' => 
+                            [
+                                [
+                                    'tipo' => 'inner',
+                                    'tabla' => 'prueba5',
+                                    'campos' => ['cinco AS columnacinco'],
+                                    'key' => ['cinco']
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ];
+        
+        $this->assertInstanceOf(ConsultaJoinWhere::class,$join->crear($datos));
+    }
+
+    //JoinWhereOr
+
+    public function testFactoryJoinWhereOrDevuelveClaseAdecuada()
+    {
+        $join = new JoinWhereOr;
+        $datos = [
+            'tabla' => 'prueba',
+            'campos' => ['*'],
+            'where' => ['prueba.id','=',1,'prueba.uno','=',2],
+            'join' =>
+            [
+                [
+                    'tipo' => 'inner',
+                    'tabla' => 'prueba2',
+                    'campos' => ['uno AS columnauno'],
+                    'key' => ['uno']
+                ],
+                [
+                    'tipo' => 'inner',
+                    'tabla' => 'prueba3',
+                    'campos' => ['dos AS columnados'],
+                    'key' => ['dos'],
+                    'join' =>
+                    [
+                        [
+                            'tipo' => 'inner',
+                            'tabla' => 'prueba4',
+                            'campos' => ['cuatro AS columnacuatro'],
+                            'key' => ['cuatro'],
+                            'join' => 
+                            [
+                                [
+                                    'tipo' => 'inner',
+                                    'tabla' => 'prueba5',
+                                    'campos' => ['cinco AS columnacinco'],
+                                    'key' => ['cinco']
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ];
+        
+        $this->assertInstanceOf(ConsultaJoinWhere::class,$join->crear($datos));
+    }
+
+    //JoinWhereBetween
+
+    public function testFactoryJoinWhereBetweenDevuelveClaseAdecuada()
+    {
+        $join = new JoinWhereBetween;
+        $datos = [
+            'tabla' => 'prueba',
+            'campos' => ['*'],
+            'where' => ['prueba.id',1,3],
+            'join' =>
+            [
+                [
+                    'tipo' => 'inner',
+                    'tabla' => 'prueba2',
+                    'campos' => ['uno AS columnauno'],
+                    'key' => ['uno']
+                ],
+                [
+                    'tipo' => 'inner',
+                    'tabla' => 'prueba3',
+                    'campos' => ['dos AS columnados'],
+                    'key' => ['dos'],
+                    'join' =>
+                    [
+                        [
+                            'tipo' => 'inner',
+                            'tabla' => 'prueba4',
+                            'campos' => ['cuatro AS columnacuatro'],
+                            'key' => ['cuatro'],
+                            'join' => 
+                            [
+                                [
+                                    'tipo' => 'inner',
+                                    'tabla' => 'prueba5',
+                                    'campos' => ['cinco AS columnacinco'],
+                                    'key' => ['cinco']
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ];
+        
+        $this->assertInstanceOf(ConsultaJoinWhere::class,$join->crear($datos));
+    }
+
+    //JoinWhereBetween
+
+    public function testFactoryJoinWhereNotBetweenDevuelveClaseAdecuada()
+    {
+        $join = new JoinWhereNotBetween;
+        $datos = [
+            'tabla' => 'prueba',
+            'campos' => ['*'],
+            'where' => ['prueba.id',1,3],
+            'join' =>
+            [
+                [
+                    'tipo' => 'inner',
+                    'tabla' => 'prueba2',
+                    'campos' => ['uno AS columnauno'],
+                    'key' => ['uno']
+                ],
+                [
+                    'tipo' => 'inner',
+                    'tabla' => 'prueba3',
+                    'campos' => ['dos AS columnados'],
+                    'key' => ['dos'],
+                    'join' =>
+                    [
+                        [
+                            'tipo' => 'inner',
+                            'tabla' => 'prueba4',
+                            'campos' => ['cuatro AS columnacuatro'],
+                            'key' => ['cuatro'],
+                            'join' => 
+                            [
+                                [
+                                    'tipo' => 'inner',
+                                    'tabla' => 'prueba5',
+                                    'campos' => ['cinco AS columnacinco'],
+                                    'key' => ['cinco']
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ];
+        
+        $this->assertInstanceOf(ConsultaJoinWhere::class,$join->crear($datos));
     }
 }

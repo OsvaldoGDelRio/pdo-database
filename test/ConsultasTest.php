@@ -11,6 +11,7 @@ use src\pdodatabase\consultas\select\ConsultaSelect;
 use src\pdodatabase\consultas\select\ConsultaSelectWhere;
 use src\pdodatabase\consultas\delete\ConsultaDelete;
 use src\pdodatabase\consultas\select\ConsultaJoin;
+use src\pdodatabase\consultas\select\ConsultaJoinWhere;
 use src\pdodatabase\ejecutar\EjecutarConsultaConDatos;
 use src\pdodatabase\ejecutar\EjecutarConsultaSinDatos;
 use src\pdodatabase\elementos\Campos;
@@ -29,6 +30,7 @@ use src\pdodatabase\elementos\Where;
 use src\pdodatabase\sentencias\delete\SentenciaDelete;
 use src\pdodatabase\sentencias\insert\SentenciaInsert;
 use src\pdodatabase\sentencias\select\SentenciaJoin;
+use src\pdodatabase\sentencias\select\SentenciaJoinWhere;
 use src\pdodatabase\sentencias\select\SentenciaSelect;
 use src\pdodatabase\sentencias\select\SentenciaSelectWhere;
 use src\pdodatabase\sentencias\update\SentenciaUpdate;
@@ -172,6 +174,39 @@ class ConsultasTest extends TestCase
                         )
                     ]
                 ) 
+            )
+        );
+
+        $this->assertInstanceOf(PDOStatement::class, $consulta->obtener());
+    }
+
+    //ConsultaJoinWhere
+
+    //class ConsultaJoinWhere
+
+    public function testConsultasJoinWhereRetornaObjetoValido()
+    {
+        $consulta = new ConsultaJoinWhere(
+            new EjecutarConsultaConDatos(
+                $this->conexion
+            ),
+            new SentenciaJoinWhere(
+                new Joins(
+                    new Tabla('prueba'),
+                    new Campos(['*']),
+                    [
+                        new Join(
+                            new TipoDeJoin('inner'),
+                            new Tabla('prueba'),
+                            new Tabla('prueba2'),
+                            new Campos(['uno AS columna1']),
+                            new NombreColumnaJoin(['uno'])
+                        )
+                    ]
+                        ),
+                        new Where(
+                            new ValidadorDeParametrosWhere(['prueba.id','=',1])
+                        ) 
             )
         );
 

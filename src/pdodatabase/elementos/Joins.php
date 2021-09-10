@@ -12,7 +12,7 @@ class Joins
 
     public function __construct(Tabla $Tabla, Campos $Campos, array $Joins)
     {
-        $this->_joins = array_reverse( (array) $Joins);
+        $this->_joins = $Joins;
         $this->_tabla = $Tabla;
         $this->_campos = $this->setCampos($Campos->sql());
         
@@ -24,10 +24,10 @@ class Joins
 
         foreach ($this->_joins as $join)
         {
-            $sql = $join->sql().' '.$sql;
+            $sql = $sql.' '.$join->sql();
         }
 
-        return $this->_campos.','.$this->campos(). ' FROM '. $this->_tabla->sql().' '.$sql;
+        return $this->_campos.','.$this->campos(). ' FROM '. $this->_tabla->sql().$sql;
     }
 
     private function campos(): string

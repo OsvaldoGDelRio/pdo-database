@@ -444,6 +444,72 @@ Si son iguales en ambas tablas solo un valor:
 */
 ```
 
+JOIN WHERE
+
+```sql
+SELECT prueba.*,prueba5.cinco AS columnacinco,prueba4.cuatro AS columnacuatro,prueba3.dos AS columnados,prueba2.uno AS columnauno 
+FROM prueba 
+INNER JOIN prueba2 ON prueba.uno = prueba2.uno 
+INNER JOIN prueba3 ON prueba.dos = prueba3.dos 
+INNER JOIN prueba4 ON prueba3.cuatro = prueba4.cuatro 
+INNER JOIN prueba5 ON prueba4.cinco = prueba5.cinco
+WHERE prueba.id = ?
+```
+```php
+$datos = [
+    'tabla' => 'prueba',
+    'campos' => ['*'],
+    'where' => ['prueba.id','=',1],
+    'join' =>
+    [
+        [
+            'tipo' => 'inner',
+            'tabla' => 'prueba2',
+            'campos' => ['uno AS columnauno'],
+            'key' => ['uno']
+        ],
+        [
+            'tipo' => 'inner',
+            'tabla' => 'prueba3',
+            'campos' => ['dos AS columnados'],
+            'key' => ['dos'],
+            'join' =>
+            [
+                [
+                    'tipo' => 'inner',
+                    'tabla' => 'prueba4',
+                    'campos' => ['cuatro AS columnacuatro'],
+                    'key' => ['cuatro'],
+                    'join' => 
+                    [
+                        [
+                            'tipo' => 'inner',
+                            'tabla' => 'prueba5',
+                            'campos' => ['cinco AS columnacinco'],
+                            'key' => ['cinco']
+                        ]
+                    ]
+                ]
+            ]
+        ]
+    ]
+];
+
+$select = $factory->crear('src\factory\JoinWhere', $datos);
+```
+De la misma forma podemos agregar al JOIN la sentencia WHERE AND, WHERE OR, WHERE BETWEEN y WHERE NOT BETWEEN, solo modificando en contenido del array en la llave 'where' => 
+
+```php
+
+// Se agrega al array en el espacio where 6 datos 'nombre_de_columna','operador_lógico','valor','nombre_de_columna','operador_lógico','valor'
+$select = $factory->crear('src\factory\JoinWhereAnd', $datos);
+$select = $factory->crear('src\factory\JoinWhereOr', $datos);
+
+// Se colocan los 3 datos 'nombre_de_columna','valor1','valor2'
+$select = $factory->crear('src\factory\JoinWhereBetween', $datos);
+$select = $factory->crear('src\factory\JoinWhereNotBetween', $datos);
+```
+
 ### EJECUTAR LA CONSULTA
 
 Al ejecutar cada consulta SELECT, UPDATE, INSERT, DELETE
