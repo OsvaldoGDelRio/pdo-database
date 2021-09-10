@@ -223,13 +223,77 @@ $select = $factory->crear('src\factory\Update',[
     'where' => ['id','=',1] 
 ]);
 ```
+
+UPDATE prueba SET uno = ? WHERE id = ? AND id = ?
+```php
+$select = $factory->crear('src\factory\UpdateWhereAnd',[
+    'tabla' => 'prueba',
+    'valores' => ['uno' => 1],
+    'where' => ['id','=',1,'id','=',6] 
+]);
+```
+
+UPDATE prueba SET uno = ? WHERE id = ? OR id = ?
+```php
+$select = $factory->crear('src\factory\UpdateWhereOr',[
+    'tabla' => 'prueba',
+    'valores' => ['uno' => 1],
+    'where' => ['id','=',1,'id','=',6] 
+]);
+```
+
+UPDATE prueba SET uno = ? WHERE BETWEEN id ? AND ?
+```php
+$select = $factory->crear('src\factory\UpdateWhereBetween',[
+    'tabla' => 'prueba',
+    'valores' => ['uno' => 1],
+    'where' => ['id',1,5] 
+]);
+```
+
+UPDATE prueba SET uno = ? WHERE NOT BETWEEN id ? AND ?
+```php
+$select = $factory->crear('src\factory\UpdateWhereNotBetween',[
+    'tabla' => 'prueba',
+    'valores' => ['uno' => 1],
+    'where' => ['id',1,5] 
+]);
+```
+
 ### DELETE 
 
 No acepta la sentencia sin el valor WHERE, WHERE AND, WHERE OR, WHERE BETWEEN o WHERE NOT BETWEEN, para borrar todo el contenido de una tabla usar TRUNCATE
+
+
+DELETE FROM prueba WHERE id = ?
 ```php
 $select = $factory->crear('src\factory\Delete',[
     'tabla' => 'prueba',
     'where' => ['id','=',1] 
+]);
+```
+
+DELETE FROM prueba WHERE id = ? AND id = ?
+```php
+$select = $factory->crear('src\factory\DeleteWhereAnd',[
+    'tabla' => 'prueba',
+    'where' => ['id','=',1,'id','=',3] 
+]);
+```
+
+DELETE FROM prueba WHERE BETWEEN id ? AND ?
+```php
+$select = $factory->crear('src\factory\DeleteWhereBetween',[
+    'tabla' => 'prueba',
+    'where' => ['id',1,3] 
+]);
+```
+
+DELETE FROM prueba WHERE NOT BETWEEN id ? AND ?
+```php
+$select = $factory->crear('src\factory\DeleteWhereNotBetween',[
+    'tabla' => 'prueba',
+    'where' => ['id',1,100] 
 ]);
 ```
 
