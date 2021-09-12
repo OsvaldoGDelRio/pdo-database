@@ -15,8 +15,10 @@ use src\pdodatabase\elementos\Joins;
 use src\pdodatabase\elementos\Limite;
 use src\pdodatabase\elementos\NombreColumnaJoin;
 use src\pdodatabase\elementos\Orden;
+use src\pdodatabase\elementos\OrdenYLimite;
 use src\pdodatabase\elementos\Tabla;
 use src\pdodatabase\elementos\TipoDeJoin;
+use src\pdodatabase\elementos\Truncate;
 use src\pdodatabase\elementos\Update;
 use src\pdodatabase\elementos\ValidadorDeParametrosWhereBetween;
 use src\pdodatabase\elementos\ValidadorDeParametrosWhere;
@@ -26,13 +28,6 @@ use src\pdodatabase\elementos\WhereAnd;
 use src\pdodatabase\elementos\WhereBetween;
 use src\pdodatabase\elementos\WhereNotBetween;
 use src\pdodatabase\elementos\WhereOr;
-use src\pdodatabase\sentencias\delete\SentenciaDelete;
-use src\pdodatabase\sentencias\insert\SentenciaInsert;
-use src\pdodatabase\sentencias\select\SentenciaJoin;
-use src\pdodatabase\sentencias\select\SentenciaJoinWhere;
-use src\pdodatabase\sentencias\select\SentenciaSelect;
-use src\pdodatabase\sentencias\select\SentenciaSelectWhere;
-use src\pdodatabase\sentencias\update\SentenciaUpdate;
 
 class ElementosTest extends TestCase
 {
@@ -297,44 +292,6 @@ class ElementosTest extends TestCase
         $this->assertSame('WHERE NOT BETWEEN id ? AND ?', $como->sql());
     }
 
-    //Clase Sentencia Select Where
-
-    public function testSentenciaSelectWhereArrojaStringValido()
-    {
-        $where = new WhereNotBetween(
-            new ValidadorDeParametrosWhereBetween(
-                ['id','1','21']
-            )
-            );
-        
-        $como = new Como(
-            $where
-        );
-
-        $sentencia = new SentenciaSelectWhere(
-            new CamposYTabla(
-                new Campos(['*']),
-                new Tabla('prueba')
-            ),$como
-        );
-
-        $this->assertSame('SELECT * FROM prueba WHERE NOT BETWEEN id ? AND ?', $sentencia->sql());
-    }
-
-    //Clase SentenciaSelect
-
-    public function testSentenciaSelectArrojaStringValido()
-    {
-        $sentencia = new SentenciaSelect(
-            new CamposYTabla(
-                new Campos(['*']),
-                new Tabla('prueba')
-                )
-            );
-
-        $this->assertSame('SELECT * FROM prueba', $sentencia->sql());
-    }
-
     //Class Insert
 
     public function testInsertNoPuedeEstarVacio()
@@ -361,27 +318,7 @@ class ElementosTest extends TestCase
         $this->assertArrayHasKey('id', $insert->datos());
     }
 
-    //class SentenciaInsert
-
-    public function testSentenciaInsertRetornaStringValido()
-    {
-        $insert = new Insert(['id' => 1]);
-        $sentencia = new SentenciaInsert(
-            new Tabla('prueba'),
-            $insert
-        );
-        $this->assertSame('INSERT INTO prueba (`id`) VALUES (?)', $sentencia->sql());
-    }
-
-    public function testSentenciaInsertRetornaArraValido()
-    {
-        $insert = new Insert(['id' => 1]);
-        $sentencia = new SentenciaInsert(
-            new Tabla('prueba'),
-            $insert
-        );
-        $this->assertArrayHasKey('id', $sentencia->datos());
-    }
+    
 
     //Class Update
 
@@ -420,32 +357,7 @@ class ElementosTest extends TestCase
         $this->assertSame('unodos0', $c);
     }
 
-    //Class SentenciaUpdate
-
-    public function testSentenciaUpdateRetornaStringValido()
-    {
-        $up = new Update(['uno' => 1,'dos' => 2], new Where(new ValidadorDeParametrosWhere(['id','=',1])));
-        $sentencia = new SentenciaUpdate(new Tabla('prueba'),$up);
-        
-        $this->assertSame('UPDATE prueba SET uno = ?,dos = ? WHERE id = ?', $sentencia->sql());
-    }
-
-    public function testSentenciaUpdateRetornaArrayValido()
-    {
-        $up = new Update(['uno' => 11,'dos' => 2], new Where(new ValidadorDeParametrosWhere(['id','=',1])));
-        $sentencia = new SentenciaUpdate(new Tabla('prueba'),$up);
-        $v='';
-        $c='';
-
-        foreach ($sentencia->datos() as $key => $value)
-        {
-            $v =  $v.$value;
-            $c =  $c.$key;  
-        }
-
-        $this->assertSame('1121', $v);
-        $this->assertSame('unodos0', $c);
-    }
+    
     
     //Clase Delete
 
@@ -475,44 +387,6 @@ class ElementosTest extends TestCase
         );
 
         $this->assertIsArray($del->datos());
-    }
-
-    //Class SentenciaDelete
-
-    public function testSentenciaDeleteArrojaStringValido()
-    {
-        $del = new Delete(
-            new Tabla('prueba'),
-            new Where(
-                new ValidadorDeParametrosWhere(
-                    ['id','=',1]
-                )
-            )
-        );
-
-        $sentencia = new SentenciaDelete(
-            $del
-        );
-
-        $this->assertSame('DELETE FROM prueba WHERE id = ?', $sentencia->sql());
-    }
-
-    public function testSentenciaDeleteArrojaArrayValido()
-    {
-        $del = new Delete(
-            new Tabla('prueba'),
-            new Where(
-                new ValidadorDeParametrosWhere(
-                    ['id','=',1]
-                )
-            )
-        );
-
-        $sentencia = new SentenciaDelete(
-            $del
-        );
-
-        $this->assertIsArray($sentencia->datos());
     }
 
     //Join
@@ -605,80 +479,7 @@ class ElementosTest extends TestCase
         $this->assertSame("TABLA1.*,tabla2.dos AS DOS,tabla2.id FROM TABLA1 INNER JOIN tabla2 ON TABLA1.id1 = tabla2.id2",$joins->sql());
     }
 
-    //SentenciaJoin
-
-    public function testSentenciaJoinsDevuelveElStringCorrecto()
-    {
-        $joins = new Joins(
-            new Tabla('TABLA1'),
-            new Campos(['*']),
-            [
-                new Join(
-                    new TipoDeJoin('inner'),
-                    new Tabla('TABLA1'), 
-                    new Tabla('tabla2'), 
-                    new Campos(['id', 'dos AS DOS']), 
-                    new NombreColumnaJoin(['id1','id2']) 
-                )
-            ]
-        );
-
-        $joins = new SentenciaJoin($joins);
-
-        $this->assertSame("SELECT TABLA1.*,tabla2.dos AS DOS,tabla2.id FROM TABLA1 INNER JOIN tabla2 ON TABLA1.id1 = tabla2.id2",$joins->sql());
-    }
-
-    // SentenciaJoinWhere
-
-    public function testSentenciaJoinWhereDevuelveElStringCorrecto()
-    {
-        $joins = new Joins(
-            new Tabla('TABLA1'),
-            new Campos(['*']),
-            [
-                new Join(
-                    new TipoDeJoin('inner'),
-                    new Tabla('TABLA1'), 
-                    new Tabla('tabla2'), 
-                    new Campos(['id', 'dos AS DOS']), 
-                    new NombreColumnaJoin(['id1','id2']) 
-                )
-            ]
-        );
-
-        $where = new Where(
-            new ValidadorDeParametrosWhere(['id','=',1])
-        );
-
-        $joins = new SentenciaJoinWhere($joins, $where);
-
-        $this->assertSame("SELECT TABLA1.*,tabla2.dos AS DOS,tabla2.id FROM TABLA1 INNER JOIN tabla2 ON TABLA1.id1 = tabla2.id2 WHERE id = ?",$joins->sql());
-    }
-
-    public function testSentenciaJoinWhereDevuelveArray()
-    {
-        $joins = new Joins(
-            new Tabla('TABLA1'),
-            new Campos(['*']),
-            [
-                new Join(
-                    new TipoDeJoin('inner'),
-                    new Tabla('TABLA1'), 
-                    new Tabla('tabla2'), 
-                    new Campos(['id', 'dos AS DOS']), 
-                    new NombreColumnaJoin(['id1','id2']) 
-                )
-            ]
-        );
-
-        $where = new Where(
-            new ValidadorDeParametrosWhere(['id','=',1])
-        );
-
-        $joins = new SentenciaJoinWhere($joins, $where);
-
-        $this->assertIsArray($joins->datos());
-    }
+    
 
     //Orden
 
@@ -693,8 +494,6 @@ class ElementosTest extends TestCase
         $orden = new Orden('id ASC');
         $this->assertSame('ORDER BY id ASC', $orden->sql());
     }
-
-    
 
     //Limite
 
@@ -714,5 +513,22 @@ class ElementosTest extends TestCase
     {
         $orden = new Limite('2');
         $this->assertSame('LIMIT 2', $orden->sql());
+    }
+
+    //Truncate
+
+    public function testTruncateDevuelveStringValido()
+    {
+        $truncate = new Truncate(new Tabla('prueba'));
+        $this->assertSame("TABLE prueba",$truncate->sql());
+    }
+
+    //OrdenYLimite
+
+    public function testOrdenYLimiteDevuelveStringValido()
+    {
+        $ol = new OrdenYLimite(new Orden('id'), new Limite('1'));
+
+        $this->assertSame('ORDER BY id LIMIT 1',$ol->sql());
     }
 }

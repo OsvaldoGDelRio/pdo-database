@@ -5,21 +5,25 @@
 [![Travis Build Status](https://app.travis-ci.com/OsvaldoGDelRio/pdo-database.svg?branch=main)](https://app.travis-ci.com/OsvaldoGDelRio/pdo-database)
 
 ## pdo-database
-Clases en PHP para trabajar con PDO y bases de datos SQL escrita en español.
+Librería en PHP para trabajar con PDO y bases de datos SQL escrita en español.
 
 Hasta el momento contiene funcionalidad básica:
 
 [SELECT](https://github.com/OsvaldoGDelRio/pdo-database#select)
+[JOIN](https://github.com/OsvaldoGDelRio/pdo-database#join)
+[ORDER](https://github.com/OsvaldoGDelRio/pdo-database#order)
+[LIMIT](https://github.com/OsvaldoGDelRio/pdo-database#limit)
+[ORDER-LIMIT](https://github.com/OsvaldoGDelRio/pdo-database#order-limit)
 [INSERT](https://github.com/OsvaldoGDelRio/pdo-database#insert)
 [UPDATE](https://github.com/OsvaldoGDelRio/pdo-database#update)
 [DELETE](https://github.com/OsvaldoGDelRio/pdo-database#delete)
-[JOIN](https://github.com/OsvaldoGDelRio/pdo-database#join)
+[TRUNCATE](https://github.com/OsvaldoGDelRio/pdo-database#truncate)
 
 ## Instalación
 
 Escrita en PHP 8.0
 
-Requiere: PSR-4: Autoloader
+Requiere: PSR-4: Autoloader para un mejor funcionamiento sin tener que reescribir los namespace
 
 ### Vía composer
 ```shell
@@ -510,9 +514,64 @@ $select = $factory->crear('src\factory\JoinWhereBetween', $datos);
 $select = $factory->crear('src\factory\JoinWhereNotBetween', $datos);
 ```
 
+### ORDER
+
+Para agregar la sentencia ORDER BY en sentencias tipo SELECT ya sea con cualquier combinación de WHERE o JOIN solo hay que llamar la clase Factory terminando con OrderBy:
+
+SELECT * FROM prueba ORDER BY id ASC
+```php
+$datos = [
+    'tabla' => 'prueba',
+    'campos' => ['*'],
+    'order' => 'id ASC'
+];
+$select = $factory->crear('src\factory\SelectOrderBy', $datos);
+```
+Para realizar una consulta SELECT WHERE ORDER BY la clase esta esta: SelectWhereOrderBy, todas clases que terminen en OrderBy aceptarán el parametro 'order' en el array
+
+### LIMIT
+
+Para agregar la sentencia LIMIT en sentencias tipo SELECT ya sea con cualquier combinación de WHERE o JOIN solo hay que llamar la clase Factory terminando con Limit:
+
+SELECT * FROM prueba LIMIT 1
+```php
+$datos = [
+    'tabla' => 'prueba',
+    'campos' => ['*'],
+    'limit' => '1' // Limit tiene que ser numérico pero String
+];
+$select = $factory->crear('src\factory\SelectLimit', $datos);
+```
+Para realizar una consulta SELECT WHERE LIMIT la clase esta esta: SelectWhereLimit, todas clases que terminen en Limit aceptarán el parametro 'limit' en el array
+
+### ORDER-LIMIT
+
+Las sentencias ORDER BY 'nombre_de_columna' LIMIT 'numero_de_filas' se pueden obtener agregando a cualquier clase Select o Join la terminación OrderByLimit, e incluir en el array ambos campos:
+
+SELECT * FROM prueba ORDER BY id LIMIT 10
+```php
+$datos = [
+    'tabla' => 'prueba',
+    'campos' => ['*'],
+    'order' => 'id',
+    'limit' => '10' // Limit tiene que ser numérico pero String
+];
+$select = $factory->crear('src\factory\SelectOrderByLimit', $datos);
+```
+
+
+### TRUNCATE
+
+Borra todos los datos de la tabla sin eliminar la tabla
+
+```php
+$truncate = $factory->crear('src\factory\Truncate',['tabla'=>'prueba']);
+```
+
+
 ### EJECUTAR LA CONSULTA
 
-Al ejecutar cada consulta SELECT, UPDATE, INSERT, DELETE
+Al ejecutar cada consulta SELECT, UPDATE, INSERT, DELETE, JOIN, O CUALQUIER OTRA:
 
 ```php
 $select->obtener();
@@ -547,6 +606,19 @@ $resultadoJson = new ResultadoEnJson;
 $resultadoJson->resultado($consulta);
 ```
 
+### RESULTADOS DE INSERT
+
+ContarResultados devuelve el número de filas afectadas por la consulta ejecutada
+```php
+$insert = $factory->crear('src\factory\Insert',[
+    'tabla' => 'prueba',
+    'valores' => ['uno' => 1234, 'dos' => 1234, 'tres' => 1548]
+]);
+
+$resultado = new ContarResultados;
+var_dump($resultado->contar($insert->obtener())); // OUTPUT 1
+```
+
 ### Estructura de directorios
 
 ```
@@ -559,6 +631,7 @@ pdo-database
 |       |   +-- conexion        //Contiene las clases para crear la conexión 
 |       |   +-- consultas       //Contiene las clases para realizar las consultas 
 |           |   +-- select
+            |   +-- sql         //Contiene clases para ejecutar varios tipos de consultas SQL
             |   +-- update
             |   +-- insert
             |   +-- delete
@@ -567,6 +640,7 @@ pdo-database
 |       |   +-- resultados      //Contiene las clases para mostrar resultados 
 |       |   +-- sentencias      //Contiene las clases para construir las sentencias en texto 
 |           |   +-- select
+            |   +-- sql         //Contiene clases para construir varias sentencias SQL 
             |   +-- update
             |   +-- insert
             |   +-- delete

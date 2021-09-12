@@ -214,6 +214,18 @@ CREATE TABLE `prueba5` (
 INSERT INTO `prueba5` (`id`, `cinco`) VALUES
 (1, 5);
 
+CREATE TABLE `prueba6` (
+  `id` int(11) NOT NULL,
+  `seis` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `prueba5`
+--
+
+INSERT INTO `prueba6` (`id`, `seis`) VALUES
+(1, 6;
+
 --
 -- Índices para tablas volcadas
 --
@@ -249,6 +261,9 @@ ALTER TABLE `prueba4`
 ALTER TABLE `prueba5`
   ADD PRIMARY KEY (`id`);
 
+  ALTER TABLE `prueba6`
+  ADD PRIMARY KEY (`id`);
+
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
@@ -281,6 +296,10 @@ ALTER TABLE `prueba4`
 -- AUTO_INCREMENT de la tabla `prueba5`
 --
 ALTER TABLE `prueba5`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+COMMIT;
+
+ALTER TABLE `prueba6`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 

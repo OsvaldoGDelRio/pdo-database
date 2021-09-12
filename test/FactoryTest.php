@@ -22,6 +22,7 @@ use src\factory\JoinWhereAnd;
 use src\factory\JoinWhereBetween;
 use src\factory\JoinWhereNotBetween;
 use src\factory\JoinWhereOr;
+use src\factory\Truncate;
 use src\factory\UpdateWhereAnd;
 use src\factory\UpdateWhereBetween;
 use src\factory\UpdateWhereNotBetween;
@@ -32,6 +33,7 @@ use src\pdodatabase\consultas\select\ConsultaJoin;
 use src\pdodatabase\consultas\select\ConsultaJoinWhere;
 use src\pdodatabase\consultas\select\ConsultaSelect;
 use src\pdodatabase\consultas\select\ConsultaSelectWhere;
+use src\pdodatabase\consultas\sql\ConsultaTruncate;
 use src\pdodatabase\consultas\update\ConsultaUpdate;
 
 class FactoryTest extends TestCase
@@ -431,5 +433,13 @@ class FactoryTest extends TestCase
         ];
         
         $this->assertInstanceOf(ConsultaJoinWhere::class,$join->crear($datos));
+    }
+
+    //Truncate
+
+    public function testFactoryTruncateDevuelveClaseAdecuada()
+    {
+        $truncate = new Truncate;        
+        $this->assertInstanceOf(ConsultaTruncate::class,$truncate->crear(['tabla'=>'prueba6']));
     }
 }
